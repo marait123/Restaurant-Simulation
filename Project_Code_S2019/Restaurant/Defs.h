@@ -10,6 +10,7 @@ enum REGION {
 	D_REG,
 	REG_CNT		//Total number of regions
 };
+// test 
 
 
 enum ORD_TYPE	//types of orders
