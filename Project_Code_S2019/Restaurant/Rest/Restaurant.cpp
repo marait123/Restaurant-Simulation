@@ -7,7 +7,7 @@ using namespace std;
 #include "..\Events\ArrivalEvent.h"
 
 
-Restaurant::Restaurant() 
+Restaurant::Restaurant()
 {
 	pGUI = NULL;
 }
@@ -73,7 +73,7 @@ Restaurant::~Restaurant()
 //It should be removed starting phase 1
 void Restaurant::Just_A_Demo()
 {
-	// use caps lock to solve the autocomplete problem
+	
 	//
 	// THIS IS JUST A DEMO FUNCTION
 	// IT SHOULD BE REMOVED IN PHASE 1 AND PHASE 2
@@ -82,7 +82,7 @@ void Restaurant::Just_A_Demo()
 	Order* pOrd;
 	Event* pEv;
 	srand(time(NULL));
-	
+
 	pGUI->PrintMessage("Just a Demo. Enter EVENTS Count(next phases should read I/P filename):");
 	EventCnt = atoi(pGUI->GetString().c_str());	//get user input as a string then convert to integer
 
@@ -150,10 +150,49 @@ void Restaurant::Just_A_Demo()
 }
 ////////////////
 
-void Restaurant::AddtoDemoQueue(Order *pOrd)
+//void restaurant::addtodemoqueue(order *pord)
+//{
+//	demo_queue.enqueue(pord);
+//}
+
+void Restaurant::AddOrderToVIP(Order *newOrd)
 {
-	DEMO_Queue.enqueue(pOrd);
+	// --> Execute Add fn of NormalOrders list 
+	DEMO_Queue.enqueue(newOrd);
+	///HMANA6399 :: I left this line for testing
 }
+
+void Restaurant::AddOrderToNormal(Order *newOrd)
+{
+	// --> Execute Add fn of FrozenOrders list 
+	DEMO_Queue.enqueue(newOrd);
+	///HMANA6399 :: I left this line for testing
+}
+
+void Restaurant::AddOrderToFrozen(Order *newOrd)
+{
+	// --> Execute Add fn of VIPOrders list 
+	DEMO_Queue.enqueue(newOrd);
+	///HMANA6399 :: I left this line for testing
+}
+
+
+Order * Restaurant::GetNormalOrderById(int ID)
+{
+	//1 --> Traverse the orders list
+	//2 --> return a pointer to the Order - if found -, either return nullptr
+	return nullptr;
+}
+
+
+void Restaurant::RemoveNormalOrder(Order* remOrd)
+{
+	// --> Execute Remove fn. of NormalOrders list
+	DEMO_Queue.dequeue(remOrd);
+	///HMANA6399 :: I left this line for testing
+}
+
+
 
 Order* Restaurant::getDemoOrder()
 {
@@ -162,16 +201,5 @@ Order* Restaurant::getDemoOrder()
 	return pOrd;
 
 }
-
-int Restaurant::GetPromotionTimeStep()
-{
-	return this->AutoPromoteTimeStep;
-}
-
-void Restaurant::SetPromotionTimeStep(int TS)
-{
-	this->AutoPromoteTimeStep = TS;
-}
-
 
 /// ==> end of DEMO-related function

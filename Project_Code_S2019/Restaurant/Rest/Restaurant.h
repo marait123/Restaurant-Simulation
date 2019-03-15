@@ -29,7 +29,7 @@ private:
 	//
 	// TODO: Add More Data Members As Needed
 	//
-
+	
 public:
 	
 	Restaurant();
@@ -38,10 +38,23 @@ public:
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 	void RunSimulation();
 
+	//Functions to control Orders
+	///HMANA6399 :: I Added those here to because Rest Class is the maestro and the controller
+	///of Orders lists.
+	//void AddtoDemoQueue(Order* po);	//adds an order to the demo queue
+	void AddOrderToNormal(Order* newOrd);
+	void AddOrderToFrozen(Order* newOrd);
+	void AddOrderToVIP(Order* newOrd);
+	
+	//Some Specific functions for the Normal Order for Cancelation and Promotion
+	Order* GetNormalOrderById(int ID);
+	///HMANA6399 :: Beta version, Requires a traverse-frindly DS
+	///like a vector so that its el.s are easily accessed by []
+	void RemoveNormalOrder(Order*);
+	
 	/// ==> 
 	///  DEMO-related functions. Should be removed in phases 1&2
 	void Just_A_Demo();	//just to show a demo and should be removed in phase1 1 & 2
-	void AddtoDemoQueue(Order* po);	//adds an order to the demo queue
 	Order* getDemoOrder();			//return the front order from demo queue
 	/// ==> 
 
