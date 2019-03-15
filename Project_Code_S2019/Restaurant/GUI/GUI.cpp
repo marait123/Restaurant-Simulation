@@ -250,3 +250,73 @@ PROG_MODE	GUI::getGUIMode() const
 	
 	return Mode;
 }
+void GUI::Save(ofstream &OutFile)
+{	
+	OutFile<<"FT ID AT WT ST\n"
+		   <<""<<""<<""<<""<<""
+		   <<""<<""<<""<<""<<""
+		   <<""<<""<<""<<""<<""
+
+		   <<"Region A:\n"
+		   <<"Orders: "<<124<<" [Norm:"<<100<<", Froz:"<<15<<", VIP:"<<"9]\n"
+           <<"MotorC: "<< 9 <<"[Norm:"<<5<<", Froz:"<<3<<", VIP:"<<1<<"]\n"
+           <<"Avg Wait ="<< 12.3<<", Avg Serv ="<< 25.65<<"\n"
+
+		   <<"Region B:\n"
+		   <<"Orders: "<<124<<" [Norm:"<<100<<", Froz:"<<15<<", VIP:"<<"9]\n"
+           <<"MotorC: "<< 9 <<"[Norm:"<<5<<", Froz:"<<3<<", VIP:"<<1<<"]\n"
+           <<"Avg Wait ="<< 12.3<<", Avg Serv ="<< 25.65<<"\n"
+
+		   <<"Region C:\n"
+		   <<"Orders: "<<124<<" [Norm:"<<100<<", Froz:"<<15<<", VIP:"<<"9]\n"
+           <<"MotorC: "<< 9 <<"[Norm:"<<5<<", Froz:"<<3<<", VIP:"<<1<<"]\n"
+           <<"Avg Wait ="<< 12.3<<", Avg Serv ="<< 25.65<<"\n"
+
+		   <<"Region D:\n"
+		   <<"Orders: "<<124<<" [Norm:"<<100<<", Froz:"<<15<<", VIP:"<<"9]\n"
+           <<"MotorC: "<< 9 <<"[Norm:"<<5<<", Froz:"<<3<<", VIP:"<<1<<"]\n"
+           <<"Avg Wait ="<< 12.3<<", Avg Serv ="<< 25.65<<"\n"
+
+		   
+		   <<"Restaurant:\n"
+		   <<"Orders: "<<124<<" [Norm:"<<100<<", Froz:"<<15<<", VIP:"<<"9]\n"
+           <<"Motor: "<< 9 <<"[Norm:"<<5<<", Froz:"<<3<<", VIP:"<<1<<"]\n"
+           <<"Avg Wait ="<< 12.3<<", Avg Serv ="<< 25.65<<"\n";
+}
+
+void GUI::Load()
+{
+	// Read data from file and update object properties
+
+	PrintMessage("Please enter file to load , Mouse Click to Continue");
+	waitForClick();
+	
+	loadFileName = GetString();
+	if (loadFileName.find(".txt") == -1) loadFileName += ".txt";
+	
+	
+	LoadFile = new ifstream(loadFileName, ios::in); //assigns and tries to open the file
+	if (LoadFile->is_open()) 
+	{
+		while( !(LoadFile->eof()))
+		{
+		    int Froz,Nrm,Fst;   
+			cin>>Froz>>Nrm>>Fst;
+			p_Motor->SetSpeed(Froz,Frozen);     p_Motor->SetSpeed(Nrm,Normal);    p_Motor->SetSpeed(Fst,Fast);
+			/*5 3 1  ➔ no. of motorcycles in Region A 
+			6 3 2  ➔ no. of motorcycles in Region B 
+			4 2 1  ➔ no. of motorcycles in Region C 
+			9 4 2  ➔ no. of motorcycles in Region D 
+			25     ➔ Auto promotion limit
+			8       ➔ no. of events in this file 
+			R 7 N 1 15 110 A  ➔ Arrival event 
+			R 9 N 2 7 56 B 
+			R 9 V 3 21 300 B 
+			R 12 F 4 53 42 C 
+			X 15 1     ➔ Cancellation event 
+			R 19 N 5 17 95 D 
+			P 19 2 62    ➔ promotion event 
+			R 25 F 6 33 127 D */
+		}
+	}
+}
