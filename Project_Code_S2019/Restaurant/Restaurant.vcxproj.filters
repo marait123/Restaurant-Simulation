@@ -24,6 +24,9 @@
     <Filter Include="Generic_DS">
       <UniqueIdentifier>{f9c05740-74ef-4242-8f5c-c406c492135c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Restaurant\Order">
+      <UniqueIdentifier>{690d428f-0699-4c7c-8176-adea64c51bc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.h" />
@@ -90,9 +93,6 @@
     <ClInclude Include="Rest\Motorcycle.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
-    <ClInclude Include="Rest\Order.h">
-      <Filter>Restaurant</Filter>
-    </ClInclude>
     <ClInclude Include="Rest\Restaurant.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
@@ -107,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="Events\ArrivalEvent.h">
       <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Rest\Order.h">
+      <Filter>Restaurant\Order</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +225,6 @@
     <ClCompile Include="Rest\Motorcycle.cpp">
       <Filter>Restaurant</Filter>
     </ClCompile>
-    <ClCompile Include="Rest\Order.cpp">
-      <Filter>Restaurant</Filter>
-    </ClCompile>
     <ClCompile Include="Rest\Restaurant.cpp">
       <Filter>Restaurant</Filter>
     </ClCompile>
@@ -233,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="Events\ArrivalEvent.cpp">
       <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Rest\Order.cpp">
+      <Filter>Restaurant\Order</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

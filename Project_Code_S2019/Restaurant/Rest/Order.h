@@ -11,12 +11,9 @@ protected:
 	ORD_TYPE type;		//order type: Normal, Frozen, VIP
 	REGION Region;  //Region of this order
 	int Distance;	//The distance (in meters) between the order location and the resturant 
-	                
 	double totalMoney;	//Total order money
-
 	int ArrTime, ServTime, FinishTime;	//arrival, service start, and finish times
-	
-	
+	bool isDelivered;
 	//
 	// TODO: Add More Data Members As Needed
 	//
@@ -33,6 +30,11 @@ public:
 	void SetDistance(int d);
 	int GetDistance() const;
 
+	int getArrTime();
+	int getServTime();
+	int getFinishTime();
+
+	bool Promote();
 	//
 	// TODO: Add More Member Functions As Needed
 	//
