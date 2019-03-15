@@ -7,10 +7,10 @@
 //class for the arrival event
 class ArrivalEvent: public Event
 {
-	//info about the order ralted to arrival event
+	//info about the order related to arrival event
 	int OrdDistance;	//order distance
 	ORD_TYPE OrdType;		//order type: Normal, Frozen, VIP
-	REGION OrdRegion;  //Region of this order	                
+	REGION OrdRegion;	//Region of this order	                
 	double OrdMoney;	//Total order money
 public:
 	ArrivalEvent(int eTime, int oID, ORD_TYPE oType, REGION reg);

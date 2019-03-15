@@ -36,3 +36,18 @@ int Order::GetDistance() const
 {
 	return Distance;
 }
+
+int Order::GetArrivalTime() const
+{
+	return this->ArrTime;
+}
+
+void Order::IncreaseMoney(double ammount)
+{
+	this->totalMoney += ammount;
+}
+
+void Order::SetType(ORD_TYPE newType)
+{
+	this->type = newType;
+}

@@ -36,7 +36,13 @@ public:
 	//
 	// TODO: Add More Member Functions As Needed
 	//
-
+	
+	int GetArrivalTime() const;
+	///HMANA6399 :: Added by me in order to be easy for the Load stage to compare arrivalTime of
+	///cancellation Event and the Order to be cancelled
+	void IncreaseMoney(double ammount);
+	void SetType(ORD_TYPE);
+	///HMANA6399 :: Also added by me to increase money and change type in case of promotion
 };
 
 #endif

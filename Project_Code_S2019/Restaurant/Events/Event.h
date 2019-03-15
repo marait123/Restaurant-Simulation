@@ -12,7 +12,8 @@ protected:
 	int EventTime;	//Timestep when this event takes place
 	int OrderID;	//each event is related to certain order
 public:
-	Event(int eTime, int ordID);
+	Event(int eTime, int ordID = 0); 
+	///HMANA6399 :: Added a default value to ordID to bypass cancel/promote Events
 	int getEventTime();
 	int getOrderID();
 	virtual ~Event();
