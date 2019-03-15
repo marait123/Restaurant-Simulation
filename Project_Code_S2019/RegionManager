@@ -1,0 +1,53 @@
+#include "RegionManager.h"
+
+Order* RegionManager::getListOfOrders()
+{
+	return this->ListOfOrders;
+}
+
+void RegionManager::setListOfOrders(Order *Orders)
+{
+	this->ListOfOrders = Orders;
+}
+
+Motorcycle* RegionManager::getListOfMotorcycles()
+{
+}
+void RegionManager::setListOfMotorcycles(Motorcycle*cycles)
+{
+}
+int RegionManager::getRegionID()
+{
+}
+void RegionManager::AddOrder(Order*order)
+{
+}
+
+void RegionManager::setRegionID(int RegionID)
+{
+}
+void RegionManager::AddMotorCycle(Motorcycle motor) 
+{
+}
+void RegionManager::SetOrderCount(int OrderC)
+{
+	this->OrderCount = OrderC;
+}
+void RegionManager::SetMotorsCount(int MotorC)
+{
+	this->MotorsCount = MotorC;
+}
+int RegionManager::GetOrderCount()
+{
+	return this->OrderCount;
+}
+int RegionManager::GetMotorsCount()
+{
+	return MotorsCount;
+}
+Order* RegionManager::GetOrderByID(int RegionID)
+{
+}
+RegionManager::~RegionManager()
+{
+}
