@@ -5,8 +5,11 @@
 #include "..\Defs.h"
 
 #include "..\Rest\Order.h"
+#include "..\Rest\Motorcycle.h"
 
 #include <string>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 class GUI
@@ -71,6 +74,11 @@ private:
 	// 
 	// TODO: Add more members if needed
 	//
+	Motorcycle* p_Motor;
+	Order* p_Ord;
+	ifstream* LoadFile;
+	string loadFileName;
+
 
 	void DrawSingleOrder(Order* pO, int RegionCount) const;		//draws ONE order 
 	void DrawOrders() const;		//drwas ALL orders in OrdListForDrawing
@@ -90,9 +98,15 @@ public:
 	// Input Functions  ---------------------------
 	void waitForClick() const;	// waits a user click from the user
 	string GetString() const ; // reads a string (keyboard input) from the user
-
+	
+        void Load();
+	
+	
 	// Output Functions  ---------------------------
 	void PrintMessage(string msg) const; // prints a message in the status bar
+
+	void Save(ofstream &OutFile);
+	
 
 
 	void UpdateInterface();
