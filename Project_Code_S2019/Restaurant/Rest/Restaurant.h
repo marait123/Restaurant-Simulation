@@ -17,6 +17,9 @@ private:
 	GUI *pGUI;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
 
+
+	///<summary>represents the timestep after which the Normal orders are promoted</summary>
+	int AutoPromoteTimeStep;
 	
 	/// ==> 
 	//	DEMO-related members. Should be removed in phases 1&2
@@ -42,6 +45,10 @@ public:
 	Order* getDemoOrder();			//return the front order from demo queue
 	/// ==> 
 
+
+	///
+	int GetPromotionTimeStep();
+	void SetPromotionTimeStep(int);
 
 	//
 	// TODO: Add More Member Functions As Needed

@@ -73,7 +73,7 @@ Restaurant::~Restaurant()
 //It should be removed starting phase 1
 void Restaurant::Just_A_Demo()
 {
-	
+	// use caps lock to solve the autocomplete problem
 	//
 	// THIS IS JUST A DEMO FUNCTION
 	// IT SHOULD BE REMOVED IN PHASE 1 AND PHASE 2
@@ -82,7 +82,7 @@ void Restaurant::Just_A_Demo()
 	Order* pOrd;
 	Event* pEv;
 	srand(time(NULL));
-
+	
 	pGUI->PrintMessage("Just a Demo. Enter EVENTS Count(next phases should read I/P filename):");
 	EventCnt = atoi(pGUI->GetString().c_str());	//get user input as a string then convert to integer
 
@@ -161,6 +161,16 @@ Order* Restaurant::getDemoOrder()
 	DEMO_Queue.dequeue(pOrd);
 	return pOrd;
 
+}
+
+int Restaurant::GetPromotionTimeStep()
+{
+	return this->AutoPromoteTimeStep;
+}
+
+void Restaurant::SetPromotionTimeStep(int TS)
+{
+	this->AutoPromoteTimeStep = TS;
 }
 
 
