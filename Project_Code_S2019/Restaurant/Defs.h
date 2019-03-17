@@ -10,7 +10,6 @@ enum REGION {
 	D_REG,
 	REG_CNT		//Total number of regions
 };
-// test 
 
 
 enum ORD_TYPE	//types of orders
@@ -20,6 +19,13 @@ enum ORD_TYPE	//types of orders
 	TYPE_VIP,	//VIP
 	TYPE_CNT	//Number of types
 
+};
+
+enum MotorcycleType
+{
+	Normal,
+	Frozen,
+	Fast
 };
 
 enum STATUS	//status of motorcycles
@@ -38,11 +44,3 @@ enum PROG_MODE	//mode of the program interface
 	MODE_CNT	//number of possible modes
 };
 
-
-#define MaxPossibleOrdCnt 999	//arbitrary value
-
-
-
-
-
-#endif
