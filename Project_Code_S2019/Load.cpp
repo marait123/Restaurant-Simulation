@@ -1,0 +1,75 @@
+#include "LoadAction.h"
+
+
+LoadAction::LoadAction(string LoadedFile)
+{
+	// Read data from file and update object properties
+	
+	/*pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
+	pGUI->waitForClick();
+	
+	loadFileName = pGUI->GetString();
+	if (loadFileName.find(".txt") == -1) loadFileName += ".txt";*/
+	loadFileName = LoadedFile;
+	
+	
+}
+	
+void LoadAction::Execute()
+{
+	
+	LoadFile = new ifstream(loadFileName, ios::in); //assigns and tries to open the file
+	if (LoadFile->is_open()) 
+	{
+		while( !(LoadFile->eof()))
+		{
+		    int Froz,Nrm,Fst;   cin>>Froz>>Nrm>>Fst;
+			
+			
+			/*5 3 1  ➔ no. of motorcycles in Region A 
+			6 3 2  ➔ no. of motorcycles in Region B 
+			4 2 1  ➔ no. of motorcycles in Region C 
+			9 4 2  ➔ no. of motorcycles in Region D 
+		*/
+			int PromotionLimit; cin>>PromotionLimit;
+			
+			
+			
+			int EventNumber; cin>>EventNumber; 
+
+			char EventType;
+			for(int i = 0 ; i < EventNumber ; ++i)
+			{
+				cin>>EventType;
+				switch (EventType)
+				{
+				      case 'R':
+						    break;
+					  case 'N':
+						    break;
+					  case 'V':
+						  break;
+					  case 'F':
+						  break;
+			          default :
+						    break;
+				}
+			}
+			/*
+			8       ➔ no. of events in this file 
+			R 7 N 1 15 110 A  ➔ Arrival event 
+			R 9 N 2 7 56 B 
+			R 9 V 3 21 300 B 
+			R 12 F 4 53 42 C 
+			X 15 1     ➔ Cancellation event 
+			R 19 N 5 17 95 D 
+			P 19 2 62    ➔ promotion event 
+			R 25 F 6 33 127 D */
+		}
+	}
+}
+
+LoadAction::~LoadAction(void)
+{
+
+}
