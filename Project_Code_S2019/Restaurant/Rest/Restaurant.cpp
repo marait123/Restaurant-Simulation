@@ -202,4 +202,20 @@ Order* Restaurant::getDemoOrder()
 
 }
 
+
+
+
+
+
+
+int Restaurant::GetPromotionTimeStep()
+{
+	return this->AutoPromoteTimeStep;
+}
+
+void Restaurant::SetPromotionTimeStep(int value)
+{
+	this->AutoPromoteTimeStep = value;
+}
+
 /// ==> end of DEMO-related function
