@@ -23,9 +23,10 @@ enum ORD_TYPE	//types of orders
 
 enum MotorcycleType
 {
-	Normal,
-	Frozen,
-	Fast
+	NORMAL,
+	FROZEN,
+	FAST,
+	MOTORTYPE_CNT
 };
 
 enum STATUS	//status of motorcycles
