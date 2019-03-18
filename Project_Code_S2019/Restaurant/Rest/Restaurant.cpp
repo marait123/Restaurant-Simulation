@@ -219,3 +219,63 @@ void Restaurant::SetPromotionTimeStep(int value)
 }
 
 /// ==> end of DEMO-related function
+
+///Modes
+
+void Restaurant::InterActive()
+{
+	int EventCnt;	
+	Order* pOrd;
+	Event* pEv;
+
+	pGUI->PrintMessage("InterActive Mode , Mouse Click to Continue");
+	pGUI->waitForClick();
+	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
+	pGUI->waitForClick();
+	
+	LoadedFile = pGUI->GetString();
+	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	Load = new LoadAction(LoadedFile);
+	Load->Execute();
+	
+
+	//pGUI->waitForClick();
+}
+
+void Restaurant::StepByStep()
+{
+	int EventCnt;	
+	Order* pOrd;
+	Event* pEv;
+
+	pGUI->PrintMessage("Step By Step Mode , Mouse Click to Continue");
+	pGUI->waitForClick();
+
+	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
+	pGUI->waitForClick();
+	
+	LoadedFile = pGUI->GetString();
+	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	Load = new LoadAction(LoadedFile);
+	Load->Execute();
+
+	//Sleep(1000); // wait 1 second for the next function call
+}
+
+void Restaurant::Silent()
+{
+	int EventCnt;	
+	Order* pOrd;
+	Event* pEv;
+
+	pGUI->PrintMessage("Silent Mode , Mouse Click to Continue");
+	pGUI->waitForClick();
+
+	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
+	pGUI->waitForClick();
+	
+	LoadedFile = pGUI->GetString();
+	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	Load = new LoadAction(LoadedFile);
+	Load->Execute();
+}
