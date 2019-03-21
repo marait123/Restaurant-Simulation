@@ -23,10 +23,9 @@ enum ORD_TYPE	//types of orders
 
 enum MotorcycleType
 {
-	NORMAL,
-	FROZEN,
-	FAST,
-	MOTORTYPE_CNT
+	Normal,
+	Frozen,
+	Fast
 };
 
 enum STATUS	//status of motorcycles
@@ -45,3 +44,11 @@ enum PROG_MODE	//mode of the program interface
 	MODE_CNT	//number of possible modes
 };
 
+
+#define MaxPossibleOrdCnt 999	//arbitrary value
+
+
+
+
+
+#endif

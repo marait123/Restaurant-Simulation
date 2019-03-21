@@ -4,9 +4,11 @@
 #include "..\CMUgraphicsLib\CMUgraphics.h"
 #include "..\Defs.h"
 
-#include "..\Rest\Order.h"
+
+#include "..\Rest\RegionManager.h"
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 class GUI
@@ -71,6 +73,8 @@ private:
 	// 
 	// TODO: Add more members if needed
 	//
+	
+
 
 	void DrawSingleOrder(Order* pO, int RegionCount) const;		//draws ONE order 
 	void DrawOrders() const;		//drwas ALL orders in OrdListForDrawing
@@ -90,9 +94,13 @@ public:
 	// Input Functions  ---------------------------
 	void waitForClick() const;	// waits a user click from the user
 	string GetString() const ; // reads a string (keyboard input) from the user
-
+	
+	
+	
 	// Output Functions  ---------------------------
 	void PrintMessage(string msg) const; // prints a message in the status bar
+
+	
 
 
 	void UpdateInterface();

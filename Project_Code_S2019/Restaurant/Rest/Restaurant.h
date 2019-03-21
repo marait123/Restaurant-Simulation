@@ -10,12 +10,18 @@
 #include "..\Events\PromoteEvent.h"
 #include "..\Events\ArrivalEvent.h"
 #include "..\Events\CancelEvent.h"
-#include "RegionManager.h" //Has Order and MotorCycle Included
+#include "RegionManager.h"
 
-#include "..\LoadAction.h"
+//#include "..\LoadAction.h"
 #include "..\SaveAction.h"
+class LoadAction;
+#include "..\GUI\GUI.h"
 
 
+
+/// standard includes
+#include<string>
+#include <sstream>
 #include <time.h>
 // it is the maestro of the project
 class Restaurant  
@@ -25,7 +31,6 @@ private:
 	LoadAction *Load;
 	SaveAction *Save;
 	string LoadedFile;
-
 	GUI *pGUI;
 	Event *pEvent;
 	Motorcycle *pMotor;
@@ -33,10 +38,10 @@ private:
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
 	
 	///<summary>represents the timestep after which the Normal orders are promoted</summary>
-
 	int AutoPromoteTimeStep;
 
-	
+	///this is the current timestep of the program
+	int CurrentTimeStep;
 
 	/// ==> 
 
@@ -113,13 +118,16 @@ public:
 
 	void SetPromotionTimeStep(int);
 
-	
+	void LoadFromFile(string fileName);
 	//
 	// TODO: Add More Member Functions As Needed
 	//
-	
+	void IncreaseCurrentTime();
+
 	void InterActive();
-        void StepByStep();
+	void ProcessInterActive();
+
+    void StepByStep();
 	void Silent();
 };
 
