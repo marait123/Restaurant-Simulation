@@ -391,9 +391,17 @@ void Restaurant::LoadFromFile(string fileName){
 	{
 		while( !(LoadFile->eof()) )
 		{
-		    int Froz , Nrm , Fst;   
+		        int Froz , Nrm , Fst;   
 			cin >> Froz >> Nrm >> Fst;
-			
+	                for( int i = 0 ; i < 4 ; ++i)
+			{
+				int Fst_Count , Nrm_Count , Froz_Count;
+				cin>> Fst_Count >> Nrm_Count >> Froz_Count;
+
+				this->Region[i]->SetFastMotorCount(Fst_Count);
+				this->Region[i]->SetNormalMotorCount(Nrm_Count);
+				this->Region[i]->SetFrozenMotorCount(Froz_Count);
+			}
 			
 			/*5 3 1  ➔ no. of motorcycles in Region A 
 			6 3 2  ➔ no. of motorcycles in Region B 
