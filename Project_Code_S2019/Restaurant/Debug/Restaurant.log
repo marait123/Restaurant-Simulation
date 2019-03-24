@@ -1,2 +1,14 @@
-﻿  ArrivalEvent.cpp
-  Restaurant.vcxproj -> E:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe
+﻿  RegionManager.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(47): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(51): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(55): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Restaurant.cpp
+  LoadAction.cpp
+  GUI.cpp
+  PromoteEvent.cpp
+  CancelEvent.cpp
+  ArrivalEvent.cpp
+  Demo_Main.cpp
+  Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe

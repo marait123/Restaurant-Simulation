@@ -25,7 +25,7 @@ private:
 	 int FrozenMotorCount;
 	 int FastMotorCount;
 	 int NormalMotorCount;
-
+	 
 	 static int FrozenMotorSpeed;
 	 static int FastMotorSpeed;
 	 static int NormalMotorSpeed;
@@ -60,8 +60,6 @@ private:
 	 void SetFrozenMotorCount(int);
 	 void SetFastMotorCount(int);
 	 void SetNormalMotorCount(int);
-
-	
 
 	 ~RegionManager();
 

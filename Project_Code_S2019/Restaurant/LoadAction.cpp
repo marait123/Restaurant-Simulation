@@ -9,6 +9,8 @@ LoadAction::LoadAction(string LoadedFile)
 	
 void LoadAction::Execute()
 {	
+
+	//this code should make sure that the file already exists before calling the restaurant function to do the loading stuff
 	pRest->LoadFromFile( loadFileName );
 	//ifstream *LoadFile = new ifstream(loadFileName, ios::in); //assigns and tries to open the file
 	/*if (LoadFile->is_open()) 

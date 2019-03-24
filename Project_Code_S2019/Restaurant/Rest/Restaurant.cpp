@@ -308,15 +308,15 @@ void Restaurant::InterActive()
 	pGUI->waitForClick();
 	
 	LoadedFile = pGUI->GetString();
+	/*if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	this->LoadFromFile(LoadedFile);*/
+
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	this->LoadFromFile(LoadedFile);
-
-	
-	
-	Load = new LoadAction(LoadedFile);
-	Load->Execute();
-	this->ProcessInterActive();
-
+	{
+		Load = new LoadAction(LoadedFile);
+		Load->Execute();
+		this->ProcessInterActive();
+	}
 	//pGUI->waitForClick();
 
 	//Save->Execute();
@@ -417,6 +417,7 @@ void Restaurant::LoadFromFile(string fileName){
 		    int  TS  , ID  ;
 			float  DST , MON , ExMon;
 			char  TYP , Reg ;
+
 			/* Arrival event line have the following info R TS TYP ID DST MON  REG 
 			  where R means an arrival event, TYP is the order type (N: normal, F: frozen, V: VIP). TS is the arrival time step. 
 			  The ID is a unique sequence number that identifies each order. 
@@ -431,6 +432,7 @@ void Restaurant::LoadFromFile(string fileName){
 			  
 			  where P means an order promotion event occurring at time TS,and ID is the id of the order to be promoted to be VIP. This ID must be of a Normal order. 
 			  ExMon if the extra money the customer paid for promotion*/
+
 			 ORD_TYPE O_Type ;
 			 REGION R_Type;
 
@@ -502,6 +504,7 @@ void Restaurant::LoadFromFile(string fileName){
 						    break;
 				}
 			}
+			// input sample
 			/*
 			8       ➔ no. of events in this file 
 			R 7 N 1 15 110 A  ➔ Arrival event 

@@ -1,5 +1,10 @@
 #include "RegionManager.h"
 
+
+int RegionManager::FrozenMotorSpeed = 0;
+int RegionManager::FastMotorSpeed = 0;
+int RegionManager::NormalMotorSpeed = 0;
+
 RegionManager::RegionManager()
 {
 }
