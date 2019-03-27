@@ -27,7 +27,7 @@ class LoadAction;
 class Restaurant  
 {	
 private:
-	RegionManager* Region[4];
+	RegionManager Region[4];
 	LoadAction *Load;
 	SaveAction *Save;
 	string LoadedFile;
@@ -50,17 +50,11 @@ private:
 	Queue<Order*> DEMO_Queue;	//Important: This is just for demo
 
 	/// ==>
-
-	
-
 	//
 
 	// TODO: Add More Data Members As Needed
 
 	//
-
-	
-
 public:
 	
 	Restaurant();
@@ -72,8 +66,6 @@ public:
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 
 	void RunSimulation();
-
-
 
 	//Functions to control Orders
 
@@ -112,7 +104,6 @@ public:
 	/// ==> 
 	///
 
-	int GetPromotionTimeStep();
 
 	int GetPromotionLimit(int Max);
 
@@ -129,6 +120,10 @@ public:
 
     void StepByStep();
 	void Silent();
+
+
+	void TempLoadFromFile(string fileName);
+
 };
 
 #endif

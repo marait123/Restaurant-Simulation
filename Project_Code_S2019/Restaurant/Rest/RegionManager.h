@@ -22,6 +22,7 @@ private:
 	 int OrderCount;
 
 	 int AllMotorsCount;
+
 	 int FrozenMotorCount;
 	 int FastMotorCount;
 	 int NormalMotorCount;
@@ -60,6 +61,17 @@ private:
 	 void SetFrozenMotorCount(int);
 	 void SetFastMotorCount(int);
 	 void SetNormalMotorCount(int);
+
+ // not implemented yet // it is waiting for the suitable adt to store the frozen orders
+	 void AddToFrozenOrders(Order*);
+
+ // not implemented yet
+	 void AddToNormalOrders(Order*);
+
+
+
+// not implemented yet
+	 void AddToVIPOrders(Order*);
 
 	 ~RegionManager();
 

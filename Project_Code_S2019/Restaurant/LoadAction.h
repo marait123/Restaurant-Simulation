@@ -20,7 +20,7 @@ class LoadAction
 	Restaurant *pRest;
 
     public:
-	LoadAction(string LoadedFile );
+	LoadAction(string LoadedFile, Restaurant* );
 	void Execute();
 	~LoadAction(void);
 };

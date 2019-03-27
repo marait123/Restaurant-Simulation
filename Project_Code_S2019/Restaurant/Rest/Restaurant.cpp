@@ -14,7 +14,6 @@ Restaurant::Restaurant()
 	AutoPromoteTimeStep = 0;
 	
 	pGUI = NULL;
-	this->Region[0] = new RegionManager();
 }
 
 void Restaurant::RunSimulation()
@@ -69,9 +68,6 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 		if(pE->getEventTime() > CurrentTimeStep )	//no more events at current time
 
 			return;
-
-
-
 		pE->Execute(this);
 
 		EventsQueue.dequeue(pE);	//remove event from the queue
@@ -122,8 +118,11 @@ void Restaurant::AddOrderToNormal(Order *newOrd)
 
 {
 
+	// add to normal orders in the region class and so is the other AddOreder functions
 	// --> Execute Add fn of FrozenOrders list 
-
+	if (newOrd->GetRegion == REGION::A_REG) {
+		//this->Region[0].
+	}
 	DEMO_Queue.enqueue(newOrd);
 
 	///HMANA6399 :: I left this line for testing
@@ -308,15 +307,12 @@ void Restaurant::InterActive()
 	pGUI->waitForClick();
 	
 	LoadedFile = pGUI->GetString();
-	/*if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	this->LoadFromFile(LoadedFile);*/
-
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	{
-		Load = new LoadAction(LoadedFile);
-		Load->Execute();
-		this->ProcessInterActive();
-	}
+	
+	Load = new LoadAction(LoadedFile,this);
+	Load->Execute();
+	this->ProcessInterActive();
+
 	//pGUI->waitForClick();
 
 	//Save->Execute();
@@ -355,7 +351,7 @@ void Restaurant::StepByStep()
 	
 	LoadedFile = pGUI->GetString();
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	Load = new LoadAction(LoadedFile);
+	Load = new LoadAction(LoadedFile,this);
 	Load->Execute();
 
 	//Sleep(1000); // wait 1 second for the next function call
@@ -375,7 +371,7 @@ void Restaurant::Silent()
 	
 	LoadedFile = pGUI->GetString();
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	Load = new LoadAction(LoadedFile);
+	Load = new LoadAction(LoadedFile,this);
 	Load->Execute();
 }
 
@@ -386,21 +382,28 @@ void Restaurant::Silent()
 
 
 void Restaurant::LoadFromFile(string fileName){
-	ifstream *LoadFile = new ifstream(fileName, ios::in); //assigns and tries to open the file
-	if (LoadFile->is_open()) 
+	ifstream LoadFile = ifstream(); //assigns and tries to open the file
+	LoadFile.open( fileName.c_str() );
+	if (LoadFile.is_open()) 
 	{
-		while( !(LoadFile->eof()) )
-		{
-		        int Froz , Nrm , Fst;   
-			cin >> Froz >> Nrm >> Fst;
-	                for( int i = 0 ; i < 4 ; ++i)
-			{
-				int Fst_Count , Nrm_Count , Froz_Count;
-				cin>> Fst_Count >> Nrm_Count >> Froz_Count;
+		    string line;
+		    int Froz , Nrm , Fst; 
+			int Fst_Count , Nrm_Count , Froz_Count;
+			LoadFile >> Froz >> Nrm >> Fst;
 
-				this->Region[i]->SetFastMotorCount(Fst_Count);
-				this->Region[i]->SetNormalMotorCount(Nrm_Count);
-				this->Region[i]->SetFrozenMotorCount(Froz_Count);
+			RegionManager::SetFastMotorSpeed(Fst);
+			RegionManager::SetNormalMotorSpeed(Nrm);
+			RegionManager::SetFrozenMotorSpeed(Froz);
+			
+			for( int i = 0 ; i < 4 ; i++)
+			{
+				
+				LoadFile >> Fst_Count >> Nrm_Count >> Froz_Count;
+				
+				this->Region[i].SetFastMotorCount(Fst_Count);
+				this->Region[i].SetNormalMotorCount(Nrm_Count);
+				this->Region[i].SetFrozenMotorCount(Froz_Count);
+				int a;
 			}
 			
 			/*5 3 1  ➔ no. of motorcycles in Region A 
@@ -409,23 +412,22 @@ void Restaurant::LoadFromFile(string fileName){
 			9 4 2  ➔ no. of motorcycles in Region D 
 		*/
 			int PromotionLimit; 
-			cin >> PromotionLimit;
-			
+			LoadFile >> PromotionLimit;
+			this->SetPromotionTimeStep(PromotionLimit);
 			
 			// Event Assignation
 			int EventNumber; 
-			cin >> EventNumber; 
+			LoadFile >> EventNumber; 
 
 			char EventType;
 
-			string line;
+			
 			const int MaxENum  = 6; // Max Number of Line Elements 
 			string lineElemets[MaxENum];
 
 		    int  TS  , ID  ;
 			float  DST , MON , ExMon;
 			char  TYP , Reg ;
-
 			/* Arrival event line have the following info R TS TYP ID DST MON  REG 
 			  where R means an arrival event, TYP is the order type (N: normal, F: frozen, V: VIP). TS is the arrival time step. 
 			  The ID is a unique sequence number that identifies each order. 
@@ -440,27 +442,25 @@ void Restaurant::LoadFromFile(string fileName){
 			  
 			  where P means an order promotion event occurring at time TS,and ID is the id of the order to be promoted to be VIP. This ID must be of a Normal order. 
 			  ExMon if the extra money the customer paid for promotion*/
-
 			 ORD_TYPE O_Type ;
 			 REGION R_Type;
 
-			while( !(LoadFile->eof()) )
+			 int counter = 0;
+			while( !(LoadFile.eof()) && counter < EventNumber )
 			{
 				/*cin>>EventType;*/
 				
-				getline(cin,line);
-				istringstream istr(line);
 
-				istr>>EventType;
+				LoadFile>>EventType;
 
 				switch (EventType)
 				{
 				case 'R':{
 					
-					     cin  >> TS >> TYP >> ID >> DST >> MON >> Reg;
+					        LoadFile  >> TS >> TYP >> ID >> DST >> MON >> Reg;
 						 
 
-						 TYP =  toupper(TYP);
+						    TYP =  toupper(TYP);
                             switch(TYP)
 						    {
 							case 'N' :
@@ -493,26 +493,29 @@ void Restaurant::LoadFromFile(string fileName){
 						    }
 
 
-						Event *pEvent = new ArrivalEvent(TS,ID,O_Type,R_Type);
-
+						 Event *pEvent = new ArrivalEvent(TS,ID,O_Type,R_Type);
+						 this->EventsQueue.enqueue(pEvent);
+						 break;
 						 }
-						    break;
-			   case 'x':{
-				        cin >> TS >> ID ;
+						   
+			   case 'X':{
+				        LoadFile >> TS >> ID ;
 						Event *pEvent = new CancelEvent( TS , ID ); 
-						    break;
+						this->EventsQueue.enqueue(pEvent);
+						break;
 						}
 
-			   case 'p':{
-				        cin >> TS >> ID >> ExMon;
+			   case 'P':{
+				        LoadFile >> TS >> ID >> ExMon;
 						Event *pEvent = new PromoteEvent(TS,ID,ExMon);
-						    break;
+						this->EventsQueue.enqueue(pEvent);
+						break;
 						}
 			      default :
 						    break;
 				}
+				counter++;
 			}
-			// input sample
 			/*
 			8       ➔ no. of events in this file 
 			R 7 N 1 15 110 A  ➔ Arrival event 
@@ -523,8 +526,14 @@ void Restaurant::LoadFromFile(string fileName){
 			R 19 N 5 17 95 D 
 			P 19 2 62    ➔ promotion event 
 			R 25 F 6 33 127 D */
+			
 		}
-	}
+}
 	
 
+
+
+void Restaurant::SetPromotionTimeStep(int P_TimeSkip)
+{
+	this->AutoPromoteTimeStep = P_TimeSkip;
 }

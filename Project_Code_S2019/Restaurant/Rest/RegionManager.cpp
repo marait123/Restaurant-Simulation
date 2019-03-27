@@ -70,12 +70,16 @@ void RegionManager::SetFrozenMotorCount(int FZMC)
 
 void RegionManager::SetFastMotorCount(int FTMC)
 {
-	this->FastMotorCount = FTMC;
+	FastMotorCount = FTMC;
 }
 
 void RegionManager::SetNormalMotorCount(int NMC)
 {
 	NormalMotorCount = NMC;
+}
+
+void RegionManager::AddToFrozenOrders(Order *)
+{
 }
 
 

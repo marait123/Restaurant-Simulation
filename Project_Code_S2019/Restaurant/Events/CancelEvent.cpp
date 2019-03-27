@@ -7,7 +7,6 @@
 
 
 CancelEvent::CancelEvent(int eTime, int cancelOrdID) :
-
 	Event(eTime)
 
 {

@@ -29,7 +29,6 @@ protected:
 	int ArrTime, ServTime, FinishTime;	//arrival, service start, and finish times
 
 	bool isDelivered;
-
 	//
 
 	// TODO: Add More Data Members As Needed
@@ -69,10 +68,21 @@ public:
 	int getFinishTime();
 
 
-
 	bool Promote();
-
+	float GetPriorityIndex()const; // Marait:: this data memeber will be used to store the priority index and to compare
+	
+	///<summary>this operator returns if the left operand has a higher priority than the right</summary>
+	///<param name ="od">this the right operand</param>
+	bool operator >(const Order& od) const;
 	//
+
+	///<summary>this operator returns if the left operand has a less priority than the right</summary>
+	///<param name ="od">this the right operand</param>
+	bool operator <(const Order& od) const;
+
+	///<summary>this operator returns if the left operand has an equal priority to the right</summary>
+	///<param name ="od">this the right operand</param>
+	bool operator == (const Order&) const;
 
 	// TODO: Add More Member Functions As Needed
 

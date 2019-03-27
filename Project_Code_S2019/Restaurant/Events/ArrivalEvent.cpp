@@ -37,8 +37,6 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 
 	Order* pOrd = new Order(OrderID,OrdType,OrdRegion);
 
-	
-
 	switch (OrdType) {
 
 	case TYPE_NRM: 

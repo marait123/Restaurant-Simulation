@@ -136,3 +136,24 @@ bool Order::Promote()
 
 
 }
+/// Marait:: this function return the priority index of the order to compare with other orders and be able to determine which on should precede the other 
+float Order::GetPriorityIndex() const
+{
+	float pIndex = this->totalMoney * ArrTime / Distance;
+	return pIndex;
+}
+
+bool Order::operator>(const Order& od) const
+{
+	return this->GetPriorityIndex() > od.GetPriorityIndex();
+}
+
+bool Order::operator<(const Order & od) const
+{
+	return this->GetPriorityIndex() < od.GetPriorityIndex();
+}
+
+bool Order::operator==(const Order & od) const
+{
+	return this->GetPriorityIndex() == od.GetPriorityIndex();
+}
