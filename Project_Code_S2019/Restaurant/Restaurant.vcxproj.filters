@@ -108,6 +108,24 @@
     <ClInclude Include="Events\ArrivalEvent.h">
       <Filter>Events</Filter>
     </ClInclude>
+    <ClInclude Include="Events\CancelEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Events\PromoteEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Rest\RegionManager.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveAction.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadAction.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\Vector.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo_Main.cpp" />
@@ -219,9 +237,6 @@
     <ClCompile Include="GUI\GUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Rest\Motorcycle.cpp">
-      <Filter>Restaurant</Filter>
-    </ClCompile>
     <ClCompile Include="Rest\Order.cpp">
       <Filter>Restaurant</Filter>
     </ClCompile>
@@ -234,6 +249,24 @@
     <ClCompile Include="Events\ArrivalEvent.cpp">
       <Filter>Events</Filter>
     </ClCompile>
+    <ClCompile Include="Events\CancelEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Events\PromoteEvent.cpp">
+      <Filter>Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Rest\RegionManager.cpp">
+      <Filter>Restaurant</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadAction.cpp">
+      <Filter>Restaurant</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveAction.cpp">
+      <Filter>Restaurant</Filter>
+    </ClCompile>
+    <ClCompile Include="Rest\Motorcycle.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">
@@ -242,5 +275,8 @@
     <Text Include="CMUgraphicsLib\Readme.txt">
       <Filter>CMUGraphicsLib</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
