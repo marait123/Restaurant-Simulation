@@ -120,7 +120,7 @@ void Restaurant::AddOrderToNormal(Order *newOrd)
 
 	// add to normal orders in the region class and so is the other AddOreder functions
 	// --> Execute Add fn of FrozenOrders list 
-	if (newOrd->GetRegion == REGION::A_REG) {
+	if (newOrd->GetRegion() == REGION::A_REG) {
 		//this->Region[0].
 	}
 	DEMO_Queue.enqueue(newOrd);

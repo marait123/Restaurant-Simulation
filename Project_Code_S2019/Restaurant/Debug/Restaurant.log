@@ -1,25 +1,61 @@
 ﻿  Restaurant.cpp
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(220): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(263): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(220): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(263): warning C4996: 'itoa': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _itoa. See online help for details.
           c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(909) : see declaration of 'itoa'
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(302): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(300): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(301): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(344): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(342): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(343): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(364): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(362): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(363): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(394): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(395): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(396): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(406): warning C4101: 'a' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(302): warning C4101: 'pEv' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(300): warning C4101: 'EventCnt' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(301): warning C4101: 'pOrd' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(344): warning C4101: 'pEv' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(342): warning C4101: 'EventCnt' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(343): warning C4101: 'pOrd' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(364): warning C4101: 'pEv' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(362): warning C4101: 'EventCnt' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(363): warning C4101: 'pOrd' : unreferenced local variable
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(394): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(395): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(396): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\rest\restaurant.cpp(406): warning C4101: 'a' : unreferenced local variable
+  jutils.c
+  jquant2.c
+  jquant1.c
+  jmemnobs.c
+  jmemmgr.c
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1103): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(449) : see declaration of 'getenv'
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1106): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
+  jidctred.c
+  jidctint.c
+  jidctfst.c
+  jidctflt.c
+  jerror.c
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(169): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(175): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+  jdtrans.c
+  jdsample.c
+  jdpostct.c
+  jdphuff.c
+  jdmerge.c
+  jdmaster.c
+  jdmarker.c
+  jdmainct.c
+  jdinput.c
+  jdhuff.c
   Generating Code...
-  Skipping... (no relevant changes detected)
-  LoadAction.cpp
-  PromoteEvent.cpp
-  CancelEvent.cpp
-  ArrivalEvent.cpp
-  Demo_Main.cpp
-  Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe
+  Compiling...
+  jddctmgr.c
+  jdcolor.c
+  jdcoefct.c
+  jdatasrc.c
+  jdapistd.c
+  jdapimin.c
+  jcparam.c
+  jcomapi.c
+  jpegload.c
+c:\users\hmana6399\desktop\univdata\projects\restaurent\project_code_s2019\restaurant\cmugraphicslib\jpegload.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+          c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
+  Generating Code...
+  LINK : C:\Users\HmanA6399\Desktop\UnivData\Projects\Restaurent\Project_Code_S2019\Debug\Restaurant.exe not found or not built by the last incremental link; performing full link
+  Restaurant.vcxproj -> C:\Users\HmanA6399\Desktop\UnivData\Projects\Restaurent\Project_Code_S2019\Debug\Restaurant.exe
