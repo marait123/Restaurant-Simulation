@@ -104,12 +104,26 @@ void Restaurant::AddOrderToVIP(Order *newOrd)
 
 {
 
-	// --> Execute Add fn of NormalOrders list 
+	/*// --> Execute Add fn of NormalOrders list 
 
 	DEMO_Queue.enqueue(newOrd);
 
-	///HMANA6399 :: I left this line for testing
-
+	///HMANA6399 :: I left this line for testing*/
+	switch( newOrd->GetRegion() )
+	{
+	    case A_REG :	
+			this->Region[0].AddOrderToVIP(newOrd);
+			break;
+		case B_REG :
+			this->Region[1].AddOrderToVIP(newOrd);
+			break;
+		case C_REG :
+			this->Region[2].AddOrderToVIP(newOrd);
+			break;
+		case D_REG :
+			this->Region[3].AddOrderToVIP(newOrd);
+			break;
+	}
 }
 
 
@@ -118,15 +132,26 @@ void Restaurant::AddOrderToNormal(Order *newOrd)
 
 {
 
-	// add to normal orders in the region class and so is the other AddOreder functions
-	// --> Execute Add fn of FrozenOrders list 
-	if (newOrd->GetRegion() == REGION::A_REG) {
-		//this->Region[0].
-	}
+	/*// --> Execute Add fn of FrozenOrders list 
+
 	DEMO_Queue.enqueue(newOrd);
 
-	///HMANA6399 :: I left this line for testing
-
+	///HMANA6399 :: I left this line for testing*/
+	switch( newOrd->GetRegion() )
+	{
+	    case A_REG :	
+			this->Region[0].AddOrderToNormal(newOrd);
+			break;
+		case B_REG :
+			this->Region[1].AddOrderToNormal(newOrd);
+			break;
+		case C_REG :
+			this->Region[2].AddOrderToNormal(newOrd);
+			break;
+		case D_REG :
+			this->Region[3].AddOrderToNormal(newOrd);
+			break;
+	}
 }
 
 
@@ -135,12 +160,26 @@ void Restaurant::AddOrderToFrozen(Order *newOrd)
 
 {
 
-	// --> Execute Add fn of VIPOrders list 
+	/*// --> Execute Add fn of VIPOrders list 
 
 	DEMO_Queue.enqueue(newOrd);
 
-	///HMANA6399 :: I left this line for testing
-
+	///HMANA6399 :: I left this line for testing*/
+	switch(newOrd->GetRegion())
+	{
+	    case A_REG :	
+			this->Region[0].AddOrderToFrozen(newOrd);
+			break;
+		case B_REG :
+			this->Region[1].AddOrderToFrozen(newOrd);
+			break;
+		case C_REG :
+			this->Region[2].AddOrderToFrozen(newOrd);
+			break;
+		case D_REG :
+			this->Region[3].AddOrderToFrozen(newOrd);
+			break;
+	}
 }
 
 
@@ -330,7 +369,7 @@ void Restaurant::ProcessInterActive()
 		pGUI->PrintMessage("Mouse Click To increase TimeSkip");
 		pGUI->waitForClick();
 		IncreaseCurrentTime();
-		
+		this->ExecuteEvents(CurrentTimeStep);
 		//Excute Events;
 	}
 	//Save->Execute();
