@@ -122,8 +122,6 @@ public:
 	void Silent();
 
 
-	void TempLoadFromFile(string fileName);
-
 };
 
 #endif

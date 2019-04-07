@@ -82,6 +82,14 @@ void RegionManager::AddToFrozenOrders(Order *)
 {
 }
 
+void RegionManager::AddToNormalOrders(Order *)
+{
+}
+
+
+void RegionManager::AddToVIPOrders(Order *)
+{
+}
 
 //
 //Order RegionManager::GetOrderByID(int RegionID)

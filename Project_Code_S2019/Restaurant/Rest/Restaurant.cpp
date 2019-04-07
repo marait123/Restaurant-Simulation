@@ -310,12 +310,12 @@ void Restaurant::InterActive()
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
 	
 	Load = new LoadAction(LoadedFile,this);
-	Load->Execute();
-	this->ProcessInterActive();
+	Load->Execute();	// first load the file 
+	this->ProcessInterActive(); // second do the interactive stuff
 
 	//pGUI->waitForClick();
 
-	//Save->Execute();
+	//Save->Execute(); // do the save stuff
 }
 
 void Restaurant::IncreaseCurrentTime()
@@ -325,9 +325,9 @@ void Restaurant::IncreaseCurrentTime()
 
 void Restaurant::ProcessInterActive()
 {
-	while( !this->EventsQueue.isEmpty() )
+	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
 	{
-		pGUI->PrintMessage("Mouse Click To increase TimeSkip");
+		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 		pGUI->waitForClick();
 		IncreaseCurrentTime();
 		
