@@ -25,6 +25,7 @@ bld/
 # Visual Studio 2015 cache/options directory
 .vs/**
 ./Project_Code_S2019/.vs/**
+Project_Code_S2019/.vs/Restaurant/v15/.suo
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
