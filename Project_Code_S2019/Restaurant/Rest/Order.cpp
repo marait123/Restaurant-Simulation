@@ -157,3 +157,13 @@ bool Order::operator==(const Order & od) const
 {
 	return this->GetPriorityIndex() == od.GetPriorityIndex();
 }
+
+void Order::IncreaseMoney(double ammount)
+{
+	this->totalMoney += ammount;
+}
+
+double Order::GetMoney()
+{
+	return this->totalMoney;
+}

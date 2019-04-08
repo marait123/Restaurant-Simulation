@@ -1,14 +1,14 @@
-#ifndef __GUI_H_
-#define __GUI_H_
+#pragma once
 
 #include "..\CMUgraphicsLib\CMUgraphics.h"
 #include "..\Defs.h"
 
 
 #include "..\Rest\RegionManager.h"
-
+#include"../Generic_DS/Vector.h"
 #include <string>
 #include <iostream>
+class Restaurant;
 using namespace std;
 
 class GUI
@@ -59,8 +59,9 @@ private:
 	////////
 
 	int OrderCount;		//the total number of orders to be drawn
-	
-	Order * OrdListForDrawing[MaxPossibleOrdCnt]; // This Array of Pointers is used for drawing elements in the GUI
+	 
+	//Order * OrdListForDrawing[MaxPossibleOrdCnt]; // This Array of Pointers is used for drawing elements in the GUI // the old one
+	Vector<Order*>  OrdListForDrawing; // This Vector of Pointers is used for drawing elements in the GUI
 	//NOTES: 
 	//Orders are assumed to be sorted by arrival time
 	// At every time step, you should update those pointers 
@@ -77,7 +78,7 @@ private:
 
 
 	void DrawSingleOrder(Order* pO, int RegionCount) const;		//draws ONE order 
-	void DrawOrders() const;		//drwas ALL orders in OrdListForDrawing
+	void DrawOrders(Vector<Order*>&  OrdList) const;		//drwas ALL orders in OrdListForDrawing
 
 
 
@@ -103,7 +104,7 @@ public:
 	
 
 
-	void UpdateInterface();
+	void UpdateInterface(Restaurant*);
 	void AddOrderForDrawing(Order* pOrd);	//Adds a new order to the drawing list
 	void ResetDrawingList();		//resets drawing list (should be called every timestep after drawing)
 
@@ -111,4 +112,4 @@ public:
 
 };
 
-#endif
+ 

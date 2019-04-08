@@ -102,6 +102,9 @@ public:
 
 	///HMANA6399 :: Also added by me to increase money and change type in case of promotion
 
+
+	/// get money 
+	double GetMoney();
 };
 
 

@@ -1,5 +1,4 @@
-#ifndef __RESTAURANT_H_
-#define __RESTAURANT_H_
+#pragma once
 
 #include "..\Defs.h"
 #include "..\CMUgraphicsLib\CMUgraphics.h"
@@ -16,17 +15,20 @@
 #include "..\SaveAction.h"
 class LoadAction;
 #include "..\GUI\GUI.h"
-
-
+#include"../utility functions/strutils.h"
 
 /// standard includes
 #include<string>
 #include <sstream>
 #include <time.h>
+#include"../Generic_DS/Vector.h"
+
+//
 // it is the maestro of the project
 class Restaurant  
 {	
 private:
+
 	RegionManager Region[4];
 	LoadAction *Load;
 	SaveAction *Save;
@@ -36,7 +38,7 @@ private:
 	Motorcycle *pMotor;
 	Order *pOrder;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
-	
+	Vector<Order*> AllOrders;
 	///<summary>represents the timestep after which the Normal orders are promoted</summary>
 	int AutoPromoteTimeStep;
 
@@ -120,8 +122,10 @@ public:
 
     void StepByStep();
 	void Silent();
+	void AddToAllOrders(Order*);
+	Vector<Order*>& GetAllOrdersVec();
 
+	void Phase1Delete();
 
 };
-
-#endif
+ 

@@ -5,11 +5,12 @@
 #include "GUI\GUI.h"
 
 #include<iostream>
-using namespace std;
+#include"Generic_DS/Map.h"
 
 int main()
 
 {
+
 
 	Restaurant* pRest = new Restaurant;
 

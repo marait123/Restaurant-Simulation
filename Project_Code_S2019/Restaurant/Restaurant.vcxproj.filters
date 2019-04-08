@@ -126,6 +126,30 @@
     <ClInclude Include="Generic_DS\Vector.h">
       <Filter>Generic_DS</Filter>
     </ClInclude>
+    <ClInclude Include="Generic_DS\Pair.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\priority_q.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\PriorityQ_ADT.h">
+      <Filter>Generic_DS</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\Map.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\MapPair.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="utility functions\strutils.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\BDPair.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
+    <ClInclude Include="Generic_DS\BSDLL.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Demo_Main.cpp" />
@@ -267,6 +291,7 @@
     <ClCompile Include="Rest\Motorcycle.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="utility functions\strutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">

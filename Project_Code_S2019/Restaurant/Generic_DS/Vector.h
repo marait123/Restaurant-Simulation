@@ -1,7 +1,7 @@
 #pragma once
 #ifndef _Vector
 #define _Vector
-
+using namespace std;
 template<typename Type>
 class Vector
 {
@@ -44,6 +44,9 @@ public:
 	bool contains(Type); // No
 	///<summary>this function just returns the size of the vector don't confuse with capacity</summary>
 	int getSize();
+	///<summary>this function just removes the item by index</summary>
+	bool RemoveByIndex(int Index);
+
 	Type& operator[](int);
 };
 

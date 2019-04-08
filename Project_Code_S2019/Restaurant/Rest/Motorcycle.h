@@ -14,6 +14,8 @@ class Motorcycle
 	STATUS	status;	//idle or in-service
 	MotorcycleType Moto_Type; //Normal ,FROZEN AND Fast
 	
+	int TimeUntillDelivery;
+	// at assignment time of the motor to an order i will set the time untill delivery to (distance/speed)*2 and at each time step i will decrement the time untill delivery by one time step
 
 public:
 	Motorcycle();
@@ -32,6 +34,9 @@ public:
 	void SetOrder(ORD_TYPE O);
 	ORD_TYPE GetOrder();
 
+	int GetTimeUntillDelivery();
+	void SetTimeUntillDelivery(int);
+	bool DecrementTimeStep();
 	virtual ~Motorcycle();
 };
 

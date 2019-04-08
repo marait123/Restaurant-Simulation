@@ -129,6 +129,25 @@ bool Vector<Type>::fastRemove(Type item)
 }
 
 template<typename Type>
+bool Vector<Type>::RemoveByIndex(int Index)
+{
+	int index = Index;
+	if (index <= -1) {
+		return false;
+	}
+
+	Type* temp = myArr[index];
+	myArr[index] = myArr[top];
+	myArr[top] = temp;
+
+	delete myArr[top];
+	myArr[top] = NULL;
+	top--;
+
+	return true;
+}
+
+template<typename Type>
 bool Vector<Type>::contains(Type item)
 {
 	return getIndexOf(item) == -1;

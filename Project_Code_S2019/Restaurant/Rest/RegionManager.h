@@ -1,9 +1,14 @@
 #ifndef _REGION_MANAGER_
 #define _REGION_MANAGER_
+//#include"../Generic_DS/"
 
-
+#include"../Generic_DS/BSDLL.h"
 #include"Order.h"
 #include"Motorcycle.h"
+#include"../Generic_DS/Queue.h"
+#include"../Generic_DS/Pair.h"
+#include"../Generic_DS/priority_q.h"
+#include"../Generic_DS/Vector.h"
 
 //class Restaurant;//Forward Declaration
 
@@ -11,13 +16,21 @@ class RegionManager
 {
 private:
 	// Restaurant *pRest;
-     Order *ListOfInActiceOrders ;
-     Order *ListOfActiveOrders ;
+  // 
+	 Vector<Order*> DeliveredOrdersList;  // it is filled with the order after its finish time has been determined
+	 Vector<Order*> UnderServiceOrdersList;  // it is filled once the order is assigned to a motorcycle
+
+
      Motorcycle *ListOfMotorcycles ;
 	 REGION RegionType;
 
 
-   
+	 // the lists of waiting orders
+	 BSDLL<int, Order*> NormalOrders;
+	 Queue<Order*> FrozenOrder;
+	 priority_q<Pair<double, Order*>> VipOrders;
+
+
 
 	 int OrderCount;
 
@@ -62,20 +75,22 @@ private:
 	 void SetFastMotorCount(int);
 	 void SetNormalMotorCount(int);
 
- // not implemented yet // it is waiting for the suitable adt to store the frozen orders
+	 int GetFrozenMotorCount();
+	 int GetFastMotorCount();
+	 int GetNormalMotorCount();
+
 	 void AddToFrozenOrders(Order*);
 
- // not implemented yet
 	 void AddToNormalOrders(Order*);
 
+	 int GetNumberOfWaitingOrders();
 
-
-// not implemented yet
 	 void AddToVIPOrders(Order*);
+	 
 
 	 ~RegionManager();
 
-
+	 void Phase1Delete();
 
 
 };

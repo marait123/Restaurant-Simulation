@@ -100,7 +100,14 @@
     <ClInclude Include="Events\CancelEvent.h" />
     <ClInclude Include="Events\Event.h" />
     <ClInclude Include="Events\PromoteEvent.h" />
+    <ClInclude Include="Generic_DS\BDPair.h" />
+    <ClInclude Include="Generic_DS\BSDLL.h" />
+    <ClInclude Include="Generic_DS\Map.h" />
+    <ClInclude Include="Generic_DS\MapPair.h" />
     <ClInclude Include="Generic_DS\Node.h" />
+    <ClInclude Include="Generic_DS\Pair.h" />
+    <ClInclude Include="Generic_DS\PriorityQ_ADT.h" />
+    <ClInclude Include="Generic_DS\priority_q.h" />
     <ClInclude Include="Generic_DS\Queue.h" />
     <ClInclude Include="Generic_DS\Vector.h" />
     <ClInclude Include="GUI\GUI.h" />
@@ -110,6 +117,7 @@
     <ClInclude Include="Rest\RegionManager.h" />
     <ClInclude Include="Rest\Restaurant.h" />
     <ClInclude Include="SaveAction.h" />
+    <ClInclude Include="utility functions\strutils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -159,6 +167,7 @@
     <ClCompile Include="Rest\RegionManager.cpp" />
     <ClCompile Include="Rest\Restaurant.cpp" />
     <ClCompile Include="SaveAction.cpp" />
+    <ClCompile Include="utility functions\strutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt" />

@@ -66,11 +66,13 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 	{
 
 		if(pE->getEventTime() > CurrentTimeStep )	//no more events at current time
-
 			return;
-		pE->Execute(this);
 
+
+		pE->Execute(this);
 		EventsQueue.dequeue(pE);	//remove event from the queue
+
+		
 
 		delete pE;		//deallocate event object from memory
 
@@ -112,16 +114,16 @@ void Restaurant::AddOrderToVIP(Order *newOrd)
 	switch( newOrd->GetRegion() )
 	{
 	    case A_REG :	
-			this->Region[0].AddOrderToVIP(newOrd);
+			this->Region[0].AddToVIPOrders(newOrd);
 			break;
 		case B_REG :
-			this->Region[1].AddOrderToVIP(newOrd);
+			this->Region[1].AddToVIPOrders(newOrd);
 			break;
 		case C_REG :
-			this->Region[2].AddOrderToVIP(newOrd);
+			this->Region[2].AddToVIPOrders(newOrd);
 			break;
 		case D_REG :
-			this->Region[3].AddOrderToVIP(newOrd);
+			this->Region[3].AddToVIPOrders(newOrd);
 			break;
 	}
 }
@@ -131,28 +133,23 @@ void Restaurant::AddOrderToVIP(Order *newOrd)
 void Restaurant::AddOrderToNormal(Order *newOrd)
 
 {
-
-	// add to normal orders in the region class and so is the other AddOreder functions
-	// --> Execute Add fn of FrozenOrders list 
-	if (newOrd->GetRegion == REGION::A_REG) {
-		//this->Region[0].
-	}
-	DEMO_Queue.enqueue(newOrd);
+ 
+	//DEMO_Queue.enqueue(newOrd);
 
 	///HMANA6399 :: I left this line for testing*/
 	switch( newOrd->GetRegion() )
 	{
 	    case A_REG :	
-			this->Region[0].AddOrderToNormal(newOrd);
+			this->Region[0].AddToNormalOrders(newOrd);
 			break;
 		case B_REG :
-			this->Region[1].AddOrderToNormal(newOrd);
+			this->Region[1].AddToNormalOrders(newOrd);
 			break;
 		case C_REG :
-			this->Region[2].AddOrderToNormal(newOrd);
+			this->Region[2].AddToNormalOrders(newOrd);
 			break;
 		case D_REG :
-			this->Region[3].AddOrderToNormal(newOrd);
+			this->Region[3].AddToNormalOrders(newOrd);
 			break;
 	}
 }
@@ -171,16 +168,16 @@ void Restaurant::AddOrderToFrozen(Order *newOrd)
 	switch(newOrd->GetRegion())
 	{
 	    case A_REG :	
-			this->Region[0].AddOrderToFrozen(newOrd);
+			this->Region[0].AddToFrozenOrders(newOrd);
 			break;
 		case B_REG :
-			this->Region[1].AddOrderToFrozen(newOrd);
+			this->Region[1].AddToFrozenOrders(newOrd);
 			break;
 		case C_REG :
-			this->Region[2].AddOrderToFrozen(newOrd);
+			this->Region[2].AddToFrozenOrders(newOrd);
 			break;
 		case D_REG :
-			this->Region[3].AddOrderToFrozen(newOrd);
+			this->Region[3].AddToFrozenOrders(newOrd);
 			break;
 	}
 }
@@ -264,7 +261,7 @@ void Restaurant::Just_A_Demo()
 	pGUI->PrintMessage("Just a Demo. Enter EVENTS Count(next phases should read I/P filename):");
 	EventCnt = atoi(pGUI->GetString().c_str());	//get user input as a string then convert to integer
 
-	pGUI->UpdateInterface();
+	pGUI->UpdateInterface(this);
 
 	pGUI->PrintMessage("Generating orders randomly... In next phases, orders should be loaded from a file");
 		
@@ -314,7 +311,7 @@ void Restaurant::Just_A_Demo()
 		while(DEMO_Queue.dequeue(pOrd))
 		{
 			pGUI->AddOrderForDrawing(pOrd);
-			pGUI->UpdateInterface();
+			pGUI->UpdateInterface(this);
 		}
 		Sleep(1000);
 		CurrentTimeStep++;	//advance timestep
@@ -373,7 +370,23 @@ void Restaurant::ProcessInterActive()
 		pGUI->waitForClick();
 		IncreaseCurrentTime();
 		this->ExecuteEvents(CurrentTimeStep);
+		// here you print the number of active order type those in the list of orders
+		pGUI->PrintMessage(
+			"Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
+			", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
+			", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
+			", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
+			"}" + "Number of motors [Z,N,F]"
+			+ "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
+			+ ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
+			+ ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
+			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"
+		);
+
 		//Excute Events;
+	
+	
+		this->pGUI->UpdateInterface(this);
 	}
 	//Save->Execute();
 }
@@ -415,6 +428,27 @@ void Restaurant::Silent()
 	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
 	Load = new LoadAction(LoadedFile,this);
 	Load->Execute();
+}
+
+void Restaurant::AddToAllOrders(Order *Ord)
+{
+	AllOrders.insert(Ord);
+}
+
+Vector<Order*>& Restaurant::GetAllOrdersVec()
+{
+	return this->AllOrders;// TODO: insert return statement here
+}
+
+
+void Restaurant::Phase1Delete()
+{
+	for (size_t i = 0; i < 4; i++)
+	{
+		
+		/// every region manager i will call it to assign a motor to an order
+	}
+
 }
 
 
@@ -460,6 +494,7 @@ void Restaurant::LoadFromFile(string fileName){
 			// Event Assignation
 			int EventNumber; 
 			LoadFile >> EventNumber; 
+
 
 			char EventType;
 

@@ -1,5 +1,7 @@
-﻿#include "GUI.h"
+﻿#pragma once
 
+#include "GUI.h"
+#include"../Rest/Restaurant.h"
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::GUI()
 {
@@ -196,26 +198,35 @@ void GUI::DrawSingleOrder(Order* pO, int RegionCount) const       // It is a pri
 // [Input Parameters]:
 //    orders [ ] : array of Order pointers (ALL orders from all regions in one array)
 //    TotalOrders : the size of the array (total no. of orders)
-void GUI::DrawOrders() const
+void GUI::DrawOrders(Vector<Order*>&  OrdList) const
 {
-
+	
 	//Prepare counter for each region
-	int RegionsCounts[REG_CNT]={0};	//initlaize all counters to zero
+	//int RegionsCounts[REG_CNT]={0};	//initlaize all counters to zero
 
-	for(int i=0; i<OrderCount; i++)
+	//for(int i=0; i<OrderCount; i++)
+	//{
+	//	int orderRegion = OrdListForDrawing[i]->GetRegion();
+	//	RegionsCounts[orderRegion]++;
+	//	DrawSingleOrder(OrdListForDrawing[i], RegionsCounts[orderRegion]);
+	//}
+
+	int RegionsCounts[REG_CNT] = { 0 };	//initlaize all counters to zero
+
+	for (int i = 0; i<OrdList.getSize(); i++)
 	{
-		int orderRegion = OrdListForDrawing[i]->GetRegion();
+		int orderRegion = OrdList[i]->GetRegion();
 		RegionsCounts[orderRegion]++;
-		DrawSingleOrder(OrdListForDrawing[i], RegionsCounts[orderRegion]);
-	}
+		DrawSingleOrder(OrdList[i], RegionsCounts[orderRegion]);
 
+	}
 }
 
-void GUI::UpdateInterface() 
+void GUI::UpdateInterface(Restaurant* pRest)
 {
 	ClearDrawingArea();
 	DrawRestArea();
-	DrawOrders();
+	DrawOrders(pRest->GetAllOrdersVec());
 }
 
 /*

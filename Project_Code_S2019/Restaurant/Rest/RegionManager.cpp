@@ -32,7 +32,6 @@ int RegionManager::getRegionID()
 }
 void RegionManager::AddOrder(Order*order)
 {
-
 }
 
 void RegionManager::setRegionID(REGION RegionID)
@@ -78,17 +77,46 @@ void RegionManager::SetNormalMotorCount(int NMC)
 	NormalMotorCount = NMC;
 }
 
-void RegionManager::AddToFrozenOrders(Order *)
+int RegionManager::GetFrozenMotorCount()
 {
+	return this->FrozenMotorCount;
 }
 
-void RegionManager::AddToNormalOrders(Order *)
+int RegionManager::GetFastMotorCount()
 {
+	return this->FastMotorCount;
+}
+
+int RegionManager::GetNormalMotorCount()
+{
+	return this->NormalMotorCount;
+}
+
+void RegionManager::AddToFrozenOrders(Order *od)
+{
+	this->FrozenOrder.enqueue(od);
+}
+
+void RegionManager::AddToNormalOrders(Order *od)
+{
+	BDPair<int, Order*> MP;
+	MP.SetKey(od->GetID());
+	MP.SetData(od);
+	this->NormalOrders.Insert(MP);
+}
+
+int RegionManager::GetNumberOfWaitingOrders()
+{
+	return this->NormalOrders.GetCount() + this->VipOrders.GetCount()+this->FrozenOrder.GetCount();
 }
 
 
-void RegionManager::AddToVIPOrders(Order *)
+void RegionManager::AddToVIPOrders(Order * od)
 {
+	/// money distacne and time
+	double priority = (od->GetMoney() / (od->getArrTime()*od->GetDistance()));
+	
+	this->VipOrders.enqueue(Pair<double, Order*>(priority, od));
 }
 
 //
@@ -104,4 +132,24 @@ RegionManager::~RegionManager()
 {
 	delete this->ListOfMotorcycles;
 	//delete this->ListOfOrders;
+}
+
+void RegionManager::Phase1Delete()
+{
+/*
+	Map<int, Order*> NormalOrders;
+	Queue<Order*> FrozenOrder;
+	priority_q<Pair<double, Order*>> VipOrders;
+*/
+	Order* ord;
+	Pair<double, Order*> tempPair;
+	VipOrders.dequeue(tempPair);
+	FrozenOrder.dequeue(ord);
+	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
+	
+	
+
+
+
+
 }

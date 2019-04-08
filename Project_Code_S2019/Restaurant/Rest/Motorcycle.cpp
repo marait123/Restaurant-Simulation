@@ -6,6 +6,7 @@ Motorcycle::Motorcycle()
 {
 	ID++;
 	this->status = IDLE;
+	this->TimeUntillDelivery = 0;
 }
 
 void Motorcycle::SetSpeed(int S,MotorcycleType M)
@@ -32,6 +33,22 @@ void Motorcycle::SetOrder(ORD_TYPE O)
 ORD_TYPE Motorcycle::GetOrder()
 {
 	return this->type;
+}
+
+int Motorcycle::GetTimeUntillDelivery()
+{
+	return this->TimeUntillDelivery;
+}
+
+void Motorcycle::SetTimeUntillDelivery(int TUD)
+{
+	this->TimeUntillDelivery = TUD;
+}
+
+bool Motorcycle::DecrementTimeStep()
+{
+	this->TimeUntillDelivery--;
+	return TimeUntillDelivery >= 0;
 }
 
 void Motorcycle::SetStatus(STATUS ST)
