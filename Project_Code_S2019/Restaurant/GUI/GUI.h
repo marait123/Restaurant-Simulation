@@ -60,8 +60,8 @@ private:
 
 	int OrderCount;		//the total number of orders to be drawn
 	 
-	//Order * OrdListForDrawing[MaxPossibleOrdCnt]; // This Array of Pointers is used for drawing elements in the GUI // the old one
-	Vector<Order*>  OrdListForDrawing; // This Vector of Pointers is used for drawing elements in the GUI
+	Order * OrdListForDrawing[MaxPossibleOrdCnt]; // This Array of Pointers is used for drawing elements in the GUI // the old one
+	//Vector<Order*>  OrdListForDrawing; // This Vector of Pointers is used for drawing elements in the GUI
 	//NOTES: 
 	//Orders are assumed to be sorted by arrival time
 	// At every time step, you should update those pointers 
@@ -78,7 +78,7 @@ private:
 
 
 	void DrawSingleOrder(Order* pO, int RegionCount) const;		//draws ONE order 
-	void DrawOrders(Vector<Order*>&  OrdList) const;		//drwas ALL orders in OrdListForDrawing
+	void DrawOrders() const;		//drwas ALL orders in OrdListForDrawing
 
 
 
@@ -106,6 +106,7 @@ public:
 
 	void UpdateInterface(Restaurant*);
 	void AddOrderForDrawing(Order* pOrd);	//Adds a new order to the drawing list
+	void RemoveOrderForDrawing(Order* pOrd);  // remove an Order
 	void ResetDrawingList();		//resets drawing list (should be called every timestep after drawing)
 
 	PROG_MODE getGUIMode() const;			//returns the mode of the program

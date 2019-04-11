@@ -28,7 +28,7 @@ class ArrivalEvent: public Event
 
 public:
 
-	ArrivalEvent(int eTime, int oID, ORD_TYPE oType, REGION reg);
+	ArrivalEvent(int eTime, int oID, ORD_TYPE oType, REGION reg, double Mon= 0, double dist = 0);
 
 	//Add more constructors if needed
 

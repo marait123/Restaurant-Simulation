@@ -25,9 +25,10 @@ Vector<Type>::~Vector()
 {
 	for (size_t i = 0; i <= top; i++)
 	{
+		if(myArr[i]!=NULL)
 		delete myArr[i];
 	}
-	delete[] myArr;
+	//delete[] myArr;
 }
 
 template<typename Type>

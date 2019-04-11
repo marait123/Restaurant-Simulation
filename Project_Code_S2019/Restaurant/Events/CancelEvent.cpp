@@ -20,25 +20,9 @@ CancelEvent::CancelEvent(int eTime, int cancelOrdID) :
 void CancelEvent::Execute(Restaurant * pRest)
 
 {
-
-	Order* pCancOrd = pRest->GetNormalOrderById(this->cancelledOrderID);
-
-	if (pCancOrd) {
-
-		pRest->RemoveNormalOrder(pCancOrd);
-
-	}
-
-	else {
-
-		// TODO :: Handle this!
-
-	}
-
-	///HMANA :: DANGER! Should be revised
-
-	delete pCancOrd;
-
+	Order *Ord = pRest->GetNormalOrderById(cancelledOrderID);
+	pRest->RemoveFromAllOrders(Ord);
+	pRest->RemoveNormalOrderById(cancelledOrderID);
 }
 
 

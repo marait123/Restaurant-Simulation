@@ -17,9 +17,6 @@ int main()
 	pRest->RunSimulation();
 	 
 
-	cin.get();
-
-	cin.ignore();
 
 
 

@@ -1,6 +1,8 @@
 #pragma once
 #include"BDPair.h"
 #include<queue>
+#include"Queue.h"
+
 ///it stands for binary search doubly linked list
 ///k stands for key and D stands for Data or Value
 /*		example on how to use the BSDLL data structure:

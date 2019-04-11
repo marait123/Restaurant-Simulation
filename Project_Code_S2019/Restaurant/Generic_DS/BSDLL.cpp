@@ -11,13 +11,32 @@ BSDLL<K,D>::BSDLL()
 
 }
 
+
+/*
+	operations used in queue
+	1. push
+	2. pop
+	3.front
+	4.empty
+	Queue
+	bool isEmpty() const ;
+	bool enqueue(const T& newEntry);
+	bool dequeue(T& frntEntry);  
+	bool peekFront(T& frntEntry)  const;	
+	int GetCount();
+
+*/
 template<typename K, typename D>
 BSDLL<K,D>::BSDLL(const BSDLL<K,D> & mp)
 {
 	// this constructor will have to traverse the entire BSDLL to add each element in the supplied BSDLL to the current one 
 	// using the breadth first traversal algorithm i will traverse the  BSDLL supplied and insert each element in it to this BSDLL
+	
+	
+	
 	this->count = mp.count;
-	queue<BDPair<K,D>*> qMP;
+
+	Queue<BDPair<K,D>*> qMP;
 	BDPair<K,D>* scan = mp.root;
 
 	while (scan != NULL)
@@ -25,20 +44,20 @@ BSDLL<K,D>::BSDLL(const BSDLL<K,D> & mp)
 		this->Insert(*scan);
 
 		if (scan->GetLeftChild() != NULL) {
-			qMP.push(scan->GetLeftChild());
+			qMP.enqueue(scan->GetLeftChild());
 		}
 
 		if (scan->GetRightChild() != NULL) {
-			qMP.push(scan->GetRightChild());
+			qMP.enqueue(scan->GetRightChild());
 		}
 
-		if (qMP.empty()) {
+		if (qMP.isEmpty()) {
 			break;
 		}
 		else
 		{
-			scan = qMP.front();
-			qMP.pop();
+			qMP.peekFront(scan);
+			qMP.dequeue(scan);
 		}
 
 	}
@@ -53,29 +72,29 @@ BSDLL<K,D>::~BSDLL()
 {
 
 	// traverse the whole BSDLL and delete all the BDPair<K,D>s
-	queue<BDPair<K,D>*> qMP;
+	Queue<BDPair<K,D>*> qMP;
 	BDPair<K,D>* scan = this->root;
 
 	while (scan != NULL)
 	{
 
 		if (scan->GetLeftChild() != NULL) {
-			qMP.push(scan->GetLeftChild());
+			qMP.enqueue(scan->GetLeftChild());
 		}
 
 		if (scan->GetRightChild() != NULL) {
-			qMP.push(scan->GetRightChild());
+			qMP.enqueue(scan->GetRightChild());
 		}
 
 		delete scan;
 
-		if (qMP.empty()) {
+		if (qMP.isEmpty()) {
 			break;
 		}
 		else
 		{
-			scan = qMP.front();
-			qMP.pop();
+			qMP.peekFront(scan);
+			qMP.dequeue(scan);
 		}
 
 	}
@@ -86,6 +105,7 @@ template<typename K, typename D>
 void BSDLL<K,D>::Insert(BDPair<K,D> MP)
 {
 	this->count++;
+
 	BDPair<K,D>* newPair = new BDPair<K,D>(MP.GetKey(), MP.GetData());
 	BDPair<K,D>** scan = &this->root;
 
@@ -211,7 +231,7 @@ bool BSDLL<K,D>::Contains(K k)
 template<typename K, typename D>
 int BSDLL<K,D>::GetCount()
 {
-	return 0;
+	return this->count;
 }
 
 template<typename K, typename D>
@@ -219,12 +239,18 @@ bool BSDLL<K,D>::IsEmpty(){
 	return head == NULL;
 }
 
-
+/// this function doesn't distinguish not found and the one and the NULL
 template<typename K, typename D>
 bool BSDLL<K,D>::Remove(K val)
 {
-	BDPair<K,D>* temp = Delete(this->root, val);
-	return temp == NULL;
+	bool isThere = this->Contains(val);
+	if(isThere){
+	BDPair<K,D>* temp = Delete(this->root, val);			
+	}
+	if(isThere)
+		this->count--;
+
+	return isThere;
 }
 
 // return value is the new root		//under construcion

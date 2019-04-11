@@ -71,6 +71,7 @@ The constructor of the Queue class.
 template <typename T>
 Queue<T>::Queue()
 {
+	this->count=0;
 	backPtr=nullptr;
 	frontPtr=nullptr;
 
@@ -87,7 +88,7 @@ Output: True if the queue is empty; otherwise false.
 template <typename T>
 bool Queue<T>::isEmpty() const
 {
-	if(frontPtr==nullptr)
+	if(frontPtr == nullptr)
 		return true;
 	else
 		return false;

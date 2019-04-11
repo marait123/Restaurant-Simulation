@@ -6,13 +6,16 @@
 
 
 
-ArrivalEvent::ArrivalEvent(int eTime, int oID, ORD_TYPE oType, REGION reg):Event(eTime, oID)
+ArrivalEvent::ArrivalEvent(int eTime, int oID, ORD_TYPE oType, REGION reg, double Mon, double dist):Event(eTime, oID)
 
 {
-
+	
 	OrdType = oType;
 
 	OrdRegion = reg;
+	this->OrdDistance = dist;
+	this->OrdMoney = Mon;
+	this->EventTime = eTime;
 
 }
 
@@ -32,10 +35,9 @@ void ArrivalEvent::Execute(Restaurant* pRest)
 
 
 
-	Order* pOrd = new Order(OrderID,OrdType,OrdRegion);
+	Order* pOrd = new Order(OrderID,OrdType,OrdRegion,this->EventTime, this->OrdMoney, this->OrdDistance);
 
 	pRest->AddToAllOrders(pOrd);
-
 	switch (OrdType) {
 
 	case TYPE_NRM: 

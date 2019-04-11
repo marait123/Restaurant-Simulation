@@ -32,8 +32,8 @@ void Restaurant::RunSimulation()
 	case MODE_SLNT:
 		Silent();
 		break;
-	case MODE_DEMO:
-		Just_A_Demo();
+	//case MODE_DEMO:
+	//	Just_A_Demo();
 
 	};
 
@@ -163,7 +163,6 @@ void Restaurant::AddOrderToFrozen(Order *newOrd)
 	/*// --> Execute Add fn of VIPOrders list 
 
 	DEMO_Queue.enqueue(newOrd);
-
 	///HMANA6399 :: I left this line for testing*/
 	switch(newOrd->GetRegion())
 	{
@@ -184,19 +183,7 @@ void Restaurant::AddOrderToFrozen(Order *newOrd)
 
 
 
-
-
-Order * Restaurant::GetNormalOrderById(int ID)
-
-{
-
-	//1 --> Traverse the orders list
-
-	//2 --> return a pointer to the Order - if found -, either return nullptr
-
-	return nullptr;
-
-}
+ 
 
 int Restaurant::GetPromotionLimit(int Max)
 {
@@ -210,15 +197,54 @@ void Restaurant::RemoveNormalOrder(Order* remOrd)
 {
 
 	// --> Execute Remove fn. of NormalOrders list
-
-	DEMO_Queue.dequeue(remOrd);
+	REGION RORD = remOrd->GetRegion();
+	
+	switch(RORD)
+	{
+	    case A_REG :	
+			this->Region[0].CancelNormalOrder(remOrd->GetID());
+			break;
+		case B_REG :
+			this->Region[1].CancelNormalOrder(remOrd->GetID());
+			break;
+		case C_REG :
+			this->Region[2].CancelNormalOrder(remOrd->GetID());
+			break;
+		case D_REG :
+			this->Region[3].CancelNormalOrder(remOrd->GetID());
+			break;
+	}
+	//DEMO_Queue.dequeue(remOrd);
 
 	///HMANA6399 :: I left this line for testing
 
 }
 
 
+void Restaurant::RemoveNormalOrderById(int Id){
+	
 
+	for (int i = 0; i < 4; i++)
+	{
+		this->Region[i].CancelNormalOrder(Id);
+	}
+	
+}
+
+
+// Marait:: under construction
+Order* Restaurant::GetNormalOrderById(int ID){
+
+	for (int i = 0; i < 4; i++)
+	{
+		Order* isThere = this->Region[i].GetNormalOrder(ID);
+		if(isThere != NULL){
+			return isThere;
+		}
+	}
+
+	return NULL;
+}
 
 Order* Restaurant::getDemoOrder()
 
@@ -246,7 +272,7 @@ Order* Restaurant::getDemoOrder()
 
 //This is just a demo function for project introductory phase
 //It should be removed starting phase 1
-void Restaurant::Just_A_Demo()
+/*void Restaurant::Just_A_Demo()
 {
 	
 	//
@@ -322,7 +348,7 @@ void Restaurant::Just_A_Demo()
 	pGUI->waitForClick();
 
 	
-}
+}*/
 ////////////////
 
 /*void Restaurant::AddtoDemoQueue(Order *pOrd)
@@ -366,11 +392,11 @@ void Restaurant::ProcessInterActive()
 {
 	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
 	{
-		pGUI->PrintMessage("Mouse Click To increase TimeStep");
-		pGUI->waitForClick();
+
 		IncreaseCurrentTime();
 		this->ExecuteEvents(CurrentTimeStep);
 		// here you print the number of active order type those in the list of orders
+		this->pGUI->UpdateInterface(this);
 		pGUI->PrintMessage(
 			"Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
 			", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
@@ -380,13 +406,16 @@ void Restaurant::ProcessInterActive()
 			+ "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
 			+ ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
 			+ ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
-			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"
+			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"+
+			"Mouse Click To increase TimeStep"
 		);
+		pGUI->waitForClick();
+
+		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
 	
 	
-		this->pGUI->UpdateInterface(this);
 	}
 	//Save->Execute();
 }
@@ -432,8 +461,15 @@ void Restaurant::Silent()
 
 void Restaurant::AddToAllOrders(Order *Ord)
 {
-	AllOrders.insert(Ord);
+	pGUI->AddOrderForDrawing(Ord);
+
 }
+
+void Restaurant::RemoveFromAllOrders(Order *Ord){
+
+	pGUI->RemoveOrderForDrawing(Ord);
+}
+
 
 Vector<Order*>& Restaurant::GetAllOrdersVec()
 {
@@ -533,7 +569,7 @@ void Restaurant::LoadFromFile(string fileName){
 				switch (EventType)
 				{
 				case 'R':{
-					
+							
 					        LoadFile  >> TS >> TYP >> ID >> DST >> MON >> Reg;
 						 
 
@@ -570,7 +606,7 @@ void Restaurant::LoadFromFile(string fileName){
 						    }
 
 
-						 Event *pEvent = new ArrivalEvent(TS,ID,O_Type,R_Type);
+						 Event *pEvent = new ArrivalEvent(TS,ID,O_Type,R_Type,MON,DST);
 						 this->EventsQueue.enqueue(pEvent);
 						 break;
 						 }

@@ -32,9 +32,9 @@ void PromoteEvent::Execute(Restaurant * pRest)
 
 	if (promOrd != nullptr) {
 
-		//promOrd->IncreaseMoney(this->extraMoney);
+		promOrd->IncreaseMoney(this->extraMoney);
 
-		//promOrd->SetType(TYPE_VIP);
+		promOrd->SetType(TYPE_VIP);
 
 		pRest->RemoveNormalOrder(promOrd);
 

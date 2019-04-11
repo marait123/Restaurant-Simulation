@@ -16,16 +16,22 @@ class RegionManager
 {
 private:
 	// Restaurant *pRest;
-  // 
+  //
+	/*
 	 Vector<Order*> DeliveredOrdersList;  // it is filled with the order after its finish time has been determined
 	 Vector<Order*> UnderServiceOrdersList;  // it is filled once the order is assigned to a motorcycle
-
+	 */
 
      Motorcycle *ListOfMotorcycles ;
 	 REGION RegionType;
 
 
 	 // the lists of waiting orders
+	 /*justification for the BSDLL:
+	   1. it offers an O(logn) complexity of promotion
+	   2. it offers an O(logn) complexity of cancelation
+	   3. it offers an O(logn) retreival and insertion
+	   4. it offers an O(logn) deletion*/
 	 BSDLL<int, Order*> NormalOrders;
 	 Queue<Order*> FrozenOrder;
 	 priority_q<Pair<double, Order*>> VipOrders;
@@ -87,6 +93,10 @@ private:
 
 	 void AddToVIPOrders(Order*);
 	 
+	 bool CancelNormalOrder(int);
+	 Order* GetNormalOrder(int);
+
+
 
 	 ~RegionManager();
 

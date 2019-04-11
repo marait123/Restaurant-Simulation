@@ -1,9 +1,9 @@
 #include "Order.h"
 
 
-
-Order::Order(int id, ORD_TYPE r_Type, REGION r_region)
-
+	//Order* pOrd = new Order(OrderID,OrdType,OrdRegion,this->EventTime, this->OrdMoney, this->OrdDistance);
+//
+Order::Order(int id, ORD_TYPE r_Type, REGION r_region, int eTime, double ordMon  , double ordDist)
 {
 
 	ID = (id>0&&id<1000)?id:0;	//1<ID<999
@@ -14,6 +14,9 @@ Order::Order(int id, ORD_TYPE r_Type, REGION r_region)
 
 	isDelivered = true;
 
+	this->totalMoney = ordMon ;
+	this->ArrTime = eTime;
+	this->Distance = ordDist;
 	
 
 }
@@ -47,6 +50,11 @@ int Order::GetType() const
 
 	return type;
 
+}
+
+void Order::SetType(ORD_TYPE T){
+
+	this->type= T;
 }
 
 

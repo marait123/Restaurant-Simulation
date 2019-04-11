@@ -128,6 +128,35 @@ void RegionManager::AddToVIPOrders(Order * od)
 //			return  this->ListOfOrders[i];
 //	}
 //}
+
+bool RegionManager::CancelNormalOrder(int ID){
+	try{
+	bool isThere = this->NormalOrders.Contains(ID); 
+	if(isThere == true)
+	this->NormalOrders.Remove(ID);
+
+	return isThere;
+	}
+	catch(exception& ex){
+		return false;
+	}
+
+}
+
+Order* RegionManager::GetNormalOrder(int ID){
+	try{
+	if(this->NormalOrders.Contains(ID))
+	return this->NormalOrders.At(ID);
+	else
+	{
+		return NULL;
+	}
+	}
+	catch(exception& ex){
+		return NULL;
+	}
+}
+
 RegionManager::~RegionManager()
 {
 	delete this->ListOfMotorcycles;
@@ -145,11 +174,7 @@ void RegionManager::Phase1Delete()
 	Pair<double, Order*> tempPair;
 	VipOrders.dequeue(tempPair);
 	FrozenOrder.dequeue(ord);
+	this->NormalOrders.Deque();  // i have done the 
 	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
 	
-	
-
-
-
-
 }

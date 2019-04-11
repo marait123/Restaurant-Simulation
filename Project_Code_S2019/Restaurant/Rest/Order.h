@@ -38,8 +38,9 @@ protected:
 
 
 public:
-
-	Order(int ID, ORD_TYPE r_Type, REGION r_region);
+	//Order* pOrd = new Order(OrderID,OrdType,OrdRegion,this->EventTime, this->OrdMoney, this->OrdDistance);
+	///<summary>you will send id r_type r_region </summary>
+	Order(int id, ORD_TYPE r_Type, REGION r_region, int eTime, double ordMon =0 , double ordDist=0);
 
 	virtual ~Order();
 

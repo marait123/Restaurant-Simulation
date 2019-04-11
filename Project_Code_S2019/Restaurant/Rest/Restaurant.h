@@ -38,7 +38,10 @@ private:
 	Motorcycle *pMotor;
 	Order *pOrder;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
+
+
 	Vector<Order*> AllOrders;
+
 	///<summary>represents the timestep after which the Normal orders are promoted</summary>
 	int AutoPromoteTimeStep;
 
@@ -87,19 +90,21 @@ public:
 
 	//Some Specific functions for the Normal Order for Cancelation and Promotion
 
-	Order* GetNormalOrderById(int ID);
 
 	///HMANA6399 :: Beta version, Requires a traverse-frindly DS
 
 	///like a vector so that its el.s are easily accessed by []
 
 	void RemoveNormalOrder(Order*);
+	void RemoveNormalOrderById(int);
+	Order* GetNormalOrderById(int);
+
 
 	/// ==> 
 
 	///  DEMO-related functions. Should be removed in phases 1&2
 
-	void Just_A_Demo();	//just to show a demo and should be removed in phase1 1 & 2
+	//void Just_A_Demo();	//just to show a demo and should be removed in phase1 1 & 2
 
 	Order* getDemoOrder();			//return the front order from demo queue
 
@@ -123,6 +128,7 @@ public:
     void StepByStep();
 	void Silent();
 	void AddToAllOrders(Order*);
+	void RemoveFromAllOrders(Order* );
 	Vector<Order*>& GetAllOrdersVec();
 
 	void Phase1Delete();

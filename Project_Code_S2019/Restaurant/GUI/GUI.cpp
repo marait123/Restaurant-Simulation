@@ -65,7 +65,7 @@ void GUI::PrintMessage(string msg) const	//Prints a message on status bar
 	ClearStatusBar();	//First clear the status bar
 	
 	pWind->SetPen(DARKRED);
-	pWind->SetFont(18, BOLD , BY_NAME, "Arial");   
+	pWind->SetFont(18, BOLD , BY_NAME, "Arial");
 	pWind->DrawString(10, WindHeight - (int) (StatusBarHeight/1.5), msg); // You may need to change these coordinates later 
 	                                                                      // to be able to write multi-line
 }
@@ -198,35 +198,32 @@ void GUI::DrawSingleOrder(Order* pO, int RegionCount) const       // It is a pri
 // [Input Parameters]:
 //    orders [ ] : array of Order pointers (ALL orders from all regions in one array)
 //    TotalOrders : the size of the array (total no. of orders)
-void GUI::DrawOrders(Vector<Order*>&  OrdList) const
+void GUI::DrawOrders() const
 {
 	
 	//Prepare counter for each region
-	//int RegionsCounts[REG_CNT]={0};	//initlaize all counters to zero
+	int RegionsCounts[REG_CNT]={0};	//initlaize all counters to zero
+	for(int i=0; i<OrderCount; i++)
+	{
+		int orderRegion = OrdListForDrawing[i]->GetRegion();
+		RegionsCounts[orderRegion]++;
+		DrawSingleOrder(OrdListForDrawing[i], RegionsCounts[orderRegion]);
+	}
 
-	//for(int i=0; i<OrderCount; i++)
-	//{
-	//	int orderRegion = OrdListForDrawing[i]->GetRegion();
-	//	RegionsCounts[orderRegion]++;
-	//	DrawSingleOrder(OrdListForDrawing[i], RegionsCounts[orderRegion]);
-	//}
-
-	int RegionsCounts[REG_CNT] = { 0 };	//initlaize all counters to zero
-
-	for (int i = 0; i<OrdList.getSize(); i++)
+	/*for (int i = 0; i<OrdList.getSize(); i++)
 	{
 		int orderRegion = OrdList[i]->GetRegion();
 		RegionsCounts[orderRegion]++;
 		DrawSingleOrder(OrdList[i], RegionsCounts[orderRegion]);
 
-	}
+	}*/
 }
 
 void GUI::UpdateInterface(Restaurant* pRest)
 {
 	ClearDrawingArea();
 	DrawRestArea();
-	DrawOrders(pRest->GetAllOrdersVec());
+	DrawOrders();
 }
 
 /*
@@ -241,6 +238,25 @@ void GUI::AddOrderForDrawing(Order* ptr)
 	// It only makes the first free pointer in the array
 	// points to the same Order pointed to by "ptr"
 }
+void GUI::RemoveOrderForDrawing(Order* pOrd){  // remove an Order
+
+	if( pOrd == NULL ) return;
+	int i=0;
+	for (i = 0; i < this->OrderCount; i++)
+	{
+		if(this->OrdListForDrawing[i] == pOrd){
+			break;
+		}
+	}
+	for (; i < OrderCount-1; i++)
+	{
+		OrdListForDrawing[i] = OrdListForDrawing[i+1];
+	}
+	OrdListForDrawing[OrderCount-1] = NULL;
+	this->OrderCount--;
+
+} 
+
 
 void GUI::ResetDrawingList()
 {
