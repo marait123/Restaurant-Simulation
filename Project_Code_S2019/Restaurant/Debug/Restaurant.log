@@ -1,129 +1,113 @@
-﻿Build started 11/04/2019 04:46:00 م.
+﻿Build started 22/04/2019 08:46:24 م.
      1>Project "G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Demo_Main.cpp Events\ArrivalEvent.cpp Events\CancelEvent.cpp Events\PromoteEvent.cpp GUI\GUI.cpp LoadAction.cpp Rest\RegionManager.cpp Rest\Restaurant.cpp
-         Demo_Main.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CMUgraphicsLib\CMUgraphics.cpp CMUgraphicsLib\colors.cpp CMUgraphicsLib\image.cpp CMUgraphicsLib\keyqueue.cpp CMUgraphicsLib\mousequeue.cpp CMUgraphicsLib\windowinput.cpp main.cpp Events\CancelEvent.cpp Events\Event.cpp Events\ArrivalEvent.cpp Events\PromoteEvent.cpp GUI\GUI.cpp LoadAction.cpp Rest\Motorcycle.cpp Rest\Order.cpp Rest\RegionManager.cpp Rest\Restaurant.cpp SaveAction.cpp "utility functions\strutils.cpp"
+         strutils.cpp
+         SaveAction.cpp
          Restaurant.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(367): warning C4101: 'pEv' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(365): warning C4101: 'EventCnt' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(366): warning C4101: 'pOrd' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(428): warning C4101: 'pEv' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(426): warning C4101: 'EventCnt' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(427): warning C4101: 'pOrd' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(448): warning C4101: 'pEv' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(446): warning C4101: 'EventCnt' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(447): warning C4101: 'pOrd' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(506): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(507): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(508): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(518): warning C4101: 'a' : unreferenced local variable
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(14): warning C4018: '<' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(10) : while compiling class template member function 'Vector<Type>::Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(11) : see reference to function template instantiation 'Vector<Type>::Vector(void)' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(11) : see reference to function template instantiation 'Vector<Type>::~Vector(void)' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(241): warning C4101: 'pEv' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(239): warning C4101: 'EventCnt' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(240): warning C4101: 'pOrd' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(326): warning C4101: 'pEv' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(324): warning C4101: 'EventCnt' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(325): warning C4101: 'pOrd' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(346): warning C4101: 'pEv' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(344): warning C4101: 'EventCnt' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(345): warning C4101: 'pOrd' : unreferenced local variable
          RegionManager.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(46): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(50): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(54): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(140): warning C4101: 'ex' : unreferenced local variable
      1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(155): warning C4101: 'ex' : unreferenced local variable
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
+                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
+                 with
+                 [
+                     Type=Motorcycle *
+                 ]
+                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(19) : see reference to function template instantiation 'void Vector<Type>::insert(Type)' being compiled
+                 with
+                 [
+                     Type=Motorcycle *
+                 ]
+                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.h(21) : see reference to class template instantiation 'Vector<Type>' being compiled
+                 with
+                 [
+                     Type=Motorcycle *
+                 ]
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
+         Order.cpp
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\order.cpp(19): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\order.cpp(150): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+         Motorcycle.cpp
          LoadAction.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
          GUI.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
          PromoteEvent.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
-         CancelEvent.cpp
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
          ArrivalEvent.cpp
      1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\events\arrivalevent.cpp(16): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(26): warning C4018: '<=' : signed/unsigned mismatch
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(25) : while compiling class template member function 'Vector<Type>::~Vector(void)'
-                 with
-                 [
-                     Type=Order *
-                 ]
-                 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.h(43) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Order *
-                 ]
+         Event.cpp
+         CancelEvent.cpp
+         main.cpp
+         windowinput.cpp
+         mousequeue.cpp
+         keyqueue.cpp
+         image.cpp
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\image.cpp(115): warning C4018: '<' : signed/unsigned mismatch
+         colors.cpp
+         CMUgraphics.cpp
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(751): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1202): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1210): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1357): warning C4018: '>' : signed/unsigned mismatch
+         Generating Code...
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(22): warning C4715: 'RegionManager::AddMotorCycle' : not all control paths return a value
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt CMUgraphicsLib\jpegload.c CMUgraphicsLib\jpeg\jcomapi.c CMUgraphicsLib\jpeg\jcparam.c CMUgraphicsLib\jpeg\jdapimin.c CMUgraphicsLib\jpeg\jdapistd.c CMUgraphicsLib\jpeg\jdatasrc.c CMUgraphicsLib\jpeg\jdcoefct.c CMUgraphicsLib\jpeg\jdcolor.c CMUgraphicsLib\jpeg\jddctmgr.c CMUgraphicsLib\jpeg\jdhuff.c CMUgraphicsLib\jpeg\jdinput.c CMUgraphicsLib\jpeg\jdmainct.c CMUgraphicsLib\jpeg\jdmarker.c CMUgraphicsLib\jpeg\jdmaster.c CMUgraphicsLib\jpeg\jdmerge.c CMUgraphicsLib\jpeg\jdphuff.c CMUgraphicsLib\jpeg\jdpostct.c CMUgraphicsLib\jpeg\jdsample.c CMUgraphicsLib\jpeg\jdtrans.c CMUgraphicsLib\jpeg\jerror.c CMUgraphicsLib\jpeg\jidctflt.c CMUgraphicsLib\jpeg\jidctfst.c CMUgraphicsLib\jpeg\jidctint.c CMUgraphicsLib\jpeg\jidctred.c CMUgraphicsLib\jpeg\jmemmgr.c CMUgraphicsLib\jpeg\jmemnobs.c CMUgraphicsLib\jpeg\jquant1.c CMUgraphicsLib\jpeg\jquant2.c CMUgraphicsLib\jpeg\jutils.c
+         jutils.c
+         jquant2.c
+         jquant1.c
+         jmemnobs.c
+         jmemmgr.c
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1103): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(449) : see declaration of 'getenv'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1106): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
+         jidctred.c
+         jidctint.c
+         jidctfst.c
+         jidctflt.c
+         jerror.c
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(169): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(175): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+         jdtrans.c
+         jdsample.c
+         jdpostct.c
+         jdphuff.c
+         jdmerge.c
+         jdmaster.c
+         jdmarker.c
+         jdmainct.c
+         jdinput.c
+         jdhuff.c
+         Generating Code...
+         Compiling...
+         jddctmgr.c
+         jdcolor.c
+         jdcoefct.c
+         jdatasrc.c
+         jdapistd.c
+         jdapimin.c
+         jcparam.c
+         jcomapi.c
+         jpegload.c
+     1>g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\cmugraphicslib\jpegload.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.lib" /MACHINE:X86 Debug\CMUgraphics.obj
@@ -161,7 +145,7 @@
          Debug\keyqueue.obj
          Debug\mousequeue.obj
          Debug\windowinput.obj
-         Debug\Demo_Main.obj
+         Debug\main.obj
          Debug\CancelEvent.obj
          Debug\Event.obj
          Debug\ArrivalEvent.obj
@@ -179,4 +163,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:16.25
+Time Elapsed 00:00:42.46

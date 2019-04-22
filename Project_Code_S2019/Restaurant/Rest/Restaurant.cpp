@@ -14,7 +14,15 @@ Restaurant::Restaurant()
 	AutoPromoteTimeStep = 0;
 	
 	pGUI = NULL;
+	isLoaded = true;
 }
+
+
+Restaurant::~Restaurant()
+{
+		delete pGUI;
+}
+
 
 void Restaurant::RunSimulation()
 {
@@ -32,29 +40,44 @@ void Restaurant::RunSimulation()
 	case MODE_SLNT:
 		Silent();
 		break;
-	//case MODE_DEMO:
-	//	Just_A_Demo();
-
+	default:
+		InterActive();
+		break;
 	};
+}
 
+////////////////////////////////////////////////
+//Functions related to Motorcycles
+////////////////////////////////////////////////
+
+//At each timestep, check the arrived MCs for all the regions
+void Restaurant::CheckArrivedMotorCycles()
+{
+	for (int r = 0; r < 4; ++r) {
+		Region[r].CheckArrivedMotorCycles();
+	}
+}
+
+
+//Assign an Order to a Motorcycle
+bool Restaurant::AssignMotorcycle(Order* pOrd)
+{
+	//TODO :: Complete in Phase2
+	return true;
 }
 
 
 
 //////////////////////////////////  Event handling functions   /////////////////////////////
-
 void Restaurant::AddEvent(Event* pE)	//adds a new event to the queue of events
 
 {
-
-	EventsQueue.enqueue(pE);
-	
+	EventsQueue.enqueue(pE);	
 }
 
 
 
 //Executes ALL events that should take place at current timestep
-
 void Restaurant::ExecuteEvents(int CurrentTimeStep)
 
 {
@@ -68,49 +91,17 @@ void Restaurant::ExecuteEvents(int CurrentTimeStep)
 		if(pE->getEventTime() > CurrentTimeStep )	//no more events at current time
 			return;
 
-
 		pE->Execute(this);
 		EventsQueue.dequeue(pE);	//remove event from the queue
 
-		
-
 		delete pE;		//deallocate event object from memory
-
 	}
-
-
-
 }
-
-
-Restaurant::~Restaurant()
-{
-		delete pGUI;
-}
-
-////////////////
-
-
-
-//void restaurant::addtodemoqueue(order *pord)
-
-//{
-
-//	demo_queue.enqueue(pord);
-
-//}
-
 
 
 void Restaurant::AddOrderToVIP(Order *newOrd)
 
 {
-
-	/*// --> Execute Add fn of NormalOrders list 
-
-	DEMO_Queue.enqueue(newOrd);
-
-	///HMANA6399 :: I left this line for testing*/
 	switch( newOrd->GetRegion() )
 	{
 	    case A_REG :	
@@ -133,10 +124,6 @@ void Restaurant::AddOrderToVIP(Order *newOrd)
 void Restaurant::AddOrderToNormal(Order *newOrd)
 
 {
- 
-	//DEMO_Queue.enqueue(newOrd);
-
-	///HMANA6399 :: I left this line for testing*/
 	switch( newOrd->GetRegion() )
 	{
 	    case A_REG :	
@@ -151,6 +138,7 @@ void Restaurant::AddOrderToNormal(Order *newOrd)
 		case D_REG :
 			this->Region[3].AddToNormalOrders(newOrd);
 			break;
+		
 	}
 }
 
@@ -246,120 +234,6 @@ Order* Restaurant::GetNormalOrderById(int ID){
 	return NULL;
 }
 
-Order* Restaurant::getDemoOrder()
-
-{
-
-	Order* pOrd;
-
-	DEMO_Queue.dequeue(pOrd);
-
-	return pOrd;
-
-
-
-}
-
-
-
-/// ==> end of DEMO-related function
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-/// ==> 
-///  DEMO-related functions. Should be removed in phases 1&2
-
-//This is just a demo function for project introductory phase
-//It should be removed starting phase 1
-/*void Restaurant::Just_A_Demo()
-{
-	
-	//
-	// THIS IS JUST A DEMO FUNCTION
-	// IT SHOULD BE REMOVED IN PHASE 1 AND PHASE 2
-	
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-	srand(time(NULL));
-
-	pGUI->PrintMessage("Just a Demo. Enter EVENTS Count(next phases should read I/P filename):");
-	EventCnt = atoi(pGUI->GetString().c_str());	//get user input as a string then convert to integer
-
-	pGUI->UpdateInterface(this);
-
-	pGUI->PrintMessage("Generating orders randomly... In next phases, orders should be loaded from a file");
-		
-	int EvTime = 0;
-	
-	//Create Random events
-	//All generated event will be "ArrivalEvents" for the demo
-	for(int i=0; i<EventCnt; i++)
-	{
-		int O_id = i+1;
-		
-		//Rendomize order type
-		int OType;
-		if(i<EventCnt*0.2)	//let 1st 20% of orders be VIP (just for sake of demo)
-			OType = TYPE_VIP;
-		else if(i<EventCnt*0.5)	
-			OType = TYPE_FROZ;	//let next 30% be Frozen
-		else
-			OType = TYPE_NRM;	//let the rest be normal
-
-		
-		int reg = rand()% REG_CNT;	//randomize region
-
-
-		//Randomize event time
-		EvTime += rand()%4;
-		pEv = new ArrivalEvent(EvTime,O_id,(ORD_TYPE)OType,(REGION)reg);
-		AddEvent(pEv);
-
-	}	
-
-	int CurrentTimeStep = 1;
-	//as long as events queue is not empty yet
-	while(!EventsQueue.isEmpty())
-	{
-		//print current timestep
-		char timestep[10];
-		itoa(CurrentTimeStep,timestep,10);	
-		pGUI->PrintMessage(timestep);
-
-
-		ExecuteEvents(CurrentTimeStep);	//execute all events at current time step
-		//The above line may add new orders to the DEMO_Queue
-
-		//Let's draw all arrived orders by passing them to the GUI to draw
-
-		while(DEMO_Queue.dequeue(pOrd))
-		{
-			pGUI->AddOrderForDrawing(pOrd);
-			pGUI->UpdateInterface(this);
-		}
-		Sleep(1000);
-		CurrentTimeStep++;	//advance timestep
-	}
-
-
-	pGUI->PrintMessage("generation done, click to END program");
-	pGUI->waitForClick();
-
-	
-}*/
-////////////////
-
-/*void Restaurant::AddtoDemoQueue(Order *pOrd)
-{
-	DEMO_Queue.enqueue(pOrd);
-}*/
-
-
-
-/// ==> end of DEMO-related function
-
 void Restaurant::InterActive()
 {
 	int EventCnt;	
@@ -368,14 +242,23 @@ void Restaurant::InterActive()
 
 	pGUI->PrintMessage("InterActive Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
-	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
-	pGUI->waitForClick();
+	Load = new LoadAction("",this);
 	
-	LoadedFile = pGUI->GetString();
-	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	do {
+		pGUI->PrintMessage(!isLoaded ? 
+			"Please enter a valid file name , Mouse Click to Continue" :
+			"Please enter file to load , Mouse Click to Continue"
+		);
+		pGUI->waitForClick();
 	
-	Load = new LoadAction(LoadedFile,this);
-	Load->Execute();	// first load the file 
+		LoadedFile = pGUI->GetString();
+		if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+	
+		Load->setLoadFileName(LoadedFile);
+		Load->Execute();	// first load the file 
+		
+	} while (!isLoaded);
+
 	this->ProcessInterActive(); // second do the interactive stuff
 
 	//pGUI->waitForClick();
@@ -414,6 +297,21 @@ void Restaurant::ProcessInterActive()
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
+	for (size_t i = 0; i < 4; i++)
+		{
+			Order** listOfOrd = NULL;
+			this->Region[i].Phase1Delete(listOfOrd);
+			for (size_t j = 0; j < 3; j++)
+			{
+				if (listOfOrd[j] != NULL) {
+					pGUI->RemoveOrderForDrawing(listOfOrd[j]);
+				}
+			}
+			delete[] listOfOrd;
+		}
+		//Excute Events;
+	
+	
 	
 	
 	}
@@ -471,12 +369,6 @@ void Restaurant::RemoveFromAllOrders(Order *Ord){
 }
 
 
-Vector<Order*>& Restaurant::GetAllOrdersVec()
-{
-	return this->AllOrders;// TODO: insert return statement here
-}
-
-
 void Restaurant::Phase1Delete()
 {
 	for (size_t i = 0; i < 4; i++)
@@ -494,28 +386,54 @@ void Restaurant::Phase1Delete()
 
 
 void Restaurant::LoadFromFile(string fileName){
-	ifstream LoadFile = ifstream(); //assigns and tries to open the file
-	LoadFile.open( fileName.c_str() );
+	fileName = "../input_files/" + fileName;
+	ifstream LoadFile(fileName); //assigns and tries to open the file
 	if (LoadFile.is_open()) 
 	{
-		    string line;
+			isLoaded = true;
+			string line;
 		    int Froz , Nrm , Fst; 
 			int Fst_Count , Nrm_Count , Froz_Count;
 			LoadFile >> Froz >> Nrm >> Fst;
 
-			RegionManager::SetFastMotorSpeed(Fst);
-			RegionManager::SetNormalMotorSpeed(Nrm);
-			RegionManager::SetFrozenMotorSpeed(Froz);
+			this->MotorcycleSpeeds[Normal] = Nrm;
+			this->MotorcycleSpeeds[Fast] = Fst;
+			this->MotorcycleSpeeds[Frozen] = Froz;
 			
 			for( int i = 0 ; i < 4 ; i++)
 			{
-				
 				LoadFile >> Fst_Count >> Nrm_Count >> Froz_Count;
-				
-				this->Region[i].SetFastMotorCount(Fst_Count);
-				this->Region[i].SetNormalMotorCount(Nrm_Count);
-				this->Region[i].SetFrozenMotorCount(Froz_Count);
-				int a;
+				int j;
+				//Adding Normal Motorcycles' Objects
+				for (j = 0; j < Nrm_Count; ++j) {
+					Region[i].AddMotorCycle(
+						new Motorcycle(
+							this->MotorcycleSpeeds[Normal],
+							(REGION)i,
+							Normal
+						)
+					);
+				}
+				//Adding Fast Motorcycles' Objects
+				for (j = 0; j < Fst_Count; ++j) {
+					Region[i].AddMotorCycle(
+						new Motorcycle(
+						this->MotorcycleSpeeds[Fast],
+							(REGION)i,
+							Fast
+						)
+					);
+				}
+				for (j = 0; j < Froz_Count; ++j) {
+					Region[i].AddMotorCycle(
+						new Motorcycle(
+						this->MotorcycleSpeeds[Frozen],
+							(REGION)i,
+							Frozen
+						)
+					);
+				}
+
 			}
 			
 			/*5 3 1  ➔ no. of motorcycles in Region A 
@@ -640,7 +558,7 @@ void Restaurant::LoadFromFile(string fileName){
 			P 19 2 62    ➔ promotion event 
 			R 25 F 6 33 127 D */
 			
-		}
+		} else isLoaded = false;
 }
 	
 

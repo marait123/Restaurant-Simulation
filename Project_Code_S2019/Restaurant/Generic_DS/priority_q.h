@@ -21,6 +21,7 @@ public :
 
 	bool isEmpty() const;
 	bool enqueue(const T& newEntry);
+	bool dequeue();
 	bool dequeue(T& frntEntry);
 	bool peekFront(T& frntEntry) const;
 	int	GetCount();
@@ -90,17 +91,27 @@ inline bool priority_q<T>::enqueue(const T & newEntry)
 	return false;
 }
 
+
 template<typename T>
-inline bool priority_q<T>::dequeue(T & frntEntry)
+inline bool priority_q<T>::dequeue()
 {
 	if (insIdx == 0) return false;
-	frntEntry = data[0];
 	data[0] = data[--insIdx];
 	_resort();
 
 	this->count--;
 	return true;
 }
+
+
+template<typename T>
+inline bool priority_q<T>::dequeue(T & frntEntry)
+{
+	if (isEmpty()) return false;
+	frntEntry = data[0];
+	return dequeue();
+}
+
 
 template<typename T>
 inline bool priority_q<T>::peekFront(T & frntEntry) const

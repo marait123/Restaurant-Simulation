@@ -55,6 +55,7 @@ public :
 	Queue();	
 	bool isEmpty() const ;
 	bool enqueue(const T& newEntry);
+	bool dequeue();
 	bool dequeue(T& frntEntry);  
 	bool peekFront(T& frntEntry)  const;	
 	int GetCount();
@@ -118,25 +119,22 @@ bool Queue<T>::enqueue( const T& newEntry)
 	return true ;
 } // end enqueue
 
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*Function: dequeue
+/*Function: dequeue (Overload 1)
 Removes the front of this queue. That is, removes the item that was added
 earliest.
 
 Input: None.
 Output: True if the operation is successful; otherwise false.
 */
-
 template <typename T>
-bool Queue<T>:: dequeue(T& frntEntry)  
+bool Queue<T>:: dequeue()
 {
 	if(isEmpty())
 		return false;
 
 	Node<T>* nodeToDeletePtr = frontPtr;
-	frntEntry = frontPtr->getItem();
 	frontPtr = frontPtr->getNext();
 	// Queue is not empty; remove front
 	if (nodeToDeletePtr == backPtr)	 // Special case: one node in queue
@@ -147,6 +145,29 @@ bool Queue<T>:: dequeue(T& frntEntry)
 
 	this->count--;
 	return true;
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*Function: dequeue
+Places the front of this queue to the passed variable then Removes it. The front is item that was added
+earliest.
+
+Input: A Variable passed by reference to hold the earliest item (front).
+Output: True if the operation is successful; otherwise false.
+*/
+
+template <typename T>
+bool Queue<T>:: dequeue(T& frntEntry)  
+{
+	if(isEmpty())
+		return false;
+
+	frntEntry = frontPtr->getItem();
+	
+	return dequeue(); // A call to the typical dequeue() to do the deletion 
 
 }
 

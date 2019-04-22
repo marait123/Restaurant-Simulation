@@ -8,6 +8,7 @@ public:
 	virtual void _resort() = 0;
 	virtual bool isEmpty() const = 0;
 	virtual bool enqueue(const T& newEntry) = 0;
+	virtual bool dequeue() = 0;
 	virtual bool dequeue(T& frntEntry) = 0;
 	virtual bool peekFront(T& frntEntry) const = 0;
 };

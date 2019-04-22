@@ -11,24 +11,17 @@ Vector<Type>::Vector()
 	top = -1;
 	capacity = 100;
 	myArr = new Type*[capacity];
-	for (size_t i = 0; i < capacity; i++)
-	{
-		myArr[i] = NULL;	// all set to null
-	}
-
-
 }
 
 
 template<typename Type>
 Vector<Type>::~Vector()
 {
-	for (size_t i = 0; i <= top; i++)
-	{
-		if(myArr[i]!=NULL)
-		delete myArr[i];
-	}
-	//delete[] myArr;
+	//for (size_t i = 0; i <= top; i++)
+	//{
+	//	if(myArr[i]!=NULL) delete myArr[i];
+	//}
+	delete[] myArr; 
 }
 
 template<typename Type>

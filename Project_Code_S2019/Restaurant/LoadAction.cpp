@@ -90,6 +90,11 @@ void LoadAction::Execute()
 	
 }
 
+void LoadAction::setLoadFileName(string fname)
+{
+	this->loadFileName = fname;
+}
+
 LoadAction::~LoadAction(void)
 {
 

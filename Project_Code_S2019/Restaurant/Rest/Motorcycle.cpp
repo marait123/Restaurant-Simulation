@@ -1,65 +1,87 @@
 #include "Motorcycle.h"
 
-int Motorcycle::ID = -1;
 
 Motorcycle::Motorcycle()
 {
-	ID++;
 	this->status = IDLE;
-	this->TimeUntillDelivery = 0;
+	this->DeliveryTime = 0;
 }
 
+Motorcycle::Motorcycle(int sp, REGION reg, MotorcycleType mc_type)
+	: speed(sp), region(reg), Moto_Type(mc_type)
+{
+	status = IDLE;
+	DeliveryTime = 0;
+}
+
+//TODO :: Remove if not needed
 void Motorcycle::SetSpeed(int S,MotorcycleType M)
 {
 	this->speed = S;
 	this->Moto_Type = M;
 }
+
+
 int Motorcycle::GetSpeed()
 {
 	return this->speed;
 }
+
+//TODO :: Remove if not needed
 void Motorcycle::SetRegion(REGION R)
 {
 	this->region = R;
 }
+
+
 REGION Motorcycle::GetRegion()
 {
 	return this->region;
 }
-void Motorcycle::SetOrder(ORD_TYPE O)
+
+
+MotorcycleType Motorcycle::GetType()
 {
-	this->type = O;
+	return this->Moto_Type;
 }
-ORD_TYPE Motorcycle::GetOrder()
-{
-	return this->type;
-}
+
+
+///////////////////////////////////////////////////////
+///Functions for Delivery Time
+///////////////////////////////////////////////////////
 
 int Motorcycle::GetTimeUntillDelivery()
 {
-	return this->TimeUntillDelivery;
+	return this->DeliveryTime;
 }
 
-void Motorcycle::SetTimeUntillDelivery(int TUD)
+
+void Motorcycle::SetTimeUntillDelivery(int td)
 {
-	this->TimeUntillDelivery = TUD;
+	this->DeliveryTime = td;
 }
 
-bool Motorcycle::DecrementTimeStep()
+
+bool Motorcycle::DecrementDeliveryTime()
 {
-	this->TimeUntillDelivery--;
-	return TimeUntillDelivery >= 0;
+	this->DeliveryTime--;
+	return DeliveryTime >= 0;
 }
+////////////////////////////////////////////////////////
+
 
 void Motorcycle::SetStatus(STATUS ST)
 {
 	this->status = ST;
 }
+
+
 STATUS Motorcycle::GetStatus()
 {
 	return this->status;
 }
-	
+
+
 Motorcycle::~Motorcycle()
 {
 }

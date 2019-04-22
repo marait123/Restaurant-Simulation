@@ -15,16 +15,15 @@
 class RegionManager
 {
 private:
-	// Restaurant *pRest;
-  //
-	/*
-	 Vector<Order*> DeliveredOrdersList;  // it is filled with the order after its finish time has been determined
-	 Vector<Order*> UnderServiceOrdersList;  // it is filled once the order is assigned to a motorcycle
-	 */
-
-     Motorcycle *ListOfMotorcycles ;
-	 REGION RegionType;
-
+	
+	//Lists of Motorcycles, 2d Array of Vectors, First Index is for Type, second is for Status
+	//Generally -> ListOfMotorcycles[MotrcycleType][STATUS]
+	Vector<Motorcycle*> ListOfMotorcycles[3][2];
+	
+	 //Counts for Motorcycles, 2D array, first Index is for Type, second is for STATUS
+	 //Generally -> MotorCyclesCounts[MotorcycleType][STATUS]
+	int MotorCyclesCounts[3][2];
+	int AllMotorsCount;
 
 	 // the lists of waiting orders
 	 /*justification for the BSDLL:
@@ -40,47 +39,27 @@ private:
 
 	 int OrderCount;
 
-	 int AllMotorsCount;
 
-	 int FrozenMotorCount;
-	 int FastMotorCount;
-	 int NormalMotorCount;
-	 
-	 static int FrozenMotorSpeed;
-	 static int FastMotorSpeed;
-	 static int NormalMotorSpeed;
-
-     public :
+public :
 	
 	 RegionManager();
+	
+	//Setters and Getters for counters of Motorcycles
+	void SetNormalMotorCount(int);
+	void SetFastMotorCount(int);
+	void SetFrozenMotorCount(int);
 
-   /*  Order* getListOfOrders();
-	 void setListOfOrders(Order *Orders);*/
-
-	 Motorcycle* getListOfMotorcycles();
-	 void setListOfMotorcycles(Motorcycle*cycles); 
-
-	 int getRegionID() ;
-	 void AddOrder(Order*order); 
-
-	 void setRegionID(REGION RegionID);
-	 void AddMotorCycle(Motorcycle motor) ;
-
-	// Order GetOrderByID(int RegionID) ;
+	//Functions for Motorcyles list
+	bool AddMotorCycle(Motorcycle* mc);
+	void RemoveMotorCycle(Motorcycle* mc, int id);
+	void CheckArrivedMotorCycles();
 
 
-	 static void SetFrozenMotorSpeed(float);
-	 static void SetFastMotorSpeed(float);
-	 static void SetNormalMotorSpeed(float);
+	void AddOrder(Order*order); 
+	void SetOrderCount(int OrderC);
+	int GetOrderCount();
 
-	 void SetOrderCount(int OrderC);
-	 //void SetMotorsCount(int MotorC);
-	 int GetOrderCount();
-	 //int GetMotorsCount();
-	 void SetFrozenMotorCount(int);
-	 void SetFastMotorCount(int);
-	 void SetNormalMotorCount(int);
-
+	
 	 int GetFrozenMotorCount();
 	 int GetFastMotorCount();
 	 int GetNormalMotorCount();
@@ -96,13 +75,9 @@ private:
 	 bool CancelNormalOrder(int);
 	 Order* GetNormalOrder(int);
 
-
+	 void Phase1Delete(Order**& );
 
 	 ~RegionManager();
-
-	 void Phase1Delete();
-
-
 };
 #endif 
 	

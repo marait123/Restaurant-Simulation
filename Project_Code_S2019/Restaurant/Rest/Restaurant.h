@@ -35,12 +35,11 @@ private:
 	string LoadedFile;
 	GUI *pGUI;
 	Event *pEvent;
-	Motorcycle *pMotor;
 	Order *pOrder;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
 
-
-	Vector<Order*> AllOrders;
+	///Stores the speed of the three types of Motorcycles referenced to by the index
+	int MotorcycleSpeeds[3];
 
 	///<summary>represents the timestep after which the Normal orders are promoted</summary>
 	int AutoPromoteTimeStep;
@@ -48,14 +47,7 @@ private:
 	///this is the current timestep of the program
 	int CurrentTimeStep;
 
-	/// ==> 
-
-	//	DEMO-related members. Should be removed in phases 1&2
-
-	Queue<Order*> DEMO_Queue;	//Important: This is just for demo
-
-	/// ==>
-	//
+	bool isLoaded; //To repeat the program if the input file is not loaded
 
 	// TODO: Add More Data Members As Needed
 
@@ -72,13 +64,14 @@ public:
 
 	void RunSimulation();
 
+	//Functions related to Motorcycles
+	void CheckArrivedMotorCycles();
+	bool AssignMotorcycle(Order*); //TO BE COMPLETED IN PHASE isA
 	//Functions to control Orders
 
 	///HMANA6399 :: I Added those here to because Rest Class is the maestro and the controller
 
 	///of Orders lists.
-
-	//void AddtoDemoQueue(Order* po);	//adds an order to the demo queue
 
 	void AddOrderToNormal(Order* newOrd);
 
@@ -89,28 +82,11 @@ public:
 	
 
 	//Some Specific functions for the Normal Order for Cancelation and Promotion
-
-
-	///HMANA6399 :: Beta version, Requires a traverse-frindly DS
-
-	///like a vector so that its el.s are easily accessed by []
-
 	void RemoveNormalOrder(Order*);
 	void RemoveNormalOrderById(int);
 	Order* GetNormalOrderById(int);
 
-
-	/// ==> 
-
-	///  DEMO-related functions. Should be removed in phases 1&2
-
-	//void Just_A_Demo();	//just to show a demo and should be removed in phase1 1 & 2
-
 	Order* getDemoOrder();			//return the front order from demo queue
-
-	/// ==> 
-	///
-
 
 	int GetPromotionLimit(int Max);
 
@@ -129,7 +105,6 @@ public:
 	void Silent();
 	void AddToAllOrders(Order*);
 	void RemoveFromAllOrders(Order* );
-	Vector<Order*>& GetAllOrdersVec();
 
 	void Phase1Delete();
 

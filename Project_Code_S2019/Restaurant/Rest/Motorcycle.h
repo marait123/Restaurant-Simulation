@@ -7,18 +7,17 @@
 #pragma once
 class Motorcycle	
 {
-	static int ID ;
-	ORD_TYPE type;	//for each order type there is a corresponding motorcycle type 
 	int speed;		//meters it can move in one clock tick (in one timestep)
 	REGION	region;	//region of the motorcycle
 	STATUS	status;	//idle or in-service
 	MotorcycleType Moto_Type; //Normal ,FROZEN AND Fast
 	
-	int TimeUntillDelivery;
+	int DeliveryTime;
 	// at assignment time of the motor to an order i will set the time untill delivery to (distance/speed)*2 and at each time step i will decrement the time untill delivery by one time step
 
 public:
 	Motorcycle();
+	Motorcycle(int sp, REGION reg, MotorcycleType mc_type);
 	
 	/////////////Setters And Getters
 
@@ -31,12 +30,13 @@ public:
 	void SetStatus(STATUS ST);
 	STATUS GetStatus();
 	
-	void SetOrder(ORD_TYPE O);
-	ORD_TYPE GetOrder();
+	MotorcycleType GetType();
 
+	//Function for Delivery Time
 	int GetTimeUntillDelivery();
-	void SetTimeUntillDelivery(int);
-	bool DecrementTimeStep();
+	void SetTimeUntillDelivery(int td);
+	bool DecrementDeliveryTime();
+	
 	virtual ~Motorcycle();
 };
 

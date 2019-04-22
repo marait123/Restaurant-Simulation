@@ -22,6 +22,7 @@ class LoadAction
     public:
 	LoadAction(string LoadedFile, Restaurant* );
 	void Execute();
+	void setLoadFileName(string fname);
 	~LoadAction(void);
 };
 #endif
