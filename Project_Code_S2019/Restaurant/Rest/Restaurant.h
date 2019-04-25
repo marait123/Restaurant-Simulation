@@ -66,7 +66,7 @@ public:
 
 	//Functions related to Motorcycles
 	void CheckArrivedMotorCycles();
-	bool AssignMotorcycle(Order*); //TO BE COMPLETED IN PHASE isA
+	bool AssignOrder(Order*); //TO BE COMPLETED IN PHASE isA
 	//Functions to control Orders
 
 	///HMANA6399 :: I Added those here to because Rest Class is the maestro and the controller

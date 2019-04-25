@@ -1,18 +1,30 @@
 # Restaurant-Simulation
 
-# first week tasks 
-	1. add the event class children ( )
-	2. control the GUI ( how to read input and generate output}( )
- 	3. draw the UML Diagram of the classes showing their relations( ) 
-	4. define the order class ( )
-	5. define the motor cycle class( )
+Phase 2
 
-# second week 
-	1. define the event loop class (mariat will cooperate with attia to get it finished)
-	2. implementing priority queue for orders using binary tree
-	3. finish reading the input from files ( attia )
-	4. starting to prepare for writing the output to the file ( Marait will do it)
-	5. look at the queue provided and the possible operations that could be incomplete or need modification ( Abdelrahman )
-	6. implementing the ADTS that will be used to store Orders (Frozen:(Note: arrive first gets serviced first after every VIP orders 		have been serviced.),Normal:(Note:arrive first gets serviced first after every VIP orders have been serviced. ) ,VIP:(Note: 		  we should note that according to prioriy equation which is (money*arrival time /distance)))
-		DS: 1. for VIP i think priority queue is sufficent with orders
-		    2. for the frozen and for the normal there is no restriction i think normal queue will do
+TARGET : FULL MARK isA !
+
+TASKS:
+	1-  What : Assigning Orders to MCs
+		How  :  Complete the function AssignMotorcycle() in Restaurent & RegionManager
+				Calculating ST, WT, DT
+				Handle MC transfer from SERV to IDLE and vice versa
+				Storing Deleted orders in priority_q min heaped
+				Calling in the Ev. Loop
+		Who  : HmanA6399
+		When : by 28/4
+
+	2- 	What : Complete Silent Mode and SBS Mode
+		How  : M.Ebrahim knows !!
+		When : by 30/4
+	
+	4-  What : Output File
+		Who  : A.Atiya 
+		When : by 3/5
+	
+	5-  What : Enhancing GUI
+		How  : 
+		When : 
+	6-  What : BONUS !
+		How  :
+		When : 
