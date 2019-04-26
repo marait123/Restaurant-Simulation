@@ -60,9 +60,9 @@ void Restaurant::CheckArrivedMotorCycles()
 
 
 //Assign an Order to a Motorcycle
-bool Restaurant::AssignMotorcycle(Order* pOrd)
+bool Restaurant::AssignOrder(Order* pOrd)
 {
-	//TODO :: Complete in Phase2
+	//Call the approperiate AssignOrderToMotorcyle fn according to the Region
 	return true;
 }
 
@@ -296,7 +296,7 @@ void Restaurant::ProcessInterActive()
 	for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
-			this->Region[i].Phase1Delete(listOfOrd);
+			AssignOrder(listOfOrd);
 			for (size_t j = 0; j < 3; j++)
 			{
 				if (listOfOrd[j] != NULL) {

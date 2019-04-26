@@ -51,6 +51,7 @@ public :
 	void SetFrozenMotorCount(int);
 
 	//Functions for Motorcyles list
+	bool AssignOrderToMotorcycle(Order* pOrd);
 	bool AddMotorCycle(Motorcycle* mc);
 	void RemoveMotorCycle(Motorcycle* mc, int id);
 	void CheckArrivedMotorCycles();

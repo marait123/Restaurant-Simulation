@@ -13,6 +13,16 @@ RegionManager::RegionManager()
 // Functions for Motorcycles List
 //////////////////////////////////////////////////////////////////////
 
+bool RegionManager::AssignOrderToMotorcycle(Order* pOrd)
+{
+	///Check there's a suitable MC in order according to the order type - return false if not
+	///Move the MC from the IDLE list to the SERV list
+	///Calculate ST of pOrd (OrdDist/v)
+	///Calculate the DeliveryTime of the MC ST*2
+	///Calculate WT of pOrd (currentTS - AT)
+	///move pOrd to the printing list
+}
+
 bool RegionManager::AddMotorCycle(Motorcycle* mc)
 {
 	if (!mc) return false;
