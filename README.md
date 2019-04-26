@@ -16,3 +16,7 @@
 	6. implementing the ADTS that will be used to store Orders (Frozen:(Note: arrive first gets serviced first after every VIP orders 		have been serviced.),Normal:(Note:arrive first gets serviced first after every VIP orders have been serviced. ) ,VIP:(Note: 		  we should note that according to prioriy equation which is (money*arrival time /distance)))
 		DS: 1. for VIP i think priority queue is sufficent with orders
 		    2. for the frozen and for the normal there is no restriction i think normal queue will do
+
+Phase 2
+ # first week 
+	1. 

@@ -219,11 +219,27 @@ void GUI::DrawOrders() const
 	}*/
 }
 
+void GUI::DrawCurrentTimeStep(int CTS)
+{
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(50, 50, 100, 100,drawstyle::FILLED);
+
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawInteger(70, 70, CTS);
+
+	//pWind->DrawString(52, 52, itoa(CTS));
+	/*
+	pWind->SetPen(BROWN, 3);
+	pWind->DrawLine(0, WindHeight - StatusBarHeight, WindWidth, WindHeight - StatusBarHeight);*/
+}
+
 void GUI::UpdateInterface(Restaurant* pRest)
 {
 	ClearDrawingArea();
 	DrawRestArea();
 	DrawOrders();
+	DrawCurrentTimeStep(pRest->GetCurrentTimeStep());
 }
 
 /*

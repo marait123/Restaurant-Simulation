@@ -18,6 +18,7 @@ private:
 	
 	//Lists of Motorcycles, 2d Array of Vectors, First Index is for Type, second is for Status
 	//Generally -> ListOfMotorcycles[MotrcycleType][STATUS]
+	// Marait: i assumed first index is Idle second is Serving
 	Vector<Motorcycle*> ListOfMotorcycles[3][2];
 	
 	 //Counts for Motorcycles, 2D array, first Index is for Type, second is for STATUS
@@ -75,7 +76,12 @@ public :
 	 bool CancelNormalOrder(int);
 	 Order* GetNormalOrder(int);
 
-	 void Phase1Delete(Order**& );
+
+	 /*Marait: simulation functions */
+	 void Phase1Delete(Order**&);
+
+	 /// <summary>this funtion return true if this region has finished serving all the orders</summary>
+	 bool DidFinish();
 
 	 ~RegionManager();
 };

@@ -200,3 +200,16 @@ void RegionManager::Phase1Delete(Order**& ordList)
 	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
 	
 }
+
+bool RegionManager::DidFinish()
+{
+	// no orders are waiting to be assigned to motorcycles
+	bool finish = this->NormalOrders.IsEmpty() && this->VipOrders.isEmpty() && this->FrozenOrder.isEmpty();
+	
+	/*no motorcycles are serving*/
+	finish = finish && this->ListOfMotorcycles[MotorcycleType::Normal][STATUS::SERV].isEmpty();
+	finish = finish && this->ListOfMotorcycles[MotorcycleType::Frozen][STATUS::SERV].isEmpty();
+	finish = finish && this->ListOfMotorcycles[MotorcycleType::Fast][STATUS::SERV].isEmpty();
+	
+	return finish;
+}

@@ -33,6 +33,7 @@ private:
 	LoadAction *Load;
 	SaveAction *Save;
 	string LoadedFile;
+	string SaveFile;
 	GUI *pGUI;
 	Event *pEvent;
 	Order *pOrder;
@@ -102,10 +103,15 @@ public:
 	void ProcessInterActive();
 
     void StepByStep();
+	void ProcessStepByStep();
+
 	void Silent();
+	void ProcessSilent();
+
 	void AddToAllOrders(Order*);
 	void RemoveFromAllOrders(Order* );
 
+	int GetCurrentTimeStep();
 	void Phase1Delete();
 
 };
