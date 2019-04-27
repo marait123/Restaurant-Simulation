@@ -33,6 +33,7 @@ private:
 	LoadAction *Load;
 	SaveAction *Save;
 	string LoadedFile;
+	string SaveFile;
 	GUI *pGUI;
 	Event *pEvent;
 	Order *pOrder;
@@ -100,6 +101,8 @@ public:
 	void ProcessInterActive();
 
     void StepByStep();
+	void ProcessStepByStep();
+
 	void Silent();
 
 	//Phase 2

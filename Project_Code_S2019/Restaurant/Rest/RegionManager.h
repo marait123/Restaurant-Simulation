@@ -86,7 +86,12 @@ public :
 	 bool CancelNormalOrder(int);
 	 Order* GetNormalOrder(int);
 
-	 void Phase1Delete(Order**& );
+
+	 /*Marait: simulation functions */
+	 void Phase1Delete(Order**&);
+
+	 /// <summary>this funtion return true if this region has finished serving all the orders</summary>
+	 bool DidFinish();
 
 	 ~RegionManager();
 };

@@ -69,15 +69,11 @@ void Restaurant::AddEvent(Event* pE)	//adds a new event to the queue of events
 
 //Executes ALL events that should take place at current timestep
 void Restaurant::ExecuteEvents(int CurrentTimeStep)
-
 {
-
 	Event *pE;
 
 	while( EventsQueue.peekFront(pE) )	//as long as there are more events
-
 	{
-
 		if(pE->getEventTime() > CurrentTimeStep )	//no more events at current time
 			return;
 
@@ -310,16 +306,85 @@ void Restaurant::StepByStep()
 
 	pGUI->PrintMessage("Step By Step Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
+	do {
+		pGUI->PrintMessage(!isLoaded ?
+			"Please enter a valid file name , Mouse Click to Continue" :
+			"Please enter file to load , Mouse Click to Continue"
+		);
+		pGUI->waitForClick();
 
-	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
+		LoadedFile = pGUI->GetString();
+		if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+
+		Load->setLoadFileName(LoadedFile);
+		Load->Execute();	// first load the file 
+
+	} while (!isLoaded);
+
+	this->ProcessInterActive(); // second do the interactive stuff
+
 	pGUI->waitForClick();
-	
-	LoadedFile = pGUI->GetString();
-	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	Load = new LoadAction(LoadedFile,this);
-	Load->Execute();
+	do {
+		pGUI->PrintMessage(!isLoaded ?
+			"Please enter a valid file name , Mouse Click to Continue" :
+			"Please enter file to save , Mouse Click to Continue"
+		);
+		pGUI->waitForClick();
+
+		SaveFile = pGUI->GetString();
+		if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+
+		// Save->setLoadFileName(SaveFile);
+		// Save->Execute();	// Save the file 
+
+	} while (!isLoaded);
+
 
 	//Sleep(1000); // wait 1 second for the next function call
+}
+
+void Restaurant::ProcessStepByStep()
+{
+	while (!this->EventsQueue.isEmpty())  // this is the event loop where every order gets assigned to a motor cycle
+	{
+
+		IncreaseCurrentTime();
+		this->ExecuteEvents(CurrentTimeStep);
+		// here you print the number of active order type those in the list of orders
+		this->pGUI->UpdateInterface(this);
+		pGUI->PrintMessage(
+			"Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
+			", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
+			", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
+			", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
+			"}" + "Number of motors [Z,N,F]"
+			+ "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
+			+ ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
+			+ ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
+			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]" +
+			"Mouse Click To increase TimeStep"
+		);
+
+		Sleep(1000); // wait 1 second for the next function call
+
+		pGUI->PrintMessage("Mouse Click To increase TimeStep");
+
+		//Excute Events;
+		for (size_t i = 0; i < 4; i++)
+		{
+			Order** listOfOrd = NULL;
+			this->Region[i].Phase1Delete(listOfOrd);
+			for (size_t j = 0; j < 3; j++)
+			{
+				if (listOfOrd[j] != NULL) {
+					pGUI->RemoveOrderForDrawing(listOfOrd[j]);
+				}
+			}
+			delete[] listOfOrd;
+		}
+
+	}
+	//Save->Execute();
 }
 
 void Restaurant::Silent()
@@ -329,15 +394,100 @@ void Restaurant::Silent()
 	Event* pEv;
 
 	pGUI->PrintMessage("Silent Mode , Mouse Click to Continue");
-	pGUI->waitForClick();
+	pGUI->waitForClick();	
+	do {
+		pGUI->PrintMessage(!isLoaded ?
+			"Please enter a valid file name , Mouse Click to Continue" :
+			"Please enter file to load , Mouse Click to Continue"
+		);
+		pGUI->waitForClick();
 
-	pGUI->PrintMessage("Please enter file to load , Mouse Click to Continue");
-	pGUI->waitForClick();
+		LoadedFile = pGUI->GetString();
+		if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
+
+		Load->setLoadFileName(LoadedFile);
+		Load->Execute();	// first load the file 
+
+	} while (!isLoaded);
+
+
+	/*here between the loading and the saving the simulation tekes action*/
+
+	this->ProcessSilent();
+
+	do {
+		pGUI->PrintMessage(!isLoaded ?
+			"Please enter a valid file name , Mouse Click to Continue" :
+			"Please enter file to save , Mouse Click to Continue"
+		);
+		pGUI->waitForClick();
+
+		SaveFile = pGUI->GetString();
+		if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+
+		// Save->setLoadFileName(SaveFile);
+		// Save->Execute();	// Save the file 
+
+	} while (!isLoaded);
+
+
+
+
+
+}
+
+void Restaurant::ProcessSilent()
+{
+	bool finishedServing = false;
+	while (!this->EventsQueue.isEmpty() || !finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
+	{
+		/*
+			in this part of the simulation 
+			1. i execute events in their order of arrival (cancellation - promotion - arrival)
+		*/
+
+		IncreaseCurrentTime();
+		this->ExecuteEvents(CurrentTimeStep);		// the part of executing events is done as i see
+		// here you print the number of active order type those in the list of orders
+		this->pGUI->UpdateInterface(this);
+
+		/*
+			in this part of the simulation
+			1. i should assign the orders to the motorcycles	
+				// the steps to do this is that every region manager you check if it is still have
+				// something to do if it has you call  a function to serve every order it can serv
+				// if it doesn't you don't do anything untill each region manager as well has nothing 
+				// to do and you end the simulation
+			2. Check to see which motorcycle has come back 
+			3. those orders that have been served i should move them to the list of served orders
+			4. i should stay here untill i have no orders in any region that are waiting or haven't yet
+			   been served			
+		*/
+
+
+		bool RegFinish[4] = { false, false, false, false };
+
 	
-	LoadedFile = pGUI->GetString();
-	if (LoadedFile.find(".txt") == -1) LoadedFile += ".txt";
-	Load = new LoadAction(LoadedFile,this);
-	Load->Execute();
+
+
+		for (size_t i = 0; i < 4; i++)
+		{
+			RegFinish[i] = Region[i].DidFinish();
+			finishedServing = finishedServing && RegFinish[i];
+			if (!RegFinish[i]) {
+				// Marait: important to read 
+				// we could replace all the functions below by one big function that does all this or calls all this 
+				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager 
+				// Region[i].IncrementTime();		// it decrement the time that every motorcycle will deliver its delivery in 
+				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have it should
+				// it should move the orders that were on the motorcyles to the list of served orders where they will be sorted according to
+				// their finish time 
+
+			}
+		}
+
+
+	}
 }
 
 void Restaurant::AddToAllOrders(Order *Ord)

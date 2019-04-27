@@ -103,7 +103,7 @@ public:
 
 	
 
-
+	void DrawCurrentTimeStep(int );
 	void UpdateInterface(Restaurant*);
 	void AddOrderForDrawing(Order* pOrd);	//Adds a new order to the drawing list
 	void RemoveOrderForDrawing(Order* pOrd);  // remove an Order
