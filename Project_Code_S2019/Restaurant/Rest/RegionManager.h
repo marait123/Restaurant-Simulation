@@ -25,6 +25,11 @@ private:
 	int MotorCyclesCounts[3][2];
 	int AllMotorsCount;
 
+	//For Statistics
+	int TotalServTime;
+	int TotalWaitingTime;
+	int OrderCount;
+
 	 // the lists of waiting orders
 	 /*justification for the BSDLL:
 	   1. it offers an O(logn) complexity of promotion
@@ -34,11 +39,6 @@ private:
 	 BSDLL<int, Order*> NormalOrders;
 	 Queue<Order*> FrozenOrder;
 	 priority_q<Pair<double, Order*>> VipOrders;
-
-
-
-	 int OrderCount;
-
 
 public :
 	
@@ -55,14 +55,18 @@ public :
 	bool PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS stat);
 
 	//Functions for Phase2
-	//Return a suitable MC for the ORD_TYPE given and stores, otherwise nullptr
 	void CheckArrivedMotorCycles();
 	Motorcycle* GetIdleMC(ORD_TYPE ord_typ);
 	bool ServeOrder(Order* pOrd);
 
+	//For Statistics
+	int GetMCCount() const;
+	int GetOrderCount() const;
+	int GetTotalServTime() const;
+	int GetTotalWaitingTime() const;
+
 	void AddOrder(Order*order); 
 	void SetOrderCount(int OrderC);
-	int GetOrderCount();
 
 	
 	 int GetFrozenMotorCount();

@@ -7,6 +7,8 @@ RegionManager::RegionManager()
 			MotorCyclesCounts[i][j] = 0;
 	AllMotorsCount = 0;
 	OrderCount = 0;
+	TotalServTime = 0;
+	TotalWaitingTime = 0;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -35,6 +37,7 @@ bool RegionManager::PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS st
 	if (ListOfMotorcycles[typ][stat].getSize() == 0) return false;
 	MC = ListOfMotorcycles[typ][stat][0];
 	RemoveMotorCycle(MC, 0);
+	//TODO :: Check that this will not delete the whole object
 	return true;
 }
 
@@ -47,9 +50,10 @@ void RegionManager::CheckArrivedMotorCycles()
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < ListOfMotorcycles[(MotorcycleType)i][SERV].getSize(); ++j) {
 			if (!ListOfMotorcycles[(MotorcycleType)i][SERV][i]->DecrementDeliveryTime()) {
-				Motorcycle* MC_Back = new Motorcycle(*ListOfMotorcycles[(MotorcycleType)i][SERV][i]);
-				AddMotorCycle(MC_Back);
+				Motorcycle* MC_Back = ListOfMotorcycles[(MotorcycleType)i][SERV][i];
 				RemoveMotorCycle(ListOfMotorcycles[(MotorcycleType)i][SERV][i], i);
+				MC_Back->SetStatus(IDLE);
+				AddMotorCycle(MC_Back);
 			}
 		}
 	}
@@ -88,13 +92,16 @@ bool RegionManager::ServeOrder(Order* pOrd)
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
 
-	///Calculate WT of pOrd (currentTS - AT)
-	pOrd->setWaitingTime(pRest->GetCurrentTimeStep() - pOrd->getArrTime());
-	
+	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
+	int WT = pRest->GetCurrentTimeStep() - pOrd->getArrTime();
+	pOrd->setWaitingTime(WT);
+	TotalWaitingTime += WT;
+
 	///Calculate ST of pOrd (OrdDist/v)
 	int ST = ceil(pOrd->GetDistance()/MC->GetSpeed());
 	pOrd->setServTime(ST);
-	
+	TotalServTime += ST;
+
 	///Calculate the DeliveryTime of the MC ST*2
 	MC->SetTimeUntillDelivery(2*ST);
 
@@ -109,17 +116,38 @@ bool RegionManager::ServeOrder(Order* pOrd)
 }
 
 
+//////////////////////////////////////////////////
+//Getters for Statistics in Save File
+//////////////////////////////////////////////////
+int RegionManager::GetMCCount() const
+{
+	return this->AllMotorsCount;
+}
+
+
+int RegionManager::GetOrderCount() const
+{
+	return this->OrderCount;
+}
+
+
+int RegionManager::GetTotalServTime() const
+{
+	return this->TotalServTime;
+}
+
+
+int RegionManager::GetTotalWaitingTime() const
+{
+	return this->TotalWaitingTime;
+}
+
+
 void RegionManager::SetOrderCount(int OrderC)
 {
 	this->OrderCount = OrderC;
 }
  
-
-int RegionManager::GetOrderCount()
-{
-	return this->OrderCount;
-}
-
 //TODO :: Remove if not needed
 void RegionManager::SetFrozenMotorCount(int FZMC)
 {
