@@ -26,72 +26,40 @@ protected:
 
 	double totalMoney;	//Total order money
 
-	int ArrTime, ServTime, FinishTime;	//arrival, service start, and finish times
-
-	bool isDelivered;
-	//
-
-	// TODO: Add More Data Members As Needed
-
-	//
-
-
+	int ArrTime, ServTime, FinishTime, WaitingTime;	//arrival, service start, and finish times
+	
 
 public:
-	//Order* pOrd = new Order(OrderID,OrdType,OrdRegion,this->EventTime, this->OrdMoney, this->OrdDistance);
 	///<summary>you will send id r_type r_region </summary>
 	Order(int id, ORD_TYPE r_Type, REGION r_region, int eTime, double ordMon =0 , double ordDist=0);
-
 	virtual ~Order();
 
-
-
 	int GetID();
-
-
-
-	int GetType() const;
-
+	ORD_TYPE GetType() const;
 	REGION GetRegion() const;
-
-
-
-	void SetDistance(int d);
-
 	int GetDistance() const;
-
-
-
+	int GetArrivalTime() const;
 	int getArrTime();
-
 	int getServTime();
-
 	int getFinishTime();
 
+	void SetDistance(int d);
+	void setWaitingTime(int t);
+	void updateFinishTime();
+	void setServTime(int t);
 
-	bool Promote();
-	float GetPriorityIndex()const; // Marait:: this data memeber will be used to store the priority index and to compare
-	
 	///<summary>this operator returns if the left operand has a higher priority than the right</summary>
 	///<param name ="od">this the right operand</param>
-	bool operator >(const Order& od) const;
-	//
+	bool operator >(const Order& od) const; /// INVERTED!!
 
 	///<summary>this operator returns if the left operand has a less priority than the right</summary>
 	///<param name ="od">this the right operand</param>
-	bool operator <(const Order& od) const;
+	bool operator <(const Order& od) const; /// INVERTED!!
 
 	///<summary>this operator returns if the left operand has an equal priority to the right</summary>
 	///<param name ="od">this the right operand</param>
 	bool operator == (const Order&) const;
 
-	// TODO: Add More Member Functions As Needed
-
-	//
-
-	
-
-	int GetArrivalTime() const;
 
 	///HMANA6399 :: Added by me in order to be easy for the Load stage to compare arrivalTime of
 
@@ -103,8 +71,6 @@ public:
 
 	///HMANA6399 :: Also added by me to increase money and change type in case of promotion
 
-
-	/// get money 
 	double GetMoney();
 };
 

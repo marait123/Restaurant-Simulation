@@ -8,7 +8,6 @@
 #include"Generic_DS/Map.h"
 
 int main()
-
 {
 	Restaurant* pRest = new Restaurant;
 

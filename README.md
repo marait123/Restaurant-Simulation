@@ -6,11 +6,10 @@ TARGET : FULL MARK isA !
 
 TASKS:
 	1-  What : Assigning Orders to MCs
-		How  :  Complete the function AssignMotorcycle() in Restaurent & RegionManager
+		How  :  Complete the function ServeOrder() in Restaurent & RegionManager
 				Calculating ST, WT, DT
 				Handle MC transfer from SERV to IDLE and vice versa
 				Storing Deleted orders in priority_q min heaped
-				Calling in the Ev. Loop
 		Who  : HmanA6399
 		When : by 28/4
 

@@ -12,17 +12,6 @@ RegionManager::RegionManager()
 //////////////////////////////////////////////////////////////////////
 // Functions for Motorcycles List
 //////////////////////////////////////////////////////////////////////
-
-bool RegionManager::AssignOrderToMotorcycle(Order* pOrd)
-{
-	///Check there's a suitable MC in order according to the order type - return false if not
-	///Move the MC from the IDLE list to the SERV list
-	///Calculate ST of pOrd (OrdDist/v)
-	///Calculate the DeliveryTime of the MC ST*2
-	///Calculate WT of pOrd (currentTS - AT)
-	///move pOrd to the printing list
-}
-
 bool RegionManager::AddMotorCycle(Motorcycle* mc)
 {
 	if (!mc) return false;
@@ -40,6 +29,18 @@ void RegionManager::RemoveMotorCycle(Motorcycle* mc, int id)
 	ListOfMotorcycles[mc->GetType()][mc->GetStatus()].RemoveByIndex(id);
 }
 
+
+bool RegionManager::PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS stat)
+{
+	if (ListOfMotorcycles[typ][stat].getSize() == 0) return false;
+	MC = ListOfMotorcycles[typ][stat][0];
+	RemoveMotorCycle(MC, 0);
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////
+//Functions for Phase2
+////////////////////////////////////////////////////////////////////////
 //TODO :: Ph2 : Every Timestep, check for the arrived MCs, remove them from the SERV list to the IDLE list
 void RegionManager::CheckArrivedMotorCycles()
 {
@@ -54,10 +55,57 @@ void RegionManager::CheckArrivedMotorCycles()
 	}
 }
 
-////////////////////////////////////////////////////////////////////////
-
-void RegionManager::AddOrder(Order*order)
+Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 {
+	Motorcycle* MC = nullptr;
+	///Check there's a suitable MC in order according to the order type and get it
+	switch (ord_typ)
+	{
+	case TYPE_NRM:
+		if (PopMotorCycle(MC, Normal, IDLE)) break;
+		else PopMotorCycle(MC, Fast, IDLE);
+		break;
+	case TYPE_FROZ:
+		PopMotorCycle(MC, Frozen, IDLE);
+		break;
+	case TYPE_VIP:
+		if (PopMotorCycle(MC, Fast, IDLE)) break;
+		else if (PopMotorCycle(MC, Normal, IDLE)) break;
+		else PopMotorCycle(MC, Frozen, IDLE);
+	default:
+		break;
+	}
+	MC->SetStatus(SERV);
+	AddMotorCycle(MC);
+	return MC;
+}
+
+
+
+bool RegionManager::ServeOrder(Order* pOrd)
+{
+	//Check for a Motorcycle, if not return false
+	Motorcycle* MC = GetIdleMC(pOrd->GetType());
+	if (MC == nullptr) return false;
+
+	///Calculate WT of pOrd (currentTS - AT)
+	pOrd->setWaitingTime(pRest->GetCurrentTimeStep() - pOrd->getArrTime());
+	
+	///Calculate ST of pOrd (OrdDist/v)
+	int ST = ceil(pOrd->GetDistance()/MC->GetSpeed());
+	pOrd->setServTime(ST);
+	
+	///Calculate the DeliveryTime of the MC ST*2
+	MC->SetTimeUntillDelivery(2*ST);
+
+	//HMANA6399 :: For better time effeciency, I suggest deleting the Order from its list after
+	//				Serving it in the simulation loop. So no need to delete it here.
+	//				Also I see better to call the function of adding it to the final priority_q
+	//				For saving in the loop as well.
+	//				Make sure that the deletion does not envolve Deleting the main object.
+	//				Just moving the its pointer from its list to the PQ!!!
+	//TODO :: Also we have to  see what to do regarding the Delete of the GUI
+	return true;
 }
 
 
@@ -172,41 +220,35 @@ RegionManager::~RegionManager()
 	//TODO :: Make sure that there are not any pointer-defined data member to be deleted
 }
 
-void RegionManager::Phase1Delete(Order**& ordList)
-{
-/*
-	Map<int, Order*> NormalOrders;
-	Queue<Order*> FrozenOrder;
-	priority_q<Pair<double, Order*>> VipOrders;
-*/
-	ordList = new Order*[3]; // this array will hold the pointers to the orders deleted to use it to delete from the gui
-
-	Pair<double, Order*> tempPair1;
-	bool yes = VipOrders.dequeue(tempPair1);
-	if(yes == true)
-	ordList[0] = tempPair1.getSecond();
-	else
-	{
-		ordList[0] = NULL;
-	}
-
-	yes = FrozenOrder.dequeue(ordList[1]);
-	if (yes == false) {
-		ordList[1] = NULL;
-	}
-
-	BDPair<int, Order*> tempPair2;
-	yes = this->NormalOrders.peak(tempPair2);
-	if (yes == true) {
-		ordList[2] = tempPair2.GetData();
-		this->NormalOrders.Deque();
-	}
-	else
-	{
-		ordList[2] = NULL;
-	}
-
-	// i have done the 
-	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
-	
-}
+//TODO :: See what to do for this
+//void RegionManager::Phase1Delete(Order**& ordList)
+//{
+//	ordList = new Order*[3]; // this array will hold the pointers to the orders deleted to use it to delete from the gui
+//
+//	Pair<double, Order*> tempPair1;
+//	bool yes = VipOrders.dequeue(tempPair1);
+//	if (yes)
+//		ordList[0] = tempPair1.getSecond();
+//	else 
+//		ordList[0] = NULL;
+//
+//	yes = FrozenOrder.dequeue(ordList[1]);
+//	
+//	if (!yes)
+//		ordList[1] = NULL;
+//
+//	BDPair<int, Order*> tempPair2;
+//	yes = this->NormalOrders.peak(tempPair2);
+//	if (yes == true) {
+//		ordList[2] = tempPair2.GetData();
+//		this->NormalOrders.Deque();
+//	}
+//	else
+//	{
+//		ordList[2] = NULL;
+//	}
+//
+//	// i have done the 
+//	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
+//	
+//}

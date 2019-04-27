@@ -9,8 +9,7 @@
 #include"../Generic_DS/Pair.h"
 #include"../Generic_DS/priority_q.h"
 #include"../Generic_DS/Vector.h"
-
-//class Restaurant;//Forward Declaration
+#include"Restaurant.h"
 
 class RegionManager
 {
@@ -18,6 +17,7 @@ private:
 	
 	//Lists of Motorcycles, 2d Array of Vectors, First Index is for Type, second is for Status
 	//Generally -> ListOfMotorcycles[MotrcycleType][STATUS]
+	Restaurant* pRest;
 	Vector<Motorcycle*> ListOfMotorcycles[3][2];
 	
 	 //Counts for Motorcycles, 2D array, first Index is for Type, second is for STATUS
@@ -50,11 +50,15 @@ public :
 	void SetFrozenMotorCount(int);
 
 	//Functions for Motorcyles list
-	bool AssignOrderToMotorcycle(Order* pOrd);
 	bool AddMotorCycle(Motorcycle* mc);
 	void RemoveMotorCycle(Motorcycle* mc, int id);
-	void CheckArrivedMotorCycles();
+	bool PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS stat);
 
+	//Functions for Phase2
+	//Return a suitable MC for the ORD_TYPE given and stores, otherwise nullptr
+	void CheckArrivedMotorCycles();
+	Motorcycle* GetIdleMC(ORD_TYPE ord_typ);
+	bool ServeOrder(Order* pOrd);
 
 	void AddOrder(Order*order); 
 	void SetOrderCount(int OrderC);
@@ -68,6 +72,8 @@ public :
 	 void AddToFrozenOrders(Order*);
 
 	 void AddToNormalOrders(Order*);
+
+	bool RemoveOrder(Order*);
 
 	 int GetNumberOfWaitingOrders();
 

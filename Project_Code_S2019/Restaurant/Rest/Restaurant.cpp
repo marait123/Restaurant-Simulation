@@ -58,16 +58,6 @@ void Restaurant::CheckArrivedMotorCycles()
 	}
 }
 
-
-//Assign an Order to a Motorcycle
-bool Restaurant::AssignOrder(Order* pOrd)
-{
-	//Call the approperiate AssignOrderToMotorcyle fn according to the Region
-	return true;
-}
-
-
-
 //////////////////////////////////  Event handling functions   /////////////////////////////
 void Restaurant::AddEvent(Event* pE)	//adds a new event to the queue of events
 
@@ -275,7 +265,6 @@ void Restaurant::ProcessInterActive()
 {
 	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
 	{
-
 		IncreaseCurrentTime();
 		this->ExecuteEvents(CurrentTimeStep);
 		// here you print the number of active order type those in the list of orders
@@ -296,11 +285,10 @@ void Restaurant::ProcessInterActive()
 
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
-		//Excute Events;
-	for (size_t i = 0; i < 4; i++)
+
+		for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
-			AssignOrder(listOfOrd);
 			for (size_t j = 0; j < 3; j++)
 			{
 				if (listOfOrd[j] != NULL) {
@@ -309,11 +297,6 @@ void Restaurant::ProcessInterActive()
 			}
 			delete[] listOfOrd;
 		}
-		//Excute Events;
-	
-	
-	
-	
 	}
 	//Save->Execute();
 }
@@ -369,20 +352,22 @@ void Restaurant::RemoveFromAllOrders(Order *Ord){
 }
 
 
-void Restaurant::Phase1Delete()
+/////////////////////////////////////////////////////
+// Functions for Phase 2
+////////////////////////////////////////////////////
+bool Restaurant::AddOrderToPQ(Order* pOrd)
 {
-	for (size_t i = 0; i < 4; i++)
-	{
-		
-		/// every region manager i will call it to assign a motor to an order
-	}
-
+	return this->AllOrders.enqueue(pOrd);
 }
 
 
-
-
-
+//Assign an Order to a Motorcycle
+bool Restaurant::ServeOrder(Order* pOrd)
+{
+	//Call the approperiate AssignOrderToMotorcyle fn according to the Region
+	//TODO :: Decide if it's bool or void
+	return Region[pOrd->GetRegion()].ServeOrder(pOrd);
+}
 
 
 void Restaurant::LoadFromFile(string fileName){
@@ -561,8 +546,6 @@ void Restaurant::LoadFromFile(string fileName){
 		} else isLoaded = false;
 }
 	
-
-
 
 void Restaurant::SetPromotionTimeStep(int P_TimeSkip)
 {
