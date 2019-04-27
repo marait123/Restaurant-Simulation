@@ -70,7 +70,13 @@ public:
 
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 
+	//Simulation Functions
 	void RunSimulation();
+	void InterActive();
+	void ProcessInterActive();
+	void ProcessStepByStep();
+	void ProcessSilent();
+
 
 	//Functions related to Motorcycles
 	void CheckArrivedMotorCycles();	
@@ -97,13 +103,8 @@ public:
 
 	void IncreaseCurrentTime();
 	int	 GetCurrentTimeStep();
-	void InterActive();
-	void ProcessInterActive();
 
     void StepByStep();
-	void ProcessStepByStep();
-
-	void Silent();
 
 	//Phase 2
 	/// Orders PQ

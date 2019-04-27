@@ -1,21 +1,68 @@
-﻿  Restaurant.cpp
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(237): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(235): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(236): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(319): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(317): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(318): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(408): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(406): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(407): warning C4101: 'pOrd' : unreferenced local variable
-  Generating Code...
-  Compiling...
-  main.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  LoadAction.cpp
-  GUI.cpp
-  PromoteEvent.cpp
-  CancelEvent.cpp
-  ArrivalEvent.cpp
-  Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe
+﻿Build started 4/28/2019 12:58:55 AM.
+     1>Project "E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CMUgraphicsLib\CMUgraphics.cpp CMUgraphicsLib\colors.cpp CMUgraphicsLib\image.cpp CMUgraphicsLib\keyqueue.cpp CMUgraphicsLib\mousequeue.cpp CMUgraphicsLib\windowinput.cpp main.cpp Events\CancelEvent.cpp Events\Event.cpp Events\ArrivalEvent.cpp Events\PromoteEvent.cpp GUI\GUI.cpp LoadAction.cpp Rest\Motorcycle.cpp Rest\Order.cpp Rest\RegionManager.cpp Rest\Restaurant.cpp SaveAction.cpp "utility functions\strutils.cpp"
+         strutils.cpp
+         SaveAction.cpp
+         Restaurant.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(227): warning C4101: 'pEv' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(225): warning C4101: 'EventCnt' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(226): warning C4101: 'pOrd' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(305): warning C4101: 'pEv' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(303): warning C4101: 'EventCnt' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(304): warning C4101: 'pOrd' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(416): error C2039: 'ProcessSilent' : is not a member of 'Restaurant'
+                 e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(29) : see declaration of 'Restaurant'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(439): error C2039: 'ProcessSilent' : is not a member of 'Restaurant'
+                 e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(29) : see declaration of 'Restaurant'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(442): error C2355: 'this' : can only be referenced inside non-static member functions
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(442): error C2227: left of '->EventsQueue' must point to class/struct/union/generic type
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(442): error C2228: left of '.isEmpty' must have class/struct/union
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(442): fatal error C1903: unable to recover from previous error(s); stopping compilation
+         RegionManager.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C2146: syntax error : missing ';' before identifier 'Region'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(101): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+         Order.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\order.cpp(9): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+         Motorcycle.cpp
+         LoadAction.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C2146: syntax error : missing ';' before identifier 'Region'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(37): error C2143: syntax error : missing ';' before '*'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(37): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+         GUI.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C2146: syntax error : missing ';' before identifier 'Region'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(32): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(37): error C2143: syntax error : missing ';' before '*'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.h(37): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+         PromoteEvent.cpp
+         ArrivalEvent.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\events\arrivalevent.cpp(16): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+         Event.cpp
+         CancelEvent.cpp
+         main.cpp
+         windowinput.cpp
+         mousequeue.cpp
+         keyqueue.cpp
+         image.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\image.cpp(115): warning C4018: '<' : signed/unsigned mismatch
+         colors.cpp
+         CMUgraphics.cpp
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(751): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1202): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1210): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1357): warning C4018: '>' : signed/unsigned mismatch
+         Generating Code...
+     1>Done Building Project "E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:19.76
