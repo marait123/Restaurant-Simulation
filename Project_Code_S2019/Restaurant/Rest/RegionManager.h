@@ -2,6 +2,8 @@
 #define _REGION_MANAGER_
 //#include"../Generic_DS/"
 
+#include<cmath> //Because we use ceil
+
 #include"../Generic_DS/BSDLL.h"
 #include"Order.h"
 #include"Motorcycle.h"
@@ -10,7 +12,7 @@
 #include"../Generic_DS/priority_q.h"
 #include"../Generic_DS/Vector.h"
 
-//class Restaurant;
+class Restaurant;
 
 class RegionManager
 {

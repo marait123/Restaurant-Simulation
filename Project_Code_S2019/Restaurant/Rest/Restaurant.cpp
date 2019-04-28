@@ -478,7 +478,7 @@ void Restaurant::ProcessSilent()
 
 		for (size_t i = 0; i < 4; i++)
 		{
-			RegFinish[i] = Region[i].DidFinish();
+			//RegFinish[i] = Region[i].DidFinish();
 			finishedServing = finishedServing && RegFinish[i];
 			if (!RegFinish[i]) {
 

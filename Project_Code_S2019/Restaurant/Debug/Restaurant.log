@@ -1,11 +1,11 @@
-﻿Build started 4/28/2019 1:23:54 AM.
+﻿Build started 4/28/2019 4:44:18 AM.
      1>Project "E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Events\ArrivalEvent.cpp Events\CancelEvent.cpp Events\PromoteEvent.cpp GUI\GUI.cpp LoadAction.cpp Rest\RegionManager.cpp Rest\Restaurant.cpp main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Rest\RegionManager.cpp
          RegionManager.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(105): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(230): warning C4101: 'ex' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(245): warning C4101: 'ex' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(107): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(261): warning C4101: 'ex' : unreferenced local variable
+     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(276): warning C4101: 'ex' : unreferenced local variable
      1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
                  e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
                  with
@@ -23,27 +23,6 @@
                      Type=Motorcycle *
                  ]
      1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
-         LoadAction.cpp
-         GUI.cpp
-         Generating Code...
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(26): warning C4715: 'RegionManager::AddMotorCycle' : not all control paths return a value
-         Compiling...
-         main.cpp
-         Restaurant.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(229): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(227): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(228): warning C4101: 'pOrd' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(316): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(314): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(315): warning C4101: 'pOrd' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(405): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(403): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(404): warning C4101: 'pOrd' : unreferenced local variable
-         PromoteEvent.cpp
-         CancelEvent.cpp
-         ArrivalEvent.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\events\arrivalevent.cpp(16): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.lib" /MACHINE:X86 Debug\CMUgraphics.obj
          Debug\colors.obj
@@ -98,4 +77,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:12.79
+Time Elapsed 00:00:02.58

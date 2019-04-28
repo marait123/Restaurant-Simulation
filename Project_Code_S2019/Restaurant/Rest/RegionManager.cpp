@@ -23,6 +23,7 @@ bool RegionManager::AddMotorCycle(Motorcycle* mc)
 	ListOfMotorcycles[mc->GetType()][mc->GetStatus()].insert(mc);
 	MotorCyclesCounts[mc->GetType()][mc->GetStatus()]++;
 	AllMotorsCount += mc->GetStatus() == IDLE ? 1 : 0;
+	return true;
 }
 
 
@@ -95,7 +96,7 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
 	MC->SetStatus(SERV);
-	AddMotorCycle(MC);	
+	AddMotorCycle(MC);
 
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
 	int WT = curTS - pOrd->getArrTime();
@@ -127,10 +128,27 @@ void RegionManager::ServeAvailableOrders(Restaurant* pRest)
 	//First, VIP Orders
 	while (!VipOrders.isEmpty()) {
 		Pair<double, Order*> t_pair;
-		VipOrders.peekFront(t_pair);
-		if (!ServeOrder(t_pair.getSecond())) break;
+		VipOrders.peekFront(t_pair); VipOrders.dequeue();
+		if (!ServeOrder(t_pair.getSecond(), curTS)) break;
+		pRest->AddOrderToPQ(t_pair.getSecond());
 	}
 
+	//Second, Frozen
+	while (!FrozenOrder.isEmpty()) {
+		Order* t_ord;
+		FrozenOrder.dequeue(t_ord);
+		if (!ServeOrder(t_ord, curTS)) break;
+		pRest->AddOrderToPQ(t_ord);
+	}
+
+	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
+	while (!NormalOrders.IsEmpty()) {
+		BDPair<int, Order*> t_pair;
+		NormalOrders.peak(t_pair);
+		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
+			if (!ServeOrder(t_pair.GetData(), curTS)) break;
+		pRest->AddOrderToPQ(t_pair.GetData());
+	}
 }
 
 //////////////////////////////////////////////////
