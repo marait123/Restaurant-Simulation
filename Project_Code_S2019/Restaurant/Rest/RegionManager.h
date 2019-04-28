@@ -9,8 +9,7 @@
 #include"../Generic_DS/Pair.h"
 #include"../Generic_DS/priority_q.h"
 #include"../Generic_DS/Vector.h"
-
-//class Restaurant;//Forward Declaration
+#include"Restaurant.h"
 
 class RegionManager
 {
@@ -18,13 +17,18 @@ private:
 	
 	//Lists of Motorcycles, 2d Array of Vectors, First Index is for Type, second is for Status
 	//Generally -> ListOfMotorcycles[MotrcycleType][STATUS]
-	// Marait: i assumed first index is Idle second is Serving
+	Restaurant* pRest;
 	Vector<Motorcycle*> ListOfMotorcycles[3][2];
 	
 	 //Counts for Motorcycles, 2D array, first Index is for Type, second is for STATUS
 	 //Generally -> MotorCyclesCounts[MotorcycleType][STATUS]
 	int MotorCyclesCounts[3][2];
 	int AllMotorsCount;
+
+	//For Statistics
+	int TotalServTime;
+	int TotalWaitingTime;
+	int OrderCount;
 
 	 // the lists of waiting orders
 	 /*justification for the BSDLL:
@@ -36,11 +40,6 @@ private:
 	 Queue<Order*> FrozenOrder;
 	 priority_q<Pair<double, Order*>> VipOrders;
 
-
-
-	 int OrderCount;
-
-
 public :
 	
 	 RegionManager();
@@ -51,15 +50,23 @@ public :
 	void SetFrozenMotorCount(int);
 
 	//Functions for Motorcyles list
-	bool AssignOrderToMotorcycle(Order* pOrd);
 	bool AddMotorCycle(Motorcycle* mc);
 	void RemoveMotorCycle(Motorcycle* mc, int id);
-	void CheckArrivedMotorCycles();
+	bool PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS stat);
 
+	//Functions for Phase2
+	void CheckArrivedMotorCycles();
+	Motorcycle* GetIdleMC(ORD_TYPE ord_typ);
+	bool ServeOrder(Order* pOrd);
+
+	//For Statistics
+	int GetMCCount() const;
+	int GetOrderCount() const;
+	int GetTotalServTime() const;
+	int GetTotalWaitingTime() const;
 
 	void AddOrder(Order*order); 
 	void SetOrderCount(int OrderC);
-	int GetOrderCount();
 
 	
 	 int GetFrozenMotorCount();
@@ -69,6 +76,8 @@ public :
 	 void AddToFrozenOrders(Order*);
 
 	 void AddToNormalOrders(Order*);
+
+	bool RemoveOrder(Order*);
 
 	 int GetNumberOfWaitingOrders();
 

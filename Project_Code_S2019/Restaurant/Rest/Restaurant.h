@@ -38,6 +38,13 @@ private:
 	Event *pEvent;
 	Order *pOrder;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
+	/* For the sake of the output file
+	** max-heap priority_q used as a sorted list for all the orders ordered by their FT (= AT + WT + ST)
+	** it uses the overloaded operator < of Order class to sort the Orders in about O(log(n))
+	** it sorts according to FT then ST, an inverted sorting, that is, ord1 < ord2 returns true if ord1 > ord2 and v.v.
+	*/
+	priority_q<Order*> AllOrders;
+
 
 	///Stores the speed of the three types of Motorcycles referenced to by the index
 	int MotorcycleSpeeds[3];
@@ -66,18 +73,13 @@ public:
 	void RunSimulation();
 
 	//Functions related to Motorcycles
-	void CheckArrivedMotorCycles();
-	bool AssignOrder(Order*); //TO BE COMPLETED IN PHASE isA
+	void CheckArrivedMotorCycles();	
+	
 	//Functions to control Orders
-
 	///HMANA6399 :: I Added those here to because Rest Class is the maestro and the controller
-
 	///of Orders lists.
-
 	void AddOrderToNormal(Order* newOrd);
-
 	void AddOrderToFrozen(Order* newOrd);
-
 	void AddOrderToVIP(Order* newOrd);
 
 	
@@ -87,18 +89,14 @@ public:
 	void RemoveNormalOrderById(int);
 	Order* GetNormalOrderById(int);
 
-	Order* getDemoOrder();			//return the front order from demo queue
-
 	int GetPromotionLimit(int Max);
 
 	void SetPromotionTimeStep(int);
 
 	void LoadFromFile(string fileName);
-	//
-	// TODO: Add More Member Functions As Needed
-	//
-	void IncreaseCurrentTime();
 
+	void IncreaseCurrentTime();
+	int	 GetCurrentTimeStep();
 	void InterActive();
 	void ProcessInterActive();
 
@@ -106,13 +104,16 @@ public:
 	void ProcessStepByStep();
 
 	void Silent();
-	void ProcessSilent();
 
-	void AddToAllOrders(Order*);
-	void RemoveFromAllOrders(Order* );
-
-	int GetCurrentTimeStep();
+	//Phase 2
+	/// Orders PQ
+	bool AddOrderToPQ(Order* pOrd);
+	bool ServeOrder(Order*); //TO BE COMPLETED IN PHASE 2 isA
 	void Phase1Delete();
 
+	//GUI
+	void AddToAllOrders(Order*);
+	void RemoveFromAllOrders(Order* );
+	
 };
  
