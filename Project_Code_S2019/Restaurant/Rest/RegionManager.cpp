@@ -122,7 +122,7 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 }
 
 
-void RegionManager::ServeAvailableOrders(Restaurant* pRest)
+bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 {
 	int curTS = pRest->GetCurrentTimeStep();
 	//First, VIP Orders
@@ -149,7 +149,11 @@ void RegionManager::ServeAvailableOrders(Restaurant* pRest)
 			if (!ServeOrder(t_pair.GetData(), curTS)) break;
 		pRest->AddOrderToPQ(t_pair.GetData());
 	}
+
+	//Returns false when Everything is done!
+	return !(VipOrders.isEmpty() && FrozenOrder.isEmpty() && NormalOrders.IsEmpty());
 }
+
 
 //////////////////////////////////////////////////
 //Getters for Statistics in Save File

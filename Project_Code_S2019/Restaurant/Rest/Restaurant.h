@@ -109,7 +109,7 @@ public:
 	//Phase 2
 	/// Orders PQ
 	bool AddOrderToPQ(Order* pOrd);
-	void ServeAvailableOrders(); //TO BE COMPLETED IN PHASE 2 isA
+	bool ServeAvailableOrders(); //TO BE COMPLETED IN PHASE 2 isA
 
 	//GUI
 	void AddToAllOrders(Order*);

@@ -60,6 +60,7 @@ void Restaurant::CheckArrivedMotorCycles()
 	}
 }
 
+
 //////////////////////////////////  Event handling functions   /////////////////////////////
 void Restaurant::AddEvent(Event* pE)	//adds a new event to the queue of events
 
@@ -529,11 +530,22 @@ bool Restaurant::AddOrderToPQ(Order* pOrd)
 
 
 //Order Service
-void Restaurant::ServeAvailableOrders()
+bool Restaurant::ServeAvailableOrders()
 {
+	bool finished = false;
 	//Call the function	ServeAvailableOrders() of all regions
 	for (int i = 0; i < 4; ++i)
-		Region[i].ServeAvailableOrders(this);
+		finished |= Region[i].ServeAvailableOrders(this);
+	return finished; //false when everything is done!
+
+	//When you call the function in the simulation, Run the loop untill this function returns false
+	//I better suggest this piece of code
+	/*do {
+		//Checking arrived motorcycles
+		//Running the Events of this TS
+		//Any other simulation code
+	} while (ServeAvailableOrders());
+	*/
 }
 
 
