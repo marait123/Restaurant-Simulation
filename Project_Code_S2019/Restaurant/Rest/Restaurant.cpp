@@ -25,7 +25,20 @@ Restaurant::~Restaurant()
 		delete pGUI;
 }
 
-
+RegionManager Restaurant::GetRegion(REGION R)
+{
+	switch(R)
+	{
+	    case A_REG:
+			return Region[0];
+		case B_REG:
+			return Region[1];
+		case C_REG:
+			return Region[2];
+		case D_REG:
+			return Region[3];
+	}
+}
 void Restaurant::RunSimulation()
 {
 	pGUI = new GUI;
@@ -224,10 +237,6 @@ Order* Restaurant::GetNormalOrderById(int ID){
 
 void Restaurant::InterActive()
 {
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-
 	pGUI->PrintMessage("InterActive Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
 	Load = new LoadAction("",this);
@@ -249,9 +258,15 @@ void Restaurant::InterActive()
 
 	this->ProcessInterActive(); // second do the interactive stuff
 
-	//pGUI->waitForClick();
+	pGUI->PrintMessage("Choose A File To Save :  ");
+	Save = new SaveAction( "" , this );//, this->AllOrders
+	pGUI->waitForClick();
+	
+	SaveFile = pGUI->GetString();
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
 
-	//Save->Execute(); // do the save stuff
+	
+	Save->Execute(AllOrders); // do the save stuff
 }
 
 void Restaurant::IncreaseCurrentTime()

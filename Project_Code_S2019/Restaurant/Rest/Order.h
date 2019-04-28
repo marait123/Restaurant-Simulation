@@ -39,8 +39,10 @@ public:
 	REGION GetRegion() const;
 	int GetDistance() const;
 	int GetArrivalTime() const;
+
 	int getArrTime();
 	int getServTime();
+	int getWaitingTime();
 	int getFinishTime();
 
 	void SetDistance(int d);

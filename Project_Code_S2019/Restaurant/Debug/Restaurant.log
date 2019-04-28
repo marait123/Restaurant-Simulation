@@ -1,88 +1,42 @@
-﻿Build started 4/28/2019 4:47:02 AM.
-     1>Project "E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 4/28/2019 8:43:37 PM.
+     1>Project "A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CMUgraphicsLib\CMUgraphics.cpp CMUgraphicsLib\colors.cpp CMUgraphicsLib\image.cpp CMUgraphicsLib\keyqueue.cpp CMUgraphicsLib\mousequeue.cpp CMUgraphicsLib\windowinput.cpp main.cpp Events\CancelEvent.cpp Events\Event.cpp Events\ArrivalEvent.cpp Events\PromoteEvent.cpp GUI\GUI.cpp LoadAction.cpp Rest\Motorcycle.cpp Rest\Order.cpp Rest\RegionManager.cpp Rest\Restaurant.cpp SaveAction.cpp "utility functions\strutils.cpp"
-         strutils.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SaveAction.cpp
          SaveAction.cpp
-         Restaurant.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(229): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(227): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(228): warning C4101: 'pOrd' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(316): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(314): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(315): warning C4101: 'pOrd' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(405): warning C4101: 'pEv' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(403): warning C4101: 'EventCnt' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\restaurant.cpp(404): warning C4101: 'pOrd' : unreferenced local variable
-         RegionManager.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(107): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(261): warning C4101: 'ex' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(276): warning C4101: 'ex' : unreferenced local variable
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
-                 e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
-                 with
-                 [
-                     Type=Motorcycle *
-                 ]
-                 e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.cpp(23) : see reference to function template instantiation 'void Vector<Type>::insert(Type)' being compiled
-                 with
-                 [
-                     Type=Motorcycle *
-                 ]
-                 e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\regionmanager.h(24) : see reference to class template instantiation 'Vector<Type>' being compiled
-                 with
-                 [
-                     Type=Motorcycle *
-                 ]
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
-         Order.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\rest\order.cpp(9): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-         Motorcycle.cpp
-         LoadAction.cpp
-         GUI.cpp
-         PromoteEvent.cpp
-         ArrivalEvent.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\events\arrivalevent.cpp(16): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-         Event.cpp
-         CancelEvent.cpp
-         main.cpp
-         windowinput.cpp
-         mousequeue.cpp
-         keyqueue.cpp
-         image.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\image.cpp(115): warning C4018: '<' : signed/unsigned mismatch
-         colors.cpp
-         CMUgraphics.cpp
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(751): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1202): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1210): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\cmugraphics.cpp(1357): warning C4018: '>' : signed/unsigned mismatch
-         Generating Code...
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(18): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(19): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(21): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(34): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(35): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(36): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(39): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(40): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(41): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(45): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(46): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(49): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(50): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(51): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt CMUgraphicsLib\jpegload.c CMUgraphicsLib\jpeg\jcomapi.c CMUgraphicsLib\jpeg\jcparam.c CMUgraphicsLib\jpeg\jdapimin.c CMUgraphicsLib\jpeg\jdapistd.c CMUgraphicsLib\jpeg\jdatasrc.c CMUgraphicsLib\jpeg\jdcoefct.c CMUgraphicsLib\jpeg\jdcolor.c CMUgraphicsLib\jpeg\jddctmgr.c CMUgraphicsLib\jpeg\jdhuff.c CMUgraphicsLib\jpeg\jdinput.c CMUgraphicsLib\jpeg\jdmainct.c CMUgraphicsLib\jpeg\jdmarker.c CMUgraphicsLib\jpeg\jdmaster.c CMUgraphicsLib\jpeg\jdmerge.c CMUgraphicsLib\jpeg\jdphuff.c CMUgraphicsLib\jpeg\jdpostct.c CMUgraphicsLib\jpeg\jdsample.c CMUgraphicsLib\jpeg\jdtrans.c CMUgraphicsLib\jpeg\jerror.c CMUgraphicsLib\jpeg\jidctflt.c CMUgraphicsLib\jpeg\jidctfst.c CMUgraphicsLib\jpeg\jidctint.c CMUgraphicsLib\jpeg\jidctred.c CMUgraphicsLib\jpeg\jmemmgr.c CMUgraphicsLib\jpeg\jmemnobs.c CMUgraphicsLib\jpeg\jquant1.c CMUgraphicsLib\jpeg\jquant2.c CMUgraphicsLib\jpeg\jutils.c
          jutils.c
          jquant2.c
          jquant1.c
          jmemnobs.c
          jmemmgr.c
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1103): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1103): warning C4996: 'getenv': This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdlib.h(449) : see declaration of 'getenv'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1106): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jmemmgr.c(1106): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
          jidctred.c
          jidctint.c
          jidctfst.c
          jidctflt.c
          jerror.c
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(169): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(169): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(175): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpeg\jerror.c(175): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(357) : see declaration of 'sprintf'
          jdtrans.c
          jdsample.c
@@ -105,11 +59,11 @@
          jcparam.c
          jcomapi.c
          jpegload.c
-     1>e:\hmana6399\prj\ds\ph2\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpegload.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>a:\data structures\data structure project\restaurant-simulation\project_code_s2019\restaurant\cmugraphicslib\jpegload.c(23): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
          Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.lib" /MACHINE:X86 Debug\CMUgraphics.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.lib" /MACHINE:X86 Debug\CMUgraphics.obj
          Debug\colors.obj
          Debug\image.obj
          Debug\jpegload.obj
@@ -157,9 +111,9 @@
          Debug\Restaurant.obj
          Debug\SaveAction.obj
          Debug\strutils.obj
-         Restaurant.vcxproj -> E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe
-     1>Done Building Project "E:\HmanA6399\prj\DS\Ph2\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" (Rebuild target(s)).
+         Restaurant.vcxproj -> A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe
+     1>Done Building Project "A:\Data Structures\Data Structure project\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:28.68
+Time Elapsed 00:00:16.32

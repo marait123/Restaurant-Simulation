@@ -79,12 +79,20 @@ int Order::getArrTime()
 	return this->ArrTime;
 }
 
+int Order::getServTime()
+{
+	return this->ServTime;
+}
 
 int Order::getFinishTime()
 {
 	return this->FinishTime;
 }
 
+int Order::getWaitingTime() 
+{
+	return this->WaitingTime;
+}
 
 bool Order::operator>(const Order& od) const
 {
