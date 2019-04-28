@@ -2,6 +2,8 @@
 #define _REGION_MANAGER_
 //#include"../Generic_DS/"
 
+#include<cmath> //Because we use ceil
+
 #include"../Generic_DS/BSDLL.h"
 #include"Order.h"
 #include"Motorcycle.h"
@@ -9,6 +11,7 @@
 #include"../Generic_DS/Pair.h"
 #include"../Generic_DS/priority_q.h"
 #include"../Generic_DS/Vector.h"
+
 class Restaurant;
 
 class RegionManager
@@ -17,7 +20,7 @@ private:
 	
 	//Lists of Motorcycles, 2d Array of Vectors, First Index is for Type, second is for Status
 	//Generally -> ListOfMotorcycles[MotrcycleType][STATUS]
-	Restaurant* pRest;
+	//Restaurant* pRest;
 	Vector<Motorcycle*> ListOfMotorcycles[3][2];
 	
 	 //Counts for Motorcycles, 2D array, first Index is for Type, second is for STATUS
@@ -57,7 +60,8 @@ public :
 	//Functions for Phase2
 	void CheckArrivedMotorCycles();
 	Motorcycle* GetIdleMC(ORD_TYPE ord_typ);
-	bool ServeOrder(Order* pOrd);
+	bool ServeOrder(Order* pOrd, int curTS);
+	void ServeAvailableOrders(Restaurant* pRest);
 
 	//For Statistics
 	int GetMCCount() const;
@@ -85,11 +89,6 @@ public :
 	 
 	 bool CancelNormalOrder(int);
 	 Order* GetNormalOrder(int);
-
-
-
-	 /// <summary>this funtion return true if this region has finished serving all the orders</summary>
-	 bool DidFinish();
 
 	 ~RegionManager();
 };

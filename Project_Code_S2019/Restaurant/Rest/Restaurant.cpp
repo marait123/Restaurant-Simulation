@@ -25,7 +25,20 @@ Restaurant::~Restaurant()
 		delete pGUI;
 }
 
-
+RegionManager Restaurant::GetRegion(REGION R)
+{
+	switch(R)
+	{
+	    case A_REG:
+			return Region[0];
+		case B_REG:
+			return Region[1];
+		case C_REG:
+			return Region[2];
+		case D_REG:
+			return Region[3];
+	}
+}
 void Restaurant::RunSimulation()
 {
 	pGUI = new GUI;
@@ -224,10 +237,6 @@ Order* Restaurant::GetNormalOrderById(int ID){
 
 void Restaurant::InterActive()
 {
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-
 	pGUI->PrintMessage("InterActive Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
 	Load = new LoadAction("",this);
@@ -249,9 +258,15 @@ void Restaurant::InterActive()
 
 	this->ProcessInterActive(); // second do the interactive stuff
 
-	//pGUI->waitForClick();
+	pGUI->PrintMessage("Choose A File To Save :  ");
+	Save = new SaveAction( "" , this );//, this->AllOrders
+	pGUI->waitForClick();
+	
+	SaveFile = pGUI->GetString();
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
 
-	//Save->Execute(); // do the save stuff
+	
+	Save->Execute(AllOrders); // do the save stuff
 }
 
 void Restaurant::IncreaseCurrentTime()
@@ -259,7 +274,7 @@ void Restaurant::IncreaseCurrentTime()
 	this->CurrentTimeStep ++;
 }
 
-int Restaurant::GetCurrentTimeStep()
+int Restaurant::GetCurrentTimeStep() const
 {
 	return this->CurrentTimeStep;
 }
@@ -440,11 +455,6 @@ void Restaurant::Silent()
 		// Save->Execute();	// Save the file 
 
 	} while (!isLoaded);
-
-
-
-
-
 }
 
 void Restaurant::ProcessSilent()
@@ -478,7 +488,7 @@ void Restaurant::ProcessSilent()
 		
 		for (size_t i = 0; i < 4; i++)
 		{
-			RegFinish[i] = Region[i].DidFinish();
+			//RegFinish[i] = Region[i].DidFinish();
 			finishedServing = finishedServing && RegFinish[i];
 			if (!RegFinish[i]) {
 
@@ -529,16 +539,17 @@ Order * Restaurant::GetOrderToSave()
 ////////////////////////////////////////////////////
 bool Restaurant::AddOrderToPQ(Order* pOrd)
 {
-	return this->AllOrders.enqueue(pOrd);
+	Pair<int, Order*> t_pair(-1 * pOrd->getFinishTime(), pOrd);
+	return this->AllOrders.enqueue(t_pair);
 }
 
 
-//Assign an Order to a Motorcycle
-bool Restaurant::ServeOrder(Order* pOrd)
+//Order Service
+void Restaurant::ServeAvailableOrders()
 {
-	//Call the approperiate AssignOrderToMotorcyle fn according to the Region
-	//TODO :: Decide if it's bool or void
-	return Region[pOrd->GetRegion()].ServeOrder(pOrd);
+	//Call the function	ServeAvailableOrders() of all regions
+	for (int i = 0; i < 4; ++i)
+		Region[i].ServeAvailableOrders(this);
 }
 
 

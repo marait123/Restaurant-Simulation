@@ -37,12 +37,13 @@ private:
 	Event *pEvent;
 	Order *pOrder;
 	Queue<Event*> EventsQueue;	//Queue of all events that will be loaded from file
+	
 	/* For the sake of the output file
 	** max-heap priority_q used as a sorted list for all the orders ordered by their FT (= AT + WT + ST)
 	** it uses the overloaded operator < of Order class to sort the Orders in about O(log(n))
 	** it sorts according to FT then ST, an inverted sorting, that is, ord1 < ord2 returns true if ord1 > ord2 and v.v.
 	*/
-	priority_q<Order*> AllOrders;
+	priority_q<Pair<int, Order*>> AllOrders;
 
 
 	///Stores the speed of the three types of Motorcycles referenced to by the index
@@ -69,7 +70,16 @@ public:
 
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 
+	RegionManager GetRegion(REGION);
+	//Simulation Functions
 	void RunSimulation();
+	void InterActive();
+	void ProcessInterActive();
+    void StepByStep();
+	void ProcessStepByStep();
+	void Silent();
+	void ProcessSilent();
+
 
 	//Functions related to Motorcycles
 	void CheckArrivedMotorCycles();	
@@ -95,19 +105,12 @@ public:
 	void LoadFromFile(string fileName);
 
 	void IncreaseCurrentTime();
-	int	 GetCurrentTimeStep();
-	void InterActive();
-	void ProcessInterActive();
+	int	 GetCurrentTimeStep() const;
 
-    void StepByStep();
-	void ProcessStepByStep();
-
-	void Silent();
-	void ProcessSilent();
 	//Phase 2
 	/// Orders PQ
 	bool AddOrderToPQ(Order* pOrd);
-	bool ServeOrder(Order*); //TO BE COMPLETED IN PHASE 2 isA
+	void ServeAvailableOrders(); //TO BE COMPLETED IN PHASE 2 isA
 
 	//GUI
 	void AddToAllOrders(Order*);
