@@ -293,18 +293,18 @@ void Restaurant::ProcessInterActive()
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
-	for (size_t i = 0; i < 4; i++)
-		{
-			Order** listOfOrd = NULL;
-			AssignOrder(listOfOrd);
-			for (size_t j = 0; j < 3; j++)
-			{
-				if (listOfOrd[j] != NULL) {
-					pGUI->RemoveOrderForDrawing(listOfOrd[j]);
-				}
-			}
-			delete[] listOfOrd;
-		}
+	//for (size_t i = 0; i < 4; i++)
+	//	{
+	//		Order** listOfOrd = NULL;
+	//		//AssignOrder(listOfOrd);	
+	//		for (size_t j = 0; j < 3; j++)
+	//		{
+	//			if (listOfOrd[j] != NULL) {
+	//				pGUI->RemoveOrderForDrawing(listOfOrd[j]);
+	//			}
+	//		}
+	//		delete[] listOfOrd;
+	//	}
 		//Excute Events;
 	
 	}
@@ -489,13 +489,23 @@ void Restaurant::ProcessSilent()
 			RegFinish[i] = Region[i].DidFinish();
 			finishedServing = finishedServing && RegFinish[i];
 			if (!RegFinish[i]) {
+
+				// Ibrahim has to help implementing these functions below
+
 				// Marait: important to read 
 				// we could replace all the functions below by one big function that does all this or calls all this 
-				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager 
+
+				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager to serve the orders the region can serve right now
+
 				// Region[i].IncrementTime();		// it decrement the time that every motorcycle will deliver its delivery in 
-				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have it should
+
+				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have->
 				// it should move the orders that were on the motorcyles to the list of served orders where they will be sorted according to
-				// their finish time 
+				// their finish time
+
+				// here in the restaurant you will define a priority queue and access this priority queue in every region to add these orders that have been served to it 
+				// then when simulation is finished the previous priority queue will be
+				// accessed by save object by attia to save the finished orders in the saving file
 
 			}
 		}
