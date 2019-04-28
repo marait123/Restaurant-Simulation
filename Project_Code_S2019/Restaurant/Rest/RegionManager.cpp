@@ -1,4 +1,6 @@
 #include "RegionManager.h"
+#include"Restaurant.h"
+
 
 RegionManager::RegionManager()
 {
@@ -61,6 +63,7 @@ void RegionManager::CheckArrivedMotorCycles()
 	}
 }
 
+
 Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 {
 	Motorcycle* MC = nullptr;
@@ -81,21 +84,21 @@ Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 	default:
 		break;
 	}
-	MC->SetStatus(SERV);
-	AddMotorCycle(MC);
+
 	return MC;
 }
 
 
-
-bool RegionManager::ServeOrder(Order* pOrd)
+bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 {
 	//Check for a Motorcycle, if not return false
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
+	MC->SetStatus(SERV);
+	AddMotorCycle(MC);	
 
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
-	int WT = pRest->GetCurrentTimeStep() - pOrd->getArrTime();
+	int WT = curTS - pOrd->getArrTime();
 	pOrd->setWaitingTime(WT);
 	TotalWaitingTime += WT;
 
@@ -117,6 +120,18 @@ bool RegionManager::ServeOrder(Order* pOrd)
 	return true;
 }
 
+
+void RegionManager::ServeAvailableOrders(Restaurant* pRest)
+{
+	int curTS = pRest->GetCurrentTimeStep();
+	//First, VIP Orders
+	while (!VipOrders.isEmpty()) {
+		Pair<double, Order*> t_pair;
+		VipOrders.peekFront(t_pair);
+		if (!ServeOrder(t_pair.getSecond())) break;
+	}
+
+}
 
 //////////////////////////////////////////////////
 //Getters for Statistics in Save File
@@ -244,6 +259,7 @@ Order* RegionManager::GetNormalOrder(int ID){
 		return NULL;
 	}
 }
+
 
 RegionManager::~RegionManager()
 {

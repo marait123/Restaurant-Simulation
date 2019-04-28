@@ -7,6 +7,8 @@ using namespace std;
 #include "..\Events\ArrivalEvent.h"
 
 #include "../LoadAction.h"
+#include"RegionManager.h"
+
 Restaurant::Restaurant() 
 {
 
@@ -257,6 +259,11 @@ void Restaurant::IncreaseCurrentTime()
 	this->CurrentTimeStep ++;
 }
 
+int Restaurant::GetCurrentTimeStep() const
+{
+	return this->CurrentTimeStep;
+}
+
 void Restaurant::ProcessInterActive()
 {
 	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
@@ -281,10 +288,11 @@ void Restaurant::ProcessInterActive()
 
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
-
-		for (size_t i = 0; i < 4; i++)
+		//Excute Events;
+/*	for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
+			// AssignOrder(listOfOrd);	TODO: see whether to replace it with serve or what 
 			for (size_t j = 0; j < 3; j++)
 			{
 				if (listOfOrd[j] != NULL) {
@@ -292,9 +300,12 @@ void Restaurant::ProcessInterActive()
 				}
 			}
 			delete[] listOfOrd;
-		}
+		}*/
+		//Excute Events;
+	
+
+
 	}
-	//Save->Execute();
 }
 
 
@@ -370,7 +381,7 @@ void Restaurant::ProcessStepByStep()
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
-		for (size_t i = 0; i < 4; i++)
+		/*for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
 			this->Region[i].Phase1Delete(listOfOrd);
@@ -381,7 +392,7 @@ void Restaurant::ProcessStepByStep()
 				}
 			}
 			delete[] listOfOrd;
-		}
+		}*/
 
 	}
 	//Save->Execute();
@@ -429,11 +440,6 @@ void Restaurant::Silent()
 		// Save->Execute();	// Save the file 
 
 	} while (!isLoaded);
-
-
-
-
-
 }
 
 void Restaurant::ProcessSilent()
@@ -475,13 +481,23 @@ void Restaurant::ProcessSilent()
 			RegFinish[i] = Region[i].DidFinish();
 			finishedServing = finishedServing && RegFinish[i];
 			if (!RegFinish[i]) {
+
+				// Ibrahim has to help implementing these functions below
+
 				// Marait: important to read 
 				// we could replace all the functions below by one big function that does all this or calls all this 
-				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager 
+
+				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager to serve the orders the region can serve right now
+
 				// Region[i].IncrementTime();		// it decrement the time that every motorcycle will deliver its delivery in 
-				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have it should
+
+				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have->
 				// it should move the orders that were on the motorcyles to the list of served orders where they will be sorted according to
-				// their finish time 
+				// their finish time
+
+				// here in the restaurant you will define a priority queue and access this priority queue in every region to add these orders that have been served to it 
+				// then when simulation is finished the previous priority queue will be
+				// accessed by save object by attia to save the finished orders in the saving file
 
 			}
 		}
@@ -507,16 +523,17 @@ void Restaurant::RemoveFromAllOrders(Order *Ord){
 ////////////////////////////////////////////////////
 bool Restaurant::AddOrderToPQ(Order* pOrd)
 {
-	return this->AllOrders.enqueue(pOrd);
+	Pair<int, Order*> t_pair(-1 * pOrd->getFinishTime(), pOrd);
+	return this->AllOrders.enqueue(t_pair);
 }
 
 
-//Assign an Order to a Motorcycle
-bool Restaurant::ServeOrder(Order* pOrd)
+//Order Service
+void Restaurant::ServeAvailableOrders()
 {
-	//Call the approperiate AssignOrderToMotorcyle fn according to the Region
-	//TODO :: Decide if it's bool or void
-	return Region[pOrd->GetRegion()].ServeOrder(pOrd);
+	//Call the function	ServeAvailableOrders() of all regions
+	for (int i = 0; i < 4; ++i)
+		Region[i].ServeAvailableOrders(this);
 }
 
 
