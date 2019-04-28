@@ -81,8 +81,10 @@ Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 	default:
 		break;
 	}
-	MC->SetStatus(SERV);
-	AddMotorCycle(MC);
+	// Marait: you forgot to do the check below if MC is still NULL
+	
+
+
 	return MC;
 }
 
@@ -94,6 +96,8 @@ bool RegionManager::ServeOrder(Order* pOrd)
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
 
+	MC->SetStatus(SERV);
+	AddMotorCycle(MC);
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
 	int WT = pRest->GetCurrentTimeStep() - pOrd->getArrTime();
 	pOrd->setWaitingTime(WT);
@@ -247,7 +251,14 @@ Order* RegionManager::GetNormalOrder(int ID){
 
 bool RegionManager::DidFinish()
 {
-	return false;
+
+	// if all these list are empty then the region manager has finished
+	return this->NormalOrders.IsEmpty()
+		&& this->FrozenOrder.isEmpty()
+		&& this->VipOrders.isEmpty()
+		&& this->ListOfMotorcycles[0][1].isEmpty() 
+		&& this->ListOfMotorcycles[1][1].isEmpty()
+		&& this->ListOfMotorcycles[2][1].isEmpty();
 }
 
 RegionManager::~RegionManager()

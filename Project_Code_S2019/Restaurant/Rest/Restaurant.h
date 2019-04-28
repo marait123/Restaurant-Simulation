@@ -112,6 +112,14 @@ public:
 	//GUI
 	void AddToAllOrders(Order*);
 	void RemoveFromAllOrders(Order* );
+
+	/*
+	TODO : 
+		this function should return a pointer the one that has to
+		be served and delete it from the priorityqueue of orders
+		
+	*/
+	Order* GetOrderToSave();
 	
 };
  

@@ -461,7 +461,6 @@ void Restaurant::ProcessSilent()
 		this->ExecuteEvents(CurrentTimeStep);		// the part of executing events is done as i see
 		// here you print the number of active order type those in the list of orders
 		this->pGUI->UpdateInterface(this);
-
 		/*
 			in this part of the simulation
 			1. i should assign the orders to the motorcycles	
@@ -475,12 +474,8 @@ void Restaurant::ProcessSilent()
 			   been served			
 		*/
 
-
 		bool RegFinish[4] = { false, false, false, false };
-
-	
-
-
+		
 		for (size_t i = 0; i < 4; i++)
 		{
 			RegFinish[i] = Region[i].DidFinish();
@@ -504,6 +499,7 @@ void Restaurant::ProcessSilent()
 				// then when simulation is finished the previous priority queue will be
 				// accessed by save object by attia to save the finished orders in the saving file
 
+
 			}
 		}
 
@@ -520,6 +516,11 @@ void Restaurant::AddToAllOrders(Order *Ord)
 void Restaurant::RemoveFromAllOrders(Order *Ord){
 
 	pGUI->RemoveOrderForDrawing(Ord);
+}
+
+Order * Restaurant::GetOrderToSave()
+{
+	return nullptr;
 }
 
 
