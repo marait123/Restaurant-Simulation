@@ -9,8 +9,7 @@
 #include "..\Events\PromoteEvent.h"
 #include "..\Events\ArrivalEvent.h"
 #include "..\Events\CancelEvent.h"
-#include "RegionManager.h"
-
+class RegionManager;	// Added by Marait
 //#include "..\LoadAction.h"
 #include "..\SaveAction.h"
 class LoadAction;
@@ -104,12 +103,11 @@ public:
 	void ProcessStepByStep();
 
 	void Silent();
-
+	void ProcessSilent();
 	//Phase 2
 	/// Orders PQ
 	bool AddOrderToPQ(Order* pOrd);
 	bool ServeOrder(Order*); //TO BE COMPLETED IN PHASE 2 isA
-	void Phase1Delete();
 
 	//GUI
 	void AddToAllOrders(Order*);

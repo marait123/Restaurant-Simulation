@@ -1,4 +1,6 @@
 #include "RegionManager.h"
+#include"Restaurant.h"
+
 
 RegionManager::RegionManager()
 {
@@ -241,6 +243,11 @@ Order* RegionManager::GetNormalOrder(int ID){
 	catch(exception& ex){
 		return NULL;
 	}
+}
+
+bool RegionManager::DidFinish()
+{
+	return false;
 }
 
 RegionManager::~RegionManager()

@@ -7,6 +7,8 @@ using namespace std;
 #include "..\Events\ArrivalEvent.h"
 
 #include "../LoadAction.h"
+#include"RegionManager.h"
+
 Restaurant::Restaurant() 
 {
 
@@ -257,6 +259,11 @@ void Restaurant::IncreaseCurrentTime()
 	this->CurrentTimeStep ++;
 }
 
+int Restaurant::GetCurrentTimeStep()
+{
+	return this->CurrentTimeStep;
+}
+
 void Restaurant::ProcessInterActive()
 {
 	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
@@ -282,10 +289,10 @@ void Restaurant::ProcessInterActive()
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
-	for (size_t i = 0; i < 4; i++)
+/*	for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
-			AssignOrder(listOfOrd);
+			// AssignOrder(listOfOrd);	TODO: see whether to replace it with serve or what 
 			for (size_t j = 0; j < 3; j++)
 			{
 				if (listOfOrd[j] != NULL) {
@@ -293,11 +300,12 @@ void Restaurant::ProcessInterActive()
 				}
 			}
 			delete[] listOfOrd;
-		}
+		}*/
 		//Excute Events;
 	
+
+
 	}
-	//Save->Execute();
 }
 
 
@@ -373,7 +381,7 @@ void Restaurant::ProcessStepByStep()
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
 		//Excute Events;
-		for (size_t i = 0; i < 4; i++)
+		/*for (size_t i = 0; i < 4; i++)
 		{
 			Order** listOfOrd = NULL;
 			this->Region[i].Phase1Delete(listOfOrd);
@@ -384,7 +392,7 @@ void Restaurant::ProcessStepByStep()
 				}
 			}
 			delete[] listOfOrd;
-		}
+		}*/
 
 	}
 	//Save->Execute();

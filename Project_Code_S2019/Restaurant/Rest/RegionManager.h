@@ -9,7 +9,7 @@
 #include"../Generic_DS/Pair.h"
 #include"../Generic_DS/priority_q.h"
 #include"../Generic_DS/Vector.h"
-#include"Restaurant.h"
+class Restaurant;
 
 class RegionManager
 {
@@ -65,7 +65,7 @@ public :
 	int GetTotalServTime() const;
 	int GetTotalWaitingTime() const;
 
-	void AddOrder(Order*order); 
+	//void AddOrder(Order*order); 
 	void SetOrderCount(int OrderC);
 
 	
@@ -77,7 +77,7 @@ public :
 
 	 void AddToNormalOrders(Order*);
 
-	bool RemoveOrder(Order*);
+	// bool RemoveOrder(Order*);
 
 	 int GetNumberOfWaitingOrders();
 
@@ -87,8 +87,6 @@ public :
 	 Order* GetNormalOrder(int);
 
 
-	 /*Marait: simulation functions */
-	 void Phase1Delete(Order**&);
 
 	 /// <summary>this funtion return true if this region has finished serving all the orders</summary>
 	 bool DidFinish();
