@@ -25,7 +25,20 @@ Restaurant::~Restaurant()
 		delete pGUI;
 }
 
-
+RegionManager Restaurant::GetRegion(REGION R)
+{
+	switch(R)
+	{
+	    case A_REG:
+			return Region[0];
+		case B_REG:
+			return Region[1];
+		case C_REG:
+			return Region[2];
+		case D_REG:
+			return Region[3];
+	}
+}
 void Restaurant::RunSimulation()
 {
 	pGUI = new GUI;
@@ -225,10 +238,6 @@ Order* Restaurant::GetNormalOrderById(int ID){
 
 void Restaurant::InterActive()
 {
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-
 	pGUI->PrintMessage("InterActive Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
 	Load = new LoadAction("",this);
@@ -250,9 +259,15 @@ void Restaurant::InterActive()
 
 	this->ProcessInterActive(); // second do the interactive stuff
 
-	//pGUI->waitForClick();
+	pGUI->PrintMessage("Choose A File To Save :  ");
+	Save = new SaveAction( "" , this );//, this->AllOrders
+	pGUI->waitForClick();
+	
+	SaveFile = pGUI->GetString();
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
 
-	//Save->Execute(); // do the save stuff
+	
+	Save->Execute(AllOrders); // do the save stuff
 }
 
 void Restaurant::IncreaseCurrentTime()
@@ -457,7 +472,6 @@ void Restaurant::ProcessSilent()
 		this->ExecuteEvents(CurrentTimeStep);		// the part of executing events is done as i see
 		// here you print the number of active order type those in the list of orders
 		this->pGUI->UpdateInterface(this);
-
 		/*
 			in this part of the simulation
 			1. i should assign the orders to the motorcycles	
@@ -471,12 +485,8 @@ void Restaurant::ProcessSilent()
 			   been served			
 		*/
 
-
 		bool RegFinish[4] = { false, false, false, false };
-
-	
-
-
+		
 		for (size_t i = 0; i < 4; i++)
 		{
 			//RegFinish[i] = Region[i].DidFinish();
@@ -500,6 +510,7 @@ void Restaurant::ProcessSilent()
 				// then when simulation is finished the previous priority queue will be
 				// accessed by save object by attia to save the finished orders in the saving file
 
+
 			}
 		}
 
@@ -516,6 +527,11 @@ void Restaurant::AddToAllOrders(Order *Ord)
 void Restaurant::RemoveFromAllOrders(Order *Ord){
 
 	pGUI->RemoveOrderForDrawing(Ord);
+}
+
+Order * Restaurant::GetOrderToSave()
+{
+	return nullptr;
 }
 
 

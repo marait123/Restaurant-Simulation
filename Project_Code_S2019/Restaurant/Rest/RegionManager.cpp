@@ -13,7 +13,6 @@ RegionManager::RegionManager()
 	TotalWaitingTime = 0;
 }
 
-
 //////////////////////////////////////////////////////////////////////
 // Functions for Motorcycles List
 //////////////////////////////////////////////////////////////////////
@@ -23,7 +22,6 @@ bool RegionManager::AddMotorCycle(Motorcycle* mc)
 	ListOfMotorcycles[mc->GetType()][mc->GetStatus()].insert(mc);
 	MotorCyclesCounts[mc->GetType()][mc->GetStatus()]++;
 	AllMotorsCount += mc->GetStatus() == IDLE ? 1 : 0;
-	return true;
 }
 
 
@@ -45,7 +43,6 @@ bool RegionManager::PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS st
 	return true;
 }
 
-
 ////////////////////////////////////////////////////////////////////////
 //Functions for Phase2
 ////////////////////////////////////////////////////////////////////////
@@ -63,7 +60,6 @@ void RegionManager::CheckArrivedMotorCycles()
 		}
 	}
 }
-
 
 Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 {
@@ -85,9 +81,13 @@ Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 	default:
 		break;
 	}
+	// Marait: you forgot to do the check below if MC is still NULL
+	
+
 
 	return MC;
 }
+
 
 
 bool RegionManager::ServeOrder(Order* pOrd, int curTS)
@@ -95,9 +95,9 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 	//Check for a Motorcycle, if not return false
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
+
 	MC->SetStatus(SERV);
 	AddMotorCycle(MC);
-
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
 	int WT = curTS - pOrd->getArrTime();
 	pOrd->setWaitingTime(WT);

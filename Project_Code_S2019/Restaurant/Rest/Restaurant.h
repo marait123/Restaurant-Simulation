@@ -70,6 +70,7 @@ public:
 
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 
+	RegionManager GetRegion(REGION);
 	//Simulation Functions
 	void RunSimulation();
 	void InterActive();
@@ -114,6 +115,14 @@ public:
 	//GUI
 	void AddToAllOrders(Order*);
 	void RemoveFromAllOrders(Order* );
+
+	/*
+	TODO : 
+		this function should return a pointer the one that has to
+		be served and delete it from the priorityqueue of orders
+		
+	*/
+	Order* GetOrderToSave();
 	
 };
  
