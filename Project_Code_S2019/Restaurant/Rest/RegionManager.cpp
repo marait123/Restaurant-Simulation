@@ -95,21 +95,21 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 	//Check for a Motorcycle, if not return false
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
+
 	MC->SetStatus(SERV);
 	AddMotorCycle(MC);
-
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
 	int WT = curTS - pOrd->getArrTime();
 	pOrd->setWaitingTime(WT);
 	TotalWaitingTime += WT;
 
 	///Calculate ST of pOrd (OrdDist/v)
-	int ST = ceil(pOrd->GetDistance() / MC->GetSpeed());
+	int ST = ceil(pOrd->GetDistance()/MC->GetSpeed());
 	pOrd->setServTime(ST);
 	TotalServTime += ST;
 
 	///Calculate the DeliveryTime of the MC ST*2
-	MC->SetTimeUntillDelivery(2 * ST);
+	MC->SetTimeUntillDelivery(2*ST);
 
 	//HMANA6399 :: For better time effeciency, I suggest deleting the Order from its list after
 	//				Serving it in the simulation loop. So no need to delete it here.
@@ -122,23 +122,26 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 }
 
 
-void RegionManager::ServeAvailableOrders(Restaurant* pRest)
+bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 {
 	int curTS = pRest->GetCurrentTimeStep();
+	Order* curOrd;
 	//First, VIP Orders
 	while (!VipOrders.isEmpty()) {
 		Pair<double, Order*> t_pair;
 		VipOrders.peekFront(t_pair); VipOrders.dequeue();
-		if (!ServeOrder(t_pair.getSecond(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.getSecond());
+		curOrd = t_pair.getSecond();
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Second, Frozen
 	while (!FrozenOrder.isEmpty()) {
-		Order* t_ord;
-		FrozenOrder.dequeue(t_ord);
-		if (!ServeOrder(t_ord, curTS)) break;
-		pRest->AddOrderToPQ(t_ord);
+		FrozenOrder.dequeue(curOrd);
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
@@ -146,9 +149,14 @@ void RegionManager::ServeAvailableOrders(Restaurant* pRest)
 		BDPair<int, Order*> t_pair;
 		NormalOrders.peak(t_pair);
 		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
-		if (!ServeOrder(t_pair.GetData(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.GetData());
+		curOrd = t_pair.GetData();
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
+
+	//Returns false when Everything is done!
+	return !(VipOrders.isEmpty() && FrozenOrder.isEmpty() && NormalOrders.IsEmpty());
 }
 
 
@@ -279,20 +287,41 @@ Order* RegionManager::GetNormalOrder(int ID){
 	}
 }
 
-bool RegionManager::DidFinish()
-{
-
-	// if all these list are empty then the region manager has finished
-	return this->NormalOrders.IsEmpty()
-		&& this->FrozenOrder.isEmpty()
-		&& this->VipOrders.isEmpty()
-		&& this->ListOfMotorcycles[0][1].isEmpty() 
-		&& this->ListOfMotorcycles[1][1].isEmpty()
-		&& this->ListOfMotorcycles[2][1].isEmpty();
-}
 
 RegionManager::~RegionManager()
 {
 	//TODO :: Make sure that there are not any pointer-defined data member to be deleted
 }
 
+//TODO :: See what to do for this
+//void RegionManager::Phase1Delete(Order**& ordList)
+//{
+//	ordList = new Order*[3]; // this array will hold the pointers to the orders deleted to use it to delete from the gui
+//
+//	Pair<double, Order*> tempPair1;
+//	bool yes = VipOrders.dequeue(tempPair1);
+//	if (yes)
+//		ordList[0] = tempPair1.getSecond();
+//	else 
+//		ordList[0] = NULL;
+//
+//	yes = FrozenOrder.dequeue(ordList[1]);
+//	
+//	if (!yes)
+//		ordList[1] = NULL;
+//
+//	BDPair<int, Order*> tempPair2;
+//	yes = this->NormalOrders.peak(tempPair2);
+//	if (yes == true) {
+//		ordList[2] = tempPair2.GetData();
+//		this->NormalOrders.Deque();
+//	}
+//	else
+//	{
+//		ordList[2] = NULL;
+//	}
+//
+//	// i have done the 
+//	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
+//	
+//}

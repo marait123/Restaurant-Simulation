@@ -61,7 +61,7 @@ public :
 	void CheckArrivedMotorCycles();
 	Motorcycle* GetIdleMC(ORD_TYPE ord_typ);
 	bool ServeOrder(Order* pOrd, int curTS);
-	void ServeAvailableOrders(Restaurant* pRest);
+	bool ServeAvailableOrders(Restaurant* pRest);
 
 	//For Statistics
 	int GetMCCount() const;
