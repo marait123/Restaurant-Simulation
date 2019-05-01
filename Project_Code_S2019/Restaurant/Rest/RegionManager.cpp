@@ -90,26 +90,26 @@ Motorcycle* RegionManager::GetIdleMC(ORD_TYPE ord_typ)
 
 
 
-bool RegionManager::ServeOrder(Order* pOrd)
+bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 {
 	//Check for a Motorcycle, if not return false
 	Motorcycle* MC = GetIdleMC(pOrd->GetType());
 	if (MC == nullptr) return false;
-
 	MC->SetStatus(SERV);
 	AddMotorCycle(MC);
+
 	///Calculate WT of pOrd (currentTS - AT), add to TotalWaitingTime
-	int WT = pRest->GetCurrentTimeStep() - pOrd->getArrTime();
+	int WT = curTS - pOrd->getArrTime();
 	pOrd->setWaitingTime(WT);
 	TotalWaitingTime += WT;
 
 	///Calculate ST of pOrd (OrdDist/v)
-	int ST = ceil(pOrd->GetDistance()/MC->GetSpeed());
+	int ST = ceil(pOrd->GetDistance() / MC->GetSpeed());
 	pOrd->setServTime(ST);
 	TotalServTime += ST;
 
 	///Calculate the DeliveryTime of the MC ST*2
-	MC->SetTimeUntillDelivery(2*ST);
+	MC->SetTimeUntillDelivery(2 * ST);
 
 	//HMANA6399 :: For better time effeciency, I suggest deleting the Order from its list after
 	//				Serving it in the simulation loop. So no need to delete it here.
@@ -119,6 +119,36 @@ bool RegionManager::ServeOrder(Order* pOrd)
 	//				Just moving the its pointer from its list to the PQ!!!
 	//TODO :: Also we have to  see what to do regarding the Delete of the GUI
 	return true;
+}
+
+
+void RegionManager::ServeAvailableOrders(Restaurant* pRest)
+{
+	int curTS = pRest->GetCurrentTimeStep();
+	//First, VIP Orders
+	while (!VipOrders.isEmpty()) {
+		Pair<double, Order*> t_pair;
+		VipOrders.peekFront(t_pair); VipOrders.dequeue();
+		if (!ServeOrder(t_pair.getSecond(), curTS)) break;
+		pRest->AddOrderToPQ(t_pair.getSecond());
+	}
+
+	//Second, Frozen
+	while (!FrozenOrder.isEmpty()) {
+		Order* t_ord;
+		FrozenOrder.dequeue(t_ord);
+		if (!ServeOrder(t_ord, curTS)) break;
+		pRest->AddOrderToPQ(t_ord);
+	}
+
+	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
+	while (!NormalOrders.IsEmpty()) {
+		BDPair<int, Order*> t_pair;
+		NormalOrders.peak(t_pair);
+		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
+		if (!ServeOrder(t_pair.GetData(), curTS)) break;
+		pRest->AddOrderToPQ(t_pair.GetData());
+	}
 }
 
 
@@ -266,35 +296,3 @@ RegionManager::~RegionManager()
 	//TODO :: Make sure that there are not any pointer-defined data member to be deleted
 }
 
-//TODO :: See what to do for this
-//void RegionManager::Phase1Delete(Order**& ordList)
-//{
-//	ordList = new Order*[3]; // this array will hold the pointers to the orders deleted to use it to delete from the gui
-//
-//	Pair<double, Order*> tempPair1;
-//	bool yes = VipOrders.dequeue(tempPair1);
-//	if (yes)
-//		ordList[0] = tempPair1.getSecond();
-//	else 
-//		ordList[0] = NULL;
-//
-//	yes = FrozenOrder.dequeue(ordList[1]);
-//	
-//	if (!yes)
-//		ordList[1] = NULL;
-//
-//	BDPair<int, Order*> tempPair2;
-//	yes = this->NormalOrders.peak(tempPair2);
-//	if (yes == true) {
-//		ordList[2] = tempPair2.GetData();
-//		this->NormalOrders.Deque();
-//	}
-//	else
-//	{
-//		ordList[2] = NULL;
-//	}
-//
-//	// i have done the 
-//	// for the normal order since  it is stored on the tree it is you will have to get it in the most effecient way // i onley have access to the orders through ids only
-//	
-//}
