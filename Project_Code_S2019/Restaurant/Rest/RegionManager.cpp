@@ -125,20 +125,23 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 {
 	int curTS = pRest->GetCurrentTimeStep();
+	Order* curOrd;
 	//First, VIP Orders
 	while (!VipOrders.isEmpty()) {
 		Pair<double, Order*> t_pair;
 		VipOrders.peekFront(t_pair); VipOrders.dequeue();
-		if (!ServeOrder(t_pair.getSecond(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.getSecond());
+		curOrd = t_pair.getSecond();
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Second, Frozen
 	while (!FrozenOrder.isEmpty()) {
-		Order* t_ord;
-		FrozenOrder.dequeue(t_ord);
-		if (!ServeOrder(t_ord, curTS)) break;
-		pRest->AddOrderToPQ(t_ord);
+		FrozenOrder.dequeue(curOrd);
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
@@ -146,8 +149,10 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 		BDPair<int, Order*> t_pair;
 		NormalOrders.peak(t_pair);
 		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
-			if (!ServeOrder(t_pair.GetData(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.GetData());
+		curOrd = t_pair.GetData();
+		if (!ServeOrder(curOrd, curTS)) break;
+		pRest->AddOrderToPQ(curOrd);
+		pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Returns false when Everything is done!

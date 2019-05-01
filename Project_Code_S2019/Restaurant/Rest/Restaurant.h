@@ -44,7 +44,7 @@ private:
 	** it sorts according to FT then ST, an inverted sorting, that is, ord1 < ord2 returns true if ord1 > ord2 and v.v.
 	*/
 	priority_q<Pair<int, Order*>> AllOrders;
-
+	Queue<Order*> ordersToDeletePerTS;
 
 	///Stores the speed of the three types of Motorcycles referenced to by the index
 	int MotorcycleSpeeds[3];
@@ -115,6 +115,8 @@ public:
 	//GUI
 	void AddToAllOrders(Order*);
 	void RemoveFromAllOrders(Order* );
+	void addToDeletedPerTS(Order* );
+	void DeleteOrdersPerTS();
 
 	/*
 	TODO : 

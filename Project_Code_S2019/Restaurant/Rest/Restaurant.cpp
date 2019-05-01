@@ -552,6 +552,7 @@ bool Restaurant::ServeAvailableOrders()
 	//Call the function	ServeAvailableOrders() of all regions
 	for (int i = 0; i < 4; ++i)
 		finished |= Region[i].ServeAvailableOrders(this);
+	this->DeleteOrdersPerTS();
 	return finished; //false when everything is done!
 
 	//When you call the function in the simulation, Run the loop untill this function returns false
@@ -745,4 +746,20 @@ void Restaurant::LoadFromFile(string fileName){
 void Restaurant::SetPromotionTimeStep(int P_TimeSkip)
 {
 	this->AutoPromoteTimeStep = P_TimeSkip;
+}
+
+void Restaurant::addToDeletedPerTS(Order* pOrd)
+{
+	ordersToDeletePerTS.enqueue(pOrd);
+}
+
+
+void Restaurant::DeleteOrdersPerTS()
+{
+	Order* tOrd;
+	while (!ordersToDeletePerTS.isEmpty())
+	{
+		ordersToDeletePerTS.dequeue(tOrd);
+		RemoveFromAllOrders(tOrd);
+	}
 }
