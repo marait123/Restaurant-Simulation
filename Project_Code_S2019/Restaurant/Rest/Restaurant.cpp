@@ -320,12 +320,6 @@ void Restaurant::ProcessInterActive()
 			}
 			delete[] listOfOrd;
 		}*/
-		//Excute Events;
-		do {
-		       IncreaseCurrentTime();
-	        }while (ServeAvailableOrders());
-
-	}
 }
 
 

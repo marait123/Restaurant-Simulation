@@ -50,7 +50,8 @@ bool RegionManager::PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS st
 void RegionManager::CheckArrivedMotorCycles()
 {
 	for (int i = 0; i < 3; ++i) {
-		for (int j = 0; j < ListOfMotorcycles[(MotorcycleType)i][SERV].getSize(); ++j) {
+		int sz = ListOfMotorcycles[(MotorcycleType)i][SERV].getSize();
+		for (int j = 0; j < sz; ++j) {
 			if (!ListOfMotorcycles[(MotorcycleType)i][SERV][i]->DecrementDeliveryTime()) {
 				Motorcycle* MC_Back = ListOfMotorcycles[(MotorcycleType)i][SERV][i];
 				RemoveMotorCycle(ListOfMotorcycles[(MotorcycleType)i][SERV][i], i);
@@ -124,6 +125,9 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 
 bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 {
+	//Returns false when Everything is done!
+	if ((VipOrders.isEmpty() && FrozenOrder.isEmpty() && (NormalOrders.GetCount() ==  0))) return false;
+	
 	int curTS = pRest->GetCurrentTimeStep();
 	Order* curOrd;
 	//First, VIP Orders
@@ -155,8 +159,7 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 		pRest->addToDeletedPerTS(curOrd);
 	}
 
-	//Returns false when Everything is done!
-	return !(VipOrders.isEmpty() && FrozenOrder.isEmpty() && NormalOrders.IsEmpty());
+	return true;
 }
 
 
