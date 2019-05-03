@@ -122,35 +122,6 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 }
 
 
-void RegionManager::ServeAvailableOrders(Restaurant* pRest)
-{
-	int curTS = pRest->GetCurrentTimeStep();
-	//First, VIP Orders
-	while (!VipOrders.isEmpty()) {
-		Pair<double, Order*> t_pair;
-		VipOrders.peekFront(t_pair); VipOrders.dequeue();
-		if (!ServeOrder(t_pair.getSecond(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.getSecond());
-	}
-
-	//Second, Frozen
-	while (!FrozenOrder.isEmpty()) {
-		Order* t_ord;
-		FrozenOrder.dequeue(t_ord);
-		if (!ServeOrder(t_ord, curTS)) break;
-		pRest->AddOrderToPQ(t_ord);
-	}
-
-	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
-	while (!NormalOrders.IsEmpty()) {
-		BDPair<int, Order*> t_pair;
-		NormalOrders.peak(t_pair);
-		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
-		if (!ServeOrder(t_pair.GetData(), curTS)) break;
-		pRest->AddOrderToPQ(t_pair.GetData());
-	}
-}
-
 
 bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 {
@@ -178,7 +149,7 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 	while (!NormalOrders.IsEmpty()) {
 		BDPair<int, Order*> t_pair;
 		NormalOrders.peak(t_pair);
-		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not
+		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not ? Marait said: "No" it is a general ds not specific and so all the DS"s i have desing for the project or any future project 
 		curOrd = t_pair.GetData();
 		if (!ServeOrder(curOrd, curTS)) break;
 		pRest->AddOrderToPQ(curOrd);
@@ -315,6 +286,11 @@ Order* RegionManager::GetNormalOrder(int ID){
 	catch(exception& ex){
 		return NULL;
 	}
+}
+
+bool RegionManager::DidFinish()
+{
+	return false;
 }
 
 

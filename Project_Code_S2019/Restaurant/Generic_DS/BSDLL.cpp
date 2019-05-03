@@ -33,35 +33,50 @@ BSDLL<K,D>::BSDLL(const BSDLL<K,D> & mp)
 	// using the breadth first traversal algorithm i will traverse the  BSDLL supplied and insert each element in it to this BSDLL
 	
 	
-	
-	this->count = mp.count;
+	this->count = 0;
+	this->root = NULL;
+	this->head = NULL;
+	this->tail = NULL;
 
-	Queue<BDPair<K,D>*> qMP;
-	BDPair<K,D>* scan = mp.root;
+	/*{if (mp.IsEmpty()) return;
+	this->count = mp.count; }*/
 
-	while (scan != NULL)
-	{
-		this->Insert(*scan);
+	Queue<BDPair<K, D>*> qMP;
 
-		if (scan->GetLeftChild() != NULL) {
-			qMP.enqueue(scan->GetLeftChild());
-		}
+	BDPair<K, D>* scan = mp.head;
+	while (scan != NULL) {
 
-		if (scan->GetRightChild() != NULL) {
-			qMP.enqueue(scan->GetRightChild());
-		}
-
-		if (qMP.isEmpty()) {
-			break;
-		}
-		else
-		{
-			qMP.peekFront(scan);
-			qMP.dequeue(scan);
-		}
-
+		BDPair<K, D>* temp = new BDPair<K, D>();
+		temp->SetData(scan->GetData());
+		temp->SetKey(scan->GetKey());
+		this->Insert(*temp);
+		scan = scan->GetNext();
 	}
 
+	/*
+	BDPair<K,D>* scan = mp.root;
+
+	qMP.enqueue(mp.root);
+
+	while (qMP.isEmpty())
+	{
+	qMP.dequeue(scan);
+
+	BDPair<K, D>* temp = new BDPair<K, D>();
+	temp->SetData(scan->GetData());
+	temp->SetKey(scan->GetKey());
+
+	this->Insert(*temp);
+
+	if (scan->GetLeftChild() != NULL) {
+	qMP.enqueue(scan->GetLeftChild());
+	}
+
+	if (scan->GetRightChild() != NULL) {
+	qMP.enqueue(scan->GetRightChild());
+	}
+	}
+	*/
 
 
 
@@ -74,7 +89,6 @@ BSDLL<K,D>::~BSDLL()
 	// traverse the whole BSDLL and delete all the BDPair<K,D>s
 	Queue<BDPair<K,D>*> qMP;
 	BDPair<K,D>* scan = this->root;
-
 	while (scan != NULL)
 	{
 

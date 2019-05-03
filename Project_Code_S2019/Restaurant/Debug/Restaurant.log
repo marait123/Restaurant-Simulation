@@ -1,9 +1,58 @@
-﻿  Restaurant.cpp
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(344): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(342): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(343): warning C4101: 'pOrd' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(446): warning C4101: 'pEv' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(444): warning C4101: 'EventCnt' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(445): warning C4101: 'pOrd' : unreferenced local variable
+﻿  ArrivalEvent.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\events\arrivalevent.cpp(16): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+  SaveAction.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(18): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(19): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(21): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(34): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(35): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(36): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(39): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(40): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(41): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(45): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(46): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(49): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(50): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\saveaction.cpp(51): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+  Restaurant.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(316): warning C4101: 'pEv' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(314): warning C4101: 'EventCnt' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(315): warning C4101: 'pOrd' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(395): warning C4101: 'pEv' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(393): warning C4101: 'EventCnt' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(394): warning C4101: 'pOrd' : unreferenced local variable
+  RegionManager.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(107): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(271): warning C4101: 'ex' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(286): warning C4101: 'ex' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
+          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
+          with
+          [
+              Type=Motorcycle *
+          ]
+          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(22) : see reference to function template instantiation 'void Vector<Type>::insert(Type)' being compiled
+          with
+          [
+              Type=Motorcycle *
+          ]
+          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.h(24) : see reference to class template instantiation 'Vector<Type>' being compiled
+          with
+          [
+              Type=Motorcycle *
+          ]
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
+  LoadAction.cpp
+  GUI.cpp
+  PromoteEvent.cpp
+  CancelEvent.cpp
+  Generating Code...
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(25): warning C4715: 'RegionManager::AddMotorCycle' : not all control paths return a value
 g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(41): warning C4715: 'Restaurant::GetRegion' : not all control paths return a value
   Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe
