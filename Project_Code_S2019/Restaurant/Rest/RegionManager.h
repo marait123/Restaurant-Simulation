@@ -89,6 +89,8 @@ public :
 	 
 	 bool CancelNormalOrder(int);
 	 Order* GetNormalOrder(int);
+	 bool DidFinish();
+
 
 	 ~RegionManager();
 };

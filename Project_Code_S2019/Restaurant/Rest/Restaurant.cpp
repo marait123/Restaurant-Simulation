@@ -282,46 +282,32 @@ int Restaurant::GetCurrentTimeStep() const
 
 void Restaurant::ProcessInterActive()
 {
-	do {
-		       CheckArrivedMotorCycles();        //Checking arrived motorcycles  The Error is Here During Test2
-		       IncreaseCurrentTime();
-		       ExecuteEvents(CurrentTimeStep);         //Running the Events of this TS
+	bool finishedServing = false;
+	while (!this->EventsQueue.isEmpty() && finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
+	{
+		IncreaseCurrentTime();
+		this->ExecuteEvents(CurrentTimeStep);
+		// here you print the number of active order type those in the list of orders
+		this->pGUI->UpdateInterface(this);
+		pGUI->PrintMessage(
+			"Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
+			", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
+			", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
+			", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
+			"}" + "Number of motors [Z,N,F]"
+			+ "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
+			+ ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
+			+ ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
+			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]" +
+			"Mouse Click To increase TimeStep"
+		);
+		pGUI->waitForClick();
 
-		       //Any other simulation code
-		       // here you print the number of active order type those in the list of orders
-		       pGUI->UpdateInterface(this);
-		       pGUI->PrintMessage(
-			   "Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
-			   ", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
-			   ", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
-			   ", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
-			   "}" + "Number of motors [Z,N,F]"
-			   + "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
-			   + ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
-			   + ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
-			   + ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"+
-			   "Mouse Click To increase TimeStep"
-		       );
-		       pGUI->waitForClick();
+		finishedServing = this->ServeAvailableOrders();
 
-		       pGUI->PrintMessage("Mouse Click To increase TimeStep");
-	    } while (ServeAvailableOrders());
-
-		//Excute Events;
-/*	for (size_t i = 0; i < 4; i++)
-		{
-			Order** listOfOrd = NULL;
-			// AssignOrder(listOfOrd);	TODO: see whether to replace it with serve or what 
-			for (size_t j = 0; j < 3; j++)
-			{
-				if (listOfOrd[j] != NULL) {
-					pGUI->RemoveOrderForDrawing(listOfOrd[j]);
-				}
-			}
-			delete[] listOfOrd;
-		}*/
+		pGUI->PrintMessage("Mouse Click To increase TimeStep");
+	}
 }
-
 
 void Restaurant::StepByStep()
 {
@@ -370,7 +356,9 @@ void Restaurant::StepByStep()
 
 void Restaurant::ProcessStepByStep()
 {
-	while (!this->EventsQueue.isEmpty())  // this is the event loop where every order gets assigned to a motor cycle
+	bool finishedServing = false;
+
+	while (!this->EventsQueue.isEmpty() && finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
 
 		IncreaseCurrentTime();
@@ -394,20 +382,8 @@ void Restaurant::ProcessStepByStep()
 
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
 
-		//Excute Events;
-		/*for (size_t i = 0; i < 4; i++)
-		{
-			Order** listOfOrd = NULL;
-			this->Region[i].Phase1Delete(listOfOrd);
-			for (size_t j = 0; j < 3; j++)
-			{
-				if (listOfOrd[j] != NULL) {
-					pGUI->RemoveOrderForDrawing(listOfOrd[j]);
-				}
-			}
-			delete[] listOfOrd;
-		}*/
 
+		finishedServing = this->ServeAvailableOrders();
 	}
 	//Save->Execute();
 }
@@ -453,13 +429,14 @@ void Restaurant::Silent()
 		// Save->setLoadFileName(SaveFile);
 		// Save->Execute();	// Save the file 
 
+		isLoaded = true; // NOTE : it is to be deleted after the save action has completed
 	} while (!isLoaded);
 }
 
 void Restaurant::ProcessSilent()
 {
 	bool finishedServing = false;
-	while (!this->EventsQueue.isEmpty() || !finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
+	while (!this->EventsQueue.isEmpty() || finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
 		/*
 			in this part of the simulation 
@@ -483,34 +460,25 @@ void Restaurant::ProcessSilent()
 			   been served			
 		*/
 
-		bool RegFinish[4] = { false, false, false, false };
-		
-		for (size_t i = 0; i < 4; i++)
-		{
-			//RegFinish[i] = Region[i].DidFinish();
-			finishedServing = finishedServing && RegFinish[i];
-			if (!RegFinish[i]) {
+		//bool RegFinish[4] = { false, false, false, false };		
+			/*RegFinish[i] = Region[i].DidFinish();
+			finishedServing = finishedServing && RegFinish[i];*/
 
 				// Ibrahim has to help implementing these functions below
 
 				// Marait: important to read 
 				// we could replace all the functions below by one big function that does all this or calls all this 
-
 				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager to serve the orders the region can serve right now
-
 				// Region[i].IncrementTime();		// it decrement the time that every motorcycle will deliver its delivery in 
-
 				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have->
 				// it should move the orders that were on the motorcyles to the list of served orders where they will be sorted according to
 				// their finish time
-
 				// here in the restaurant you will define a priority queue and access this priority queue in every region to add these orders that have been served to it 
 				// then when simulation is finished the previous priority queue will be
 				// accessed by save object by attia to save the finished orders in the saving file
 
-
-			}
-		}
+			finishedServing = this->ServeAvailableOrders();
+		
 
 
 	}
