@@ -282,27 +282,30 @@ int Restaurant::GetCurrentTimeStep() const
 
 void Restaurant::ProcessInterActive()
 {
-	while( !this->EventsQueue.isEmpty() )  // this is the event loop where every order gets assigned to a motor cycle
-	{
-		IncreaseCurrentTime();
-		this->ExecuteEvents(CurrentTimeStep);
-		// here you print the number of active order type those in the list of orders
-		this->pGUI->UpdateInterface(this);
-		pGUI->PrintMessage(
-			"Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
-			", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
-			", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
-			", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
-			"}" + "Number of motors [Z,N,F]"
-			+ "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
-			+ ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
-			+ ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
-			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"+
-			"Mouse Click To increase TimeStep"
-		);
-		pGUI->waitForClick();
+	do {
+		       CheckArrivedMotorCycles();        //Checking arrived motorcycles  The Error is Here During Test2
+		       IncreaseCurrentTime();
+		       ExecuteEvents(CurrentTimeStep);         //Running the Events of this TS
 
-		pGUI->PrintMessage("Mouse Click To increase TimeStep");
+		       //Any other simulation code
+		       // here you print the number of active order type those in the list of orders
+		       pGUI->UpdateInterface(this);
+		       pGUI->PrintMessage(
+			   "Number of active {A:" + tostring(this->Region[0].GetNumberOfWaitingOrders()) +
+			   ", B:" + tostring(this->Region[1].GetNumberOfWaitingOrders()) +
+			   ", C:" + tostring(this->Region[2].GetNumberOfWaitingOrders()) +
+			   ", D:" + tostring(this->Region[3].GetNumberOfWaitingOrders()) +
+			   "}" + "Number of motors [Z,N,F]"
+			   + "  A[" + tostring(this->Region[0].GetFrozenMotorCount()) + "," + tostring(this->Region[0].GetNormalMotorCount()) + "," + tostring(this->Region[0].GetFastMotorCount()) + "]"
+			   + ", B[" + tostring(this->Region[1].GetFrozenMotorCount()) + "," + tostring(this->Region[1].GetNormalMotorCount()) + "," + tostring(this->Region[1].GetFastMotorCount()) + "]"
+			   + ", C[" + tostring(this->Region[2].GetFrozenMotorCount()) + "," + tostring(this->Region[2].GetNormalMotorCount()) + "," + tostring(this->Region[2].GetFastMotorCount()) + "]"
+			   + ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]"+
+			   "Mouse Click To increase TimeStep"
+		       );
+		       pGUI->waitForClick();
+
+		       pGUI->PrintMessage("Mouse Click To increase TimeStep");
+	    } while (ServeAvailableOrders());
 
 		//Excute Events;
 /*	for (size_t i = 0; i < 4; i++)
@@ -318,8 +321,9 @@ void Restaurant::ProcessInterActive()
 			delete[] listOfOrd;
 		}*/
 		//Excute Events;
-	
-
+		do {
+		       IncreaseCurrentTime();
+	        }while (ServeAvailableOrders());
 
 	}
 }
