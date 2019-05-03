@@ -51,12 +51,18 @@ void RegionManager::CheckArrivedMotorCycles()
 {
 	for (int i = 0; i < 3; ++i) {
 		int sz = ListOfMotorcycles[(MotorcycleType)i][SERV].getSize();
-		for (int j = 0; j < sz; ++j) {
-			if (!ListOfMotorcycles[(MotorcycleType)i][SERV][i]->DecrementDeliveryTime()) {
-				Motorcycle* MC_Back = ListOfMotorcycles[(MotorcycleType)i][SERV][i];
-				RemoveMotorCycle(ListOfMotorcycles[(MotorcycleType)i][SERV][i], i);
+		for (int j = 0; j < sz; ) {
+
+			if (!ListOfMotorcycles[(MotorcycleType)i][SERV][j]->DecrementDeliveryTime()) {
+				int sz = ListOfMotorcycles[(MotorcycleType)i][SERV].getSize();
+				Motorcycle* MC_Back = ListOfMotorcycles[(MotorcycleType)i][SERV][j];
+				RemoveMotorCycle(ListOfMotorcycles[(MotorcycleType)i][SERV][j], j);
 				MC_Back->SetStatus(IDLE);
 				AddMotorCycle(MC_Back);
+			}
+			else
+			{
+				j++;
 			}
 		}
 	}
@@ -134,30 +140,40 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 	//First, VIP Orders
 	while (!VipOrders.isEmpty()) {
 		Pair<double, Order*> t_pair;
-		VipOrders.peekFront(t_pair); VipOrders.dequeue();
+		VipOrders.peekFront(t_pair);
 		curOrd = t_pair.getSecond();
 		if (!ServeOrder(curOrd, curTS)) break;
+
+		VipOrders.dequeue();
+
 		pRest->AddOrderToPQ(curOrd);
-		pRest->addToDeletedPerTS(curOrd);
+		pRest->RemoveFromAllOrders(curOrd);
+
+		//pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Second, Frozen
 	while (!FrozenOrder.isEmpty()) {
-		FrozenOrder.dequeue(curOrd);
+		FrozenOrder.peekFront(curOrd);
 		if (!ServeOrder(curOrd, curTS)) break;
+		FrozenOrder.dequeue(curOrd);
 		pRest->AddOrderToPQ(curOrd);
-		pRest->addToDeletedPerTS(curOrd);
+	//	pRest->addToDeletedPerTS(curOrd);
+		pRest->RemoveFromAllOrders(curOrd);
+
 	}
 
 	//Third, Normal. Revise and ask Marait about the behaviour of the BSDLL
 	while (!NormalOrders.IsEmpty()) {
 		BDPair<int, Order*> t_pair;
-		NormalOrders.peak(t_pair);
-		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not ? Marait said: "No" it is a general ds not specific and so all the DS"s i have desing for the project or any future project 
+		NormalOrders.peak(t_pair);		
 		curOrd = t_pair.GetData();
 		if (!ServeOrder(curOrd, curTS)) break;
+
+		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not ? Marait said: "No" it is a general ds not specific and so all the DS"s i have desing for the project or any future project 
 		pRest->AddOrderToPQ(curOrd);
-		pRest->addToDeletedPerTS(curOrd);
+		//pRest->addToDeletedPerTS(curOrd);
+		pRest->RemoveFromAllOrders(curOrd);
 	}
 
 	return true;
@@ -293,7 +309,8 @@ Order* RegionManager::GetNormalOrder(int ID){
 
 bool RegionManager::DidFinish()
 {
-	return false;
+
+	return !(this->MotorCyclesCounts[0][1] == 0 && this->MotorCyclesCounts[1][1] == 0 && this->MotorCyclesCounts[2][1] == 0);
 }
 
 

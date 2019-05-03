@@ -282,8 +282,8 @@ int Restaurant::GetCurrentTimeStep() const
 
 void Restaurant::ProcessInterActive()
 {
-	bool finishedServing = false;
-	while (!this->EventsQueue.isEmpty() && finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
+	bool finishedServing = true;
+	while (!this->EventsQueue.isEmpty() || finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
 		IncreaseCurrentTime();
 		this->ExecuteEvents(CurrentTimeStep);
@@ -303,6 +303,7 @@ void Restaurant::ProcessInterActive()
 		);
 		pGUI->waitForClick();
 
+		this->CheckArrivedMotorCycles();
 		finishedServing = this->ServeAvailableOrders();
 
 		pGUI->PrintMessage("Mouse Click To increase TimeStep");
@@ -356,9 +357,9 @@ void Restaurant::StepByStep()
 
 void Restaurant::ProcessStepByStep()
 {
-	bool finishedServing = false;
+	bool finishedServing = true;
 
-	while (!this->EventsQueue.isEmpty() && finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
+	while (!this->EventsQueue.isEmpty() || finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
 
 		IncreaseCurrentTime();
@@ -435,7 +436,7 @@ void Restaurant::Silent()
 
 void Restaurant::ProcessSilent()
 {
-	bool finishedServing = false;
+	bool finishedServing = true;
 	while (!this->EventsQueue.isEmpty() || finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
 		/*
@@ -516,9 +517,10 @@ bool Restaurant::ServeAvailableOrders()
 {
 	bool finished = false;
 	//Call the function	ServeAvailableOrders() of all regions
-	for (int i = 0; i < 4; ++i)
-		finished |= Region[i].ServeAvailableOrders(this);
-	this->DeleteOrdersPerTS();
+	for (int i = 0; i < 4; ++i){
+		finished |= Region[i].ServeAvailableOrders(this) | Region[i].DidFinish();
+	}
+	//this->DeleteOrdersPerTS();
 	return finished; //false when everything is done!
 
 	//When you call the function in the simulation, Run the loop untill this function returns false
