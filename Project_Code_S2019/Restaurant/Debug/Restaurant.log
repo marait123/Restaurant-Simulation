@@ -1,23 +1,22 @@
-﻿  RegionManager.cpp
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(114): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(290): warning C4101: 'ex' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(305): warning C4101: 'ex' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
-          with
-          [
-              Type=Motorcycle *
-          ]
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(22) : see reference to function template instantiation 'void Vector<Type>::insert(Type)' being compiled
-          with
-          [
-              Type=Motorcycle *
-          ]
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.h(24) : see reference to class template instantiation 'Vector<Type>' being compiled
-          with
-          [
-              Type=Motorcycle *
-          ]
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(25): warning C4715: 'RegionManager::AddMotorCycle' : not all control paths return a value
+﻿  GUI.cpp
+  Generating Code...
+  Compiling...
+  Restaurant.cpp
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(317): warning C4101: 'pEv' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(315): warning C4101: 'EventCnt' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(316): warning C4101: 'pOrd' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(396): warning C4101: 'pEv' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(394): warning C4101: 'EventCnt' : unreferenced local variable
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(395): warning C4101: 'pOrd' : unreferenced local variable
+  Generating Code...
+g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\restaurant.cpp(41): warning C4715: 'Restaurant::GetRegion' : not all control paths return a value
+  Skipping... (no relevant changes detected)
+  main.cpp
+  SaveAction.cpp
+  RegionManager.cpp
+  LoadAction.cpp
+  PromoteEvent.cpp
+  CancelEvent.cpp
+  ArrivalEvent.cpp
+  CMUgraphics.cpp
   Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe

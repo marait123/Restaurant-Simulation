@@ -11,7 +11,7 @@ This file was last modified on 05.16.1999
 #include "error.h"
 
 windowinput::windowinput(const HWND hwndNew, const window* wpNewWind) {
-
+	this->repaint = false;
     wiHead = NULL;
     bWaitClose = true;
     usNumWindows = 0;
@@ -161,4 +161,22 @@ void windowinput::SetKeyInfo(const HWND hwndKey, const keytype ktInfo, const cha
 
 		windTmp->kqueInput.Insert(kqueTmp);
 	}
+}
+
+void windowinput::SetRePaint(const HWND hwndKey, bool isReady)
+{
+
+	if(isReady){
+		window* windTmp = FindWindow(hwndKey);
+		windTmp->RedrawInterface();
+	}
+
+
+
+}
+
+
+bool windowinput::GetRepaint()
+{
+	return this->repaint;
 }

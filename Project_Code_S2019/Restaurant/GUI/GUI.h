@@ -18,9 +18,10 @@ private:
 	window *pWind;
 	color OrdersClrs[TYPE_CNT];
 
-
+	Restaurant* pRest;
 	// Some Static Constant Data Members: ---------------------
 
+	mutable string latestMSG;
 	static const int	
 		WindWidth=1200, WindHeight=650,		//Window width and height
 		StatusBarHeight = 150,	//Status Bar Height
@@ -89,11 +90,12 @@ private:
 	void ClearDrawingArea() const;	// clears the Drawing area from all drawings
 
 public:
-	GUI();
+	GUI(Restaurant*);
 	~GUI();
 
 	// Input Functions  ---------------------------
 	void waitForClick() const;	// waits a user click from the user
+	void GetEvent() const;	// Marait
 	string GetString() const ; // reads a string (keyboard input) from the user
 	
 	
@@ -110,7 +112,9 @@ public:
 	void ResetDrawingList();		//resets drawing list (should be called every timestep after drawing)
 
 	PROG_MODE getGUIMode() const;			//returns the mode of the program
-
+	
+	/// the function below is supposed to reprint the gui
+	void RedrawInterface();
 };
 
  

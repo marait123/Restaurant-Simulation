@@ -41,7 +41,7 @@ RegionManager Restaurant::GetRegion(REGION R)
 }
 void Restaurant::RunSimulation()
 {
-	pGUI = new GUI;
+	pGUI = new GUI(this);
 	PROG_MODE	mode = pGUI->getGUIMode();
 		
 	switch (mode)	//Add a function for each mode in next phases

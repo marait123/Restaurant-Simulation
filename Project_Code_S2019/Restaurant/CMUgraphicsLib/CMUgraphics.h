@@ -67,6 +67,7 @@ enum angletype {
 	RADIANS
 };
 
+class GUI;
 
 class window {
 
@@ -136,13 +137,17 @@ class window {
     // Prevent inadvertent copying... 
     void operator=(window &); 
     window(window &);
+
+	bool repaint;
     
+	///Marait : this is the pointer to the gui guy
+	GUI* gui;
   public:
  
     // Create a new window! iWindWidth and iWindHeight will change the size of 
     // the window created. iWindXPos and iWindYPos is the position the window
     // will appear on the screen
-    window(const int iWindWidth = ciDefWindWidth, const int iWindHeight = ciDefWindHeight, const int iWindXPos = ciDefWindXPos, const int iWindYPos = ciDefWindYPos);
+    window(GUI*, const int iWindWidth = ciDefWindWidth, const int iWindHeight = ciDefWindHeight, const int iWindXPos = ciDefWindXPos, const int iWindYPos = ciDefWindYPos);
 
     // Window destructor
   	~window();
@@ -190,7 +195,11 @@ class window {
     // if there is a mouse click event in the queue, otherwise
     // it will wait for one
 	clicktype WaitMouseClick(int &iX, int &iY);
- 	  
+
+	/*added by marait*/
+	evnettype GetEvent();
+
+
     // Removes the next keyboard event from the queue
     // stuffs the key value into ucKey, and returns the
     // type of key that was pressed    
@@ -201,6 +210,7 @@ class window {
 	// event in the queue.  As a result it will wait until
 	// there is one
 	keytype WaitKeyPress(char &cKey);
+
 
     // These two functions flush all waiting input out of the
     // mouse and keyboard input queues.  This is necessary
@@ -322,7 +332,9 @@ class window {
 
     // Prints the contents of the window
     void Print();
-   
+
+	void RedrawInterface();
+
 };
 
 #endif  //CMUGRAPHICS_H
