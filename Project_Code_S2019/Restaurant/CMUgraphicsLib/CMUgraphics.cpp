@@ -11,6 +11,10 @@ This file was last modified on 05.16.1999
 #include "CMUgraphics.h"
 #include "error.h"
 #include "windowinput.h"
+#include"../GUI/GUI.h"
+
+// marait
+bool isReady = false; // means ready to repaint
 
 // Keeps track of key and mouse input and redirects it to the
 // appropriate window object
@@ -19,12 +23,21 @@ windowinput* wipInput = NULL;
 static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	
 	switch(msg) {
+		// Marait
+	case WM_MOVE:
+	//	wipInput->SetRePaint(true);
+		wipInput->SetRePaint(hwnd, isReady);
+		isReady = true;
+		return 0;
+
+		//
 	  case WM_LBUTTONDOWN:
         if(wipInput != NULL) {
             wipInput->SetMouseState(hwnd, LEFT_BUTTON, BUTTON_DOWN, LOWORD(lParam), HIWORD(lParam));
 		}
 		SetCapture(hwnd);
  		return 0;
+
 
 	  case WM_RBUTTONDOWN:
         if(wipInput != NULL) {
@@ -109,6 +122,8 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 		  case VK_ESCAPE:
             if(wipInput != NULL) {
                 wipInput->SetKeyInfo(hwnd, ESCAPE, 1);
+				isReady = true;
+
 			}
 			break;
 
@@ -197,7 +212,7 @@ static LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-window::window(const int iWindWidth, const int iWindHeight, const int iWindXPos, const int iWindYPos) :
+window::window(GUI* guI, const int iWindWidth, const int iWindHeight, const int iWindXPos, const int iWindYPos) :
 hInstance(GetModuleHandle(0)), iWindowWidth(iWindWidth), iWindowHeight(iWindHeight) {
 
 	iMouseX = -1;
@@ -250,6 +265,8 @@ hInstance(GetModuleHandle(0)), iWindowWidth(iWindWidth), iWindowHeight(iWindHeig
     } else {
 	    wipInput->AddWindow(hwndWindow, this);	
 	}
+
+	this->gui = guI;
 }
 
 window::~window() {
@@ -557,6 +574,27 @@ clicktype window::WaitMouseClick(int &iX, int &iY) {
 		    return ctTmp;
 		}
 	}
+}
+
+evnettype window::GetEvent()
+{
+	mqueuenode* mqueTmp;
+	clicktype ctTmp;
+
+	while (true) {
+		ProcessMessage(); // Kludge
+
+		//mqueTmp = mqueInput.Remove();
+		//if (mqueTmp != NULL) {
+		//	iX = mqueTmp->iX;
+		//	iY = mqueTmp->iY;
+		//	ctTmp = mqueTmp->ctInfo;
+
+		//	delete mqueTmp;
+		//	return ctTmp;
+		}	
+
+	return evnettype();
 }
 
 keytype window::WaitKeyPress(char &cKey) {
@@ -1507,4 +1545,9 @@ void window::Print() {
   	if(DeleteDC(dcPrinter) != TRUE) {
   	    cout << "Fatal Error: Failed to delete dcPrinter in Print!" << endl;
   	}
+}
+
+void window::RedrawInterface()
+{
+	gui->RedrawInterface();
 }

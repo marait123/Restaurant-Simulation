@@ -1,11 +1,11 @@
-﻿#pragma once
-#include "..\Sound.h"
-#include "GUI.h"
+﻿#include "GUI.h"
 #include"../Rest/Restaurant.h"
+#include<string>
+#include "../Sound.h"
 //////////////////////////////////////////////////////////////////////////////////////////
-GUI::GUI()
+GUI::GUI(Restaurant* PRest)
 {
-	pWind = new window(WindWidth+15,WindHeight,0,0); 
+	pWind = new window(this,WindWidth+15,WindHeight,0,0); 
 	pWind->ChangeTitle("The Restautant");
 
 	OrderCount = 0;
@@ -18,7 +18,9 @@ GUI::GUI()
 	ClearStatusBar();
 	ClearDrawingArea(); 
 	DrawRestArea();  
+	this->pRest = PRest;
 	//Sound::SoundBox();
+	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()
@@ -34,6 +36,15 @@ void GUI::waitForClick() const
 {
 	int x,y;
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
+
+	
+
+}
+void GUI::GetEvent() const
+{
+	
+
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 string GUI::GetString() const 
@@ -68,6 +79,9 @@ void GUI::PrintMessage(string msg) const	//Prints a message on status bar
 	pWind->SetFont(18, BOLD , BY_NAME, "Arial");
 	pWind->DrawString(10, WindHeight - (int) (StatusBarHeight/1.5), msg); // You may need to change these coordinates later 
 	                                                                      // to be able to write multi-line
+	latestMSG = msg;
+
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void GUI::DrawString(const int iX, const int iY, const string Text)
@@ -104,12 +118,9 @@ void GUI::DrawRestArea() const
 	pWind->SetPen(BROWN);
 	pWind->SetBrush(CYAN);
 	//pWind->DrawRectangle(RestStartX, RestStartY, RestEndX, RestEndY);
-	pWind->DrawCircle( (RestStartX +  RestEndX)/2 , (RestStartY + RestEndY)/2 , 120);
-
-	pWind->SetPen(GREENYELLOW);
+	pWind->DrawCircle((RestStartX + RestEndX)/2 , (RestStartY +  RestEndY)/2 , 120);
 	pWind->SetBrush(GOLD);
-	pWind->DrawCircle( (RestStartX +  RestEndX)/2 , (RestStartY + RestEndY)/2 , 50);
-
+	pWind->DrawCircle((RestStartX + RestEndX)/2 , (RestStartY +  RestEndY)/2 , 50);
 	// 2- Drawing the 2 brown crossed lines (for making 4 regions)
 	pWind->SetPen(ORANGERED, 3);
 	pWind->DrawLine(0, YHalfDrawingArea, WindWidth, YHalfDrawingArea);
@@ -129,14 +140,12 @@ void GUI::DrawRestArea() const
 	pWind->DrawRectangle(RestEndX - 2*L/3, RestEndY - L/3, RestEndX - L/3, RestEndY - 2*L/3);
 
 	// 5- Writing the letter of each region (A, B, C, D)
-	pWind->SetPen(BROWN);
+	pWind->SetPen(BLUE);
 	pWind->SetFont(25, BOLD , BY_NAME, "Arial");
 	pWind->DrawString(RestStartX + (int)(0.44*L), RestStartY + 5*L/12, "A");
 	pWind->DrawString(RestStartX + (int)(0.44*L), YHalfDrawingArea + 5*L/12, "D");
 	pWind->DrawString(WindWidth/2 + (int)(0.44*L), RestStartY + 5*L/12, "B");
 	pWind->DrawString(WindWidth/2 + (int)(0.44*L), YHalfDrawingArea + 5*L/12, "C"); 
-
-	
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -299,4 +308,10 @@ PROG_MODE	GUI::getGUIMode() const
 	while(Mode< 0 || Mode >= MODE_CNT);
 	
 	return Mode;
+}
+
+void GUI::RedrawInterface()
+{
+	this->UpdateInterface(this->pRest);
+	PrintMessage(this->latestMSG);
 }

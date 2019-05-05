@@ -24,8 +24,15 @@ enum buttonstate {
 // Type of click that an be made
 enum clicktype {
 	NO_CLICK,
-    LEFT_CLICK,
+	LEFT_CLICK,
 	RIGHT_CLICK,
+};
+
+// Marait: Type of the event that happened
+enum evnettype{
+	mouse_click,
+	keyboard_click,
+	repaint
 };
 
 class mqueuenode {
@@ -50,6 +57,7 @@ class mqueue {
   public:
 	mqueue();
 	~mqueue();
+	bool isEmpty();	// marait
 	
 	void Insert(mqueuenode* mqueNode);
 	mqueuenode* Remove();

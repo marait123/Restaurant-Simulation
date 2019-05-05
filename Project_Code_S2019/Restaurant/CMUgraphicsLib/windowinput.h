@@ -35,10 +35,10 @@ class windowinput {
 
   private:
     winode *wiHead;
-
     // Allow the window class to read the state of bWaitClose
     friend class window;
 		
+	
 	// True if we want to wait for a mouseclick before closing the last window
 	bool bWaitClose;
 	
@@ -48,6 +48,8 @@ class windowinput {
 	void AddWindowInt(const HWND hwndNew, const window* wpNewWind, winode *&wiNode);
 	void RemoveWindowInt(const HWND hwndOld, winode *&wiNode);
 	window* FindWindowInt(const HWND hwndKey, const winode *wiNode);
+	bool repaint;
+
 	
   public:
 	windowinput(const HWND hwndNew, const window* wpNewWind);
@@ -64,6 +66,12 @@ class windowinput {
 	void SetMouseCoord(const HWND hwndKey, const int iX, const int iY);
 	void SetClickInfo(const HWND hwndKey, const clicktype ctInfo, const int iX, const int iY);
 	void SetKeyInfo(const HWND hwndKey, const keytype ktInfo, const char cValue);
+
+	// Marait: 
+
+	void SetRePaint(const HWND hwndKey, bool);
+
+	bool GetRepaint();
 
 };
 

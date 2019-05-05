@@ -24,6 +24,11 @@ mqueue::~mqueue() {
 	   delete mqueTmp;
    }
 }
+
+bool mqueue::isEmpty()
+{
+	return this->mqueHead == NULL;
+}
 	
 void mqueue::Insert(mqueuenode* mqueNode) {
 
