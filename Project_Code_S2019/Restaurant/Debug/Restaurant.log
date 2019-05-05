@@ -1,23 +1,77 @@
-﻿  RegionManager.cpp
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(114): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(290): warning C4101: 'ex' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(305): warning C4101: 'ex' : unreferenced local variable
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(36): warning C4018: '<' : signed/unsigned mismatch
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(29) : while compiling class template member function 'void Vector<Type>::insert(Type)'
-          with
-          [
-              Type=Motorcycle *
-          ]
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(22) : see reference to function template instantiation 'void Vector<Type>::insert(Type)' being compiled
-          with
-          [
-              Type=Motorcycle *
-          ]
-          g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.h(24) : see reference to class template instantiation 'Vector<Type>' being compiled
-          with
-          [
-              Type=Motorcycle *
-          ]
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\generic_ds\vector.cpp(41): warning C4018: '<' : signed/unsigned mismatch
-g:\حاسبات اولي\algorithms\project\project hub\project_code_s2019\restaurant\rest\regionmanager.cpp(25): warning C4715: 'RegionManager::AddMotorCycle' : not all control paths return a value
-  Restaurant.vcxproj -> G:\حاسبات اولي\algorithms\project\project hub\Project_Code_S2019\Debug\Restaurant.exe
+﻿Build started 5/5/2019 7:01:48 PM.
+     1>Project "A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt SaveAction.cpp
+         SaveAction.cpp
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(19): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(21): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(22): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(35): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(36): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(37): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(40): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(41): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(42): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(45): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(46): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(47): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(50): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(51): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>a:\data structures\data structure project\team_18\restaurant-simulation\project_code_s2019\restaurant\saveaction.cpp(52): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.lib" /MACHINE:X86 Debug\CMUgraphics.obj
+         Debug\colors.obj
+         Debug\image.obj
+         Debug\jpegload.obj
+         Debug\jcomapi.obj
+         Debug\jcparam.obj
+         Debug\jdapimin.obj
+         Debug\jdapistd.obj
+         Debug\jdatasrc.obj
+         Debug\jdcoefct.obj
+         Debug\jdcolor.obj
+         Debug\jddctmgr.obj
+         Debug\jdhuff.obj
+         Debug\jdinput.obj
+         Debug\jdmainct.obj
+         Debug\jdmarker.obj
+         Debug\jdmaster.obj
+         Debug\jdmerge.obj
+         Debug\jdphuff.obj
+         Debug\jdpostct.obj
+         Debug\jdsample.obj
+         Debug\jdtrans.obj
+         Debug\jerror.obj
+         Debug\jidctflt.obj
+         Debug\jidctfst.obj
+         Debug\jidctint.obj
+         Debug\jidctred.obj
+         Debug\jmemmgr.obj
+         Debug\jmemnobs.obj
+         Debug\jquant1.obj
+         Debug\jquant2.obj
+         Debug\jutils.obj
+         Debug\keyqueue.obj
+         Debug\mousequeue.obj
+         Debug\windowinput.obj
+         Debug\main.obj
+         Debug\CancelEvent.obj
+         Debug\Event.obj
+         Debug\ArrivalEvent.obj
+         Debug\PromoteEvent.obj
+         Debug\GUI.obj
+         Debug\LoadAction.obj
+         Debug\Motorcycle.obj
+         Debug\Order.obj
+         Debug\RegionManager.obj
+         Debug\Restaurant.obj
+         Debug\SaveAction.obj
+         Debug\Sound.obj
+         Debug\strutils.obj
+         Restaurant.vcxproj -> A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Debug\Restaurant.exe
+     1>Done Building Project "A:\Data Structures\Data Structure project\Team_18\Restaurant-Simulation\Project_Code_S2019\Restaurant\Restaurant.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.34

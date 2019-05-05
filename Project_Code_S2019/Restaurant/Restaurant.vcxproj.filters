@@ -150,6 +150,9 @@
     <ClInclude Include="Generic_DS\BSDLL.h">
       <Filter>Restaurant</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Restaurant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\jpeg\jcomapi.c">
@@ -292,6 +295,7 @@
     </ClCompile>
     <ClCompile Include="utility functions\strutils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMUgraphicsLib\Manual.txt">

@@ -70,7 +70,7 @@ public:
 
 	void ExecuteEvents(int TimeStep);	//executes all events at current timestep
 
-	RegionManager GetRegion(REGION);
+	RegionManager& GetRegion(REGION);
 	//Simulation Functions
 	void RunSimulation();
 	void InterActive();

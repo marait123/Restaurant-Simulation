@@ -13,12 +13,13 @@ void SaveAction::setSaveFileName(string fname)
 }
 void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 {
+	SaveFileName = "../output_files/" + SaveFileName;
 	Pair<int, Order*> SavedOrder ;
 	
 	float CountOrdA = pRest->GetRegion(A_REG).GetOrderCount();
 	float CountOrdB = pRest->GetRegion(B_REG).GetOrderCount();
-	float CountOrdC = pRest->GetRegion(B_REG).GetOrderCount();
-	float CountOrdD = pRest->GetRegion(B_REG).GetOrderCount();
+	float CountOrdC = pRest->GetRegion(C_REG).GetOrderCount();
+	float CountOrdD = pRest->GetRegion(D_REG).GetOrderCount();
 	float ALLOrderCount = CountOrdA + CountOrdB + CountOrdC + CountOrdD;
 	
 	
@@ -69,9 +70,9 @@ void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 	int WaitTimeD = pRest->GetRegion(D_REG).GetTotalWaitingTime();;
 
 	int TotalWait = WaitTimeA + WaitTimeB + WaitTimeC + WaitTimeD;
-	OutFile.open(this->SaveFileName);
+	OutFile.open(this->SaveFileName,ios::out);
 
-	while(ALLRestOrders.peekFront(SavedOrder))
+	while(ALLRestOrders.dequeue(SavedOrder))
 	{
 		OutFile << "FT ID AT  WT ST\n"
 			    << SavedOrder.getSecond()->getFinishTime()
@@ -86,41 +87,57 @@ void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 		          {
 		             case TYPE_NRM:
 						 CountNrmOrderA ++;
+						 break;
 		     	     case TYPE_FROZ:
 						 CountFrzOrderA ++;
+						 break;
                      case TYPE_VIP:
 						 CountVipOrderA ++;
+						 break;
 		          }
+				  break;
 			 case B_REG:
 				  switch(SavedOrder.getSecond()->GetType())
 		          {
 		             case TYPE_NRM:
 						 CountNrmOrderB ++;
+						 break;
 		     	     case TYPE_FROZ:
 						 CountFrzOrderB ++;
+						 break;
                      case TYPE_VIP:
 						 CountVipOrderB ++;
+						 break;
 		          }
+				  break;
 			 case C_REG:
 				  switch(SavedOrder.getSecond()->GetType())
 		          {
 		             case TYPE_NRM:
 						 CountNrmOrderC ++;
+						 break;
 		     	    case TYPE_FROZ:
 						 CountFrzOrderC ++;
+						 break;
                      case TYPE_VIP:
 						 CountVipOrderC ++;
+						 break;
 		          }
+				  break;
 			 case D_REG:
 				  switch(SavedOrder.getSecond()->GetType())
 		          {
 		             case TYPE_NRM:
 						 CountNrmOrderD ++;
+						 break;
 		     	     case TYPE_FROZ:
 						 CountFrzOrderD ++;
+						 break;
                      case TYPE_VIP:
 						 CountVipOrderD ++;
+						 break;
 		          }
+				  break;
 		}
 
 	}
@@ -159,7 +176,7 @@ void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 		   <<"MotorCount:"<< ALLMotors  <<"[Norm:"<< ALLNrmMotors <<", Froz:"<< ALLFrzMotors <<", Fast:"<< ALLFstMotors <<"]"
 		   <<"Avg Wait = "<< TotalWait/ALLMotors <<",  Avg Serv = "<< TotalServ/ALLMotors;
 
-	
+	OutFile.close();
 }
 
 SaveAction::~SaveAction(void)

@@ -25,7 +25,7 @@ Restaurant::~Restaurant()
 		delete pGUI;
 }
 
-RegionManager Restaurant::GetRegion(REGION R)
+RegionManager& Restaurant::GetRegion(REGION R)
 {
 	switch(R)
 	{
@@ -551,7 +551,7 @@ void Restaurant::LoadFromFile(string fileName){
 			
 			for( int i = 0 ; i < 4 ; i++)
 			{
-				LoadFile >> Fst_Count >> Nrm_Count >> Froz_Count;
+				LoadFile >> Nrm_Count >> Froz_Count >> Fst_Count;
 				int j;
 				//Adding Normal Motorcycles' Objects
 				for (j = 0; j < Nrm_Count; ++j) {

@@ -31,7 +31,7 @@ private:
 	//For Statistics
 	int TotalServTime;
 	int TotalWaitingTime;
-	int OrderCount;
+	int OrdCount;
 
 	 // the lists of waiting orders
 	 /*justification for the BSDLL:
@@ -70,7 +70,7 @@ public :
 	int GetTotalWaitingTime() const;
 
 	//void AddOrder(Order*order); 
-	void SetOrderCount(int OrderC);
+	void IncrementOrderCount();
 
 	
 	 int GetFrozenMotorCount();

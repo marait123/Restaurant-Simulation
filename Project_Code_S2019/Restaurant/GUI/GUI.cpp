@@ -1,5 +1,5 @@
 ﻿#pragma once
-
+#include "..\Sound.h"
 #include "GUI.h"
 #include"../Rest/Restaurant.h"
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ GUI::GUI()
 	ClearStatusBar();
 	ClearDrawingArea(); 
 	DrawRestArea();  
-	
+	//Sound::SoundBox();
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()
@@ -92,7 +92,7 @@ void GUI::ClearDrawingArea() const
 {
 	// Clearing the Drawing area
 	pWind->SetPen(KHAKI, 3);
-	pWind->SetBrush(KHAKI);
+	pWind->SetBrush(YELLOW);
 	pWind->DrawRectangle(0, MenuBarHeight, WindWidth, WindHeight - StatusBarHeight);
 }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -102,11 +102,16 @@ void GUI::DrawRestArea() const
 
 	// 1- Drawing the brown square of the Rest
 	pWind->SetPen(BROWN);
-	pWind->SetBrush(BROWN);
-	pWind->DrawRectangle(RestStartX, RestStartY, RestEndX, RestEndY);
+	pWind->SetBrush(CYAN);
+	//pWind->DrawRectangle(RestStartX, RestStartY, RestEndX, RestEndY);
+	pWind->DrawCircle( (RestStartX +  RestEndX)/2 , (RestStartY + RestEndY)/2 , 120);
+
+	pWind->SetPen(GREENYELLOW);
+	pWind->SetBrush(GOLD);
+	pWind->DrawCircle( (RestStartX +  RestEndX)/2 , (RestStartY + RestEndY)/2 , 50);
 
 	// 2- Drawing the 2 brown crossed lines (for making 4 regions)
-	pWind->SetPen(BROWN, 3);
+	pWind->SetPen(ORANGERED, 3);
 	pWind->DrawLine(0, YHalfDrawingArea, WindWidth, YHalfDrawingArea);
 	pWind->DrawLine(WindWidth/2, MenuBarHeight, WindWidth/2, WindHeight-StatusBarHeight);
 
@@ -130,6 +135,8 @@ void GUI::DrawRestArea() const
 	pWind->DrawString(RestStartX + (int)(0.44*L), YHalfDrawingArea + 5*L/12, "D");
 	pWind->DrawString(WindWidth/2 + (int)(0.44*L), RestStartY + 5*L/12, "B");
 	pWind->DrawString(WindWidth/2 + (int)(0.44*L), YHalfDrawingArea + 5*L/12, "C"); 
+
+	
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////

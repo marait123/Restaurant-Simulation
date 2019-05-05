@@ -8,7 +8,7 @@ RegionManager::RegionManager()
 		for (int j = 0; j < 2; ++j)
 			MotorCyclesCounts[i][j] = 0;
 	AllMotorsCount = 0;
-	OrderCount = 0;
+	OrdCount = 0;
 	TotalServTime = 0;
 	TotalWaitingTime = 0;
 }
@@ -50,8 +50,7 @@ bool RegionManager::PopMotorCycle(Motorcycle*& MC, MotorcycleType typ, STATUS st
 void RegionManager::CheckArrivedMotorCycles()
 {
 	for (int i = 0; i < 3; ++i) {
-		int sz = ListOfMotorcycles[(MotorcycleType)i][SERV].getSize();
-		for (int j = 0; j < sz; ) {
+		for (int j = 0; j < ListOfMotorcycles[(MotorcycleType)i][SERV].getSize(); ) {
 
 			if (!ListOfMotorcycles[(MotorcycleType)i][SERV][j]->DecrementDeliveryTime()) {
 				int sz = ListOfMotorcycles[(MotorcycleType)i][SERV].getSize();
@@ -111,7 +110,7 @@ bool RegionManager::ServeOrder(Order* pOrd, int curTS)
 	TotalWaitingTime += WT;
 
 	///Calculate ST of pOrd (OrdDist/v)
-	int ST = ceil(pOrd->GetDistance() / MC->GetSpeed());
+	int ST = ceil(pOrd->GetDistance() / float(MC->GetSpeed()) );
 	pOrd->setServTime(ST);
 	TotalServTime += ST;
 
@@ -147,9 +146,8 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 		VipOrders.dequeue();
 
 		pRest->AddOrderToPQ(curOrd);
+		IncrementOrderCount();
 		pRest->RemoveFromAllOrders(curOrd);
-
-		//pRest->addToDeletedPerTS(curOrd);
 	}
 
 	//Second, Frozen
@@ -158,7 +156,7 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 		if (!ServeOrder(curOrd, curTS)) break;
 		FrozenOrder.dequeue(curOrd);
 		pRest->AddOrderToPQ(curOrd);
-	//	pRest->addToDeletedPerTS(curOrd);
+		IncrementOrderCount();
 		pRest->RemoveFromAllOrders(curOrd);
 
 	}
@@ -172,7 +170,7 @@ bool RegionManager::ServeAvailableOrders(Restaurant* pRest)
 
 		NormalOrders.Deque(); //TODO :: Ask Marait if this will delete the Order itself or not ? Marait said: "No" it is a general ds not specific and so all the DS"s i have desing for the project or any future project 
 		pRest->AddOrderToPQ(curOrd);
-		//pRest->addToDeletedPerTS(curOrd);
+		IncrementOrderCount();
 		pRest->RemoveFromAllOrders(curOrd);
 	}
 
@@ -191,7 +189,7 @@ int RegionManager::GetMCCount() const
 
 int RegionManager::GetOrderCount() const
 {
-	return this->OrderCount;
+	return this->OrdCount;
 }
 
 
@@ -207,9 +205,9 @@ int RegionManager::GetTotalWaitingTime() const
 }
 
 
-void RegionManager::SetOrderCount(int OrderC)
+void RegionManager::IncrementOrderCount()
 {
-	this->OrderCount = OrderC;
+	this->OrdCount++;
 }
  
 //TODO :: Remove if not needed
