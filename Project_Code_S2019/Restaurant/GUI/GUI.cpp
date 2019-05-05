@@ -1,7 +1,10 @@
 ﻿#include "GUI.h"
 #include"../Rest/Restaurant.h"
 #include<string>
+<<<<<<< HEAD
 #include "../Sound.h"
+=======
+>>>>>>> 006673c60a7461c0f93463b263692348785f5485
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::GUI(Restaurant* PRest)
 {
@@ -19,7 +22,10 @@ GUI::GUI(Restaurant* PRest)
 	ClearDrawingArea(); 
 	DrawRestArea();  
 	this->pRest = PRest;
+<<<<<<< HEAD
 	//Sound::SoundBox();
+=======
+>>>>>>> 006673c60a7461c0f93463b263692348785f5485
 	
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -314,4 +320,9 @@ void GUI::RedrawInterface()
 {
 	this->UpdateInterface(this->pRest);
 	PrintMessage(this->latestMSG);
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> 006673c60a7461c0f93463b263692348785f5485
