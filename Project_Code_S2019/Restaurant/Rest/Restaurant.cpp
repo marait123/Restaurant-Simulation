@@ -302,8 +302,7 @@ void Restaurant::ProcessInterActive()
 			"Mouse Click To increase TimeStep"
 		);
 
-		Sleep(1000);
-
+		pGUI->waitForClick();
 		this->CheckArrivedMotorCycles();
 		finishedServing = this->ServeAvailableOrders();
 
