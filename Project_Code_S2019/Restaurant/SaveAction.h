@@ -15,7 +15,6 @@ class Restaurant;
 
 class SaveAction
 {
-	ofstream OutFile;
 	string SaveFileName;
 	Restaurant *pRest;
 

@@ -124,7 +124,8 @@ public:
 		be served and delete it from the priorityqueue of orders
 		
 	*/
-	Order* GetOrderToSave();
+
+	bool GetOrderToSave(Pair<int, Order*>& );
 	
 };
  

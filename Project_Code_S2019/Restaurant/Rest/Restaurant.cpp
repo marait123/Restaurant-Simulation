@@ -264,9 +264,9 @@ void Restaurant::InterActive()
 	pGUI->waitForClick();
 	
 	SaveFile = pGUI->GetString();
-	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";	
+	Save->setSaveFileName(SaveFile);
 
-	
 	Save->Execute(AllOrders); // do the save stuff
 }
 
@@ -301,7 +301,8 @@ void Restaurant::ProcessInterActive()
 			+ ", D[" + tostring(this->Region[3].GetFrozenMotorCount()) + "," + tostring(this->Region[3].GetNormalMotorCount()) + "," + tostring(this->Region[3].GetFastMotorCount()) + "]" +
 			"Mouse Click To increase TimeStep"
 		);
-		pGUI->waitForClick();
+
+		Sleep(1000);
 
 		this->CheckArrivedMotorCycles();
 		finishedServing = this->ServeAvailableOrders();
@@ -312,12 +313,10 @@ void Restaurant::ProcessInterActive()
 
 void Restaurant::StepByStep()
 {
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
-
-	pGUI->PrintMessage("Step By Step Mode , Mouse Click to Continue");
+	pGUI->PrintMessage("StepByStep Mode , Mouse Click to Continue");
 	pGUI->waitForClick();
+	Load = new LoadAction("", this);
+
 	do {
 		pGUI->PrintMessage(!isLoaded ?
 			"Please enter a valid file name , Mouse Click to Continue" :
@@ -333,24 +332,18 @@ void Restaurant::StepByStep()
 
 	} while (!isLoaded);
 
-	this->ProcessInterActive(); // second do the interactive stuff
 
+	this->ProcessStepByStep(); // second do the interactive stuff
+
+	pGUI->PrintMessage("Choose A File To Save :  ");
+	Save = new SaveAction("", this);//, this->AllOrders
 	pGUI->waitForClick();
-	do {
-		pGUI->PrintMessage(!isLoaded ?
-			"Please enter a valid file name , Mouse Click to Continue" :
-			"Please enter file to save , Mouse Click to Continue"
-		);
-		pGUI->waitForClick();
 
-		SaveFile = pGUI->GetString();
-		if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+	SaveFile = pGUI->GetString();
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+	Save->setSaveFileName(SaveFile);
 
-		// Save->setLoadFileName(SaveFile);
-		// Save->Execute();	// Save the file 
-
-	} while (!isLoaded);
-
+	Save->Execute(AllOrders); // do the save stuff
 
 	//Sleep(1000); // wait 1 second for the next function call
 }
@@ -381,8 +374,8 @@ void Restaurant::ProcessStepByStep()
 
 		Sleep(1000); // wait 1 second for the next function call
 
-		pGUI->PrintMessage("Mouse Click To increase TimeStep");
-
+		this->CheckArrivedMotorCycles();
+		finishedServing = this->ServeAvailableOrders();
 
 		finishedServing = this->ServeAvailableOrders();
 	}
@@ -391,12 +384,11 @@ void Restaurant::ProcessStepByStep()
 
 void Restaurant::Silent()
 {
-	int EventCnt;	
-	Order* pOrd;
-	Event* pEv;
 
 	pGUI->PrintMessage("Silent Mode , Mouse Click to Continue");
-	pGUI->waitForClick();	
+	pGUI->waitForClick();
+	Load = new LoadAction("", this);
+
 	do {
 		pGUI->PrintMessage(!isLoaded ?
 			"Please enter a valid file name , Mouse Click to Continue" :
@@ -412,77 +404,41 @@ void Restaurant::Silent()
 
 	} while (!isLoaded);
 
+	this->ProcessSilent(); // second do the interactive stuff
 
-	/*here between the loading and the saving the simulation tekes action*/
+	pGUI->PrintMessage("Choose A File To Save :  ");
+	Save = new SaveAction("", this);//, this->AllOrders
+	pGUI->waitForClick();
 
-	this->ProcessSilent();
+	SaveFile = pGUI->GetString();
+	if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
+	Save->setSaveFileName(SaveFile);
 
-	do {
-		pGUI->PrintMessage(!isLoaded ?
-			"Please enter a valid file name , Mouse Click to Continue" :
-			"Please enter file to save , Mouse Click to Continue"
-		);
-		pGUI->waitForClick();
+	Save->Execute(AllOrders); // do the save stuff
 
-		SaveFile = pGUI->GetString();
-		if (SaveFile.find(".txt") == -1) SaveFile += ".txt";
-
-		// Save->setLoadFileName(SaveFile);
-		// Save->Execute();	// Save the file 
-
-		isLoaded = true; // NOTE : it is to be deleted after the save action has completed
-	} while (!isLoaded);
 }
 
 void Restaurant::ProcessSilent()
 {
+
 	bool finishedServing = true;
+
 	while (!this->EventsQueue.isEmpty() || finishedServing)  // this is the event loop where every order gets assigned to a motor cycle
 	{
-		/*
-			in this part of the simulation 
-			1. i execute events in their order of arrival (cancellation - promotion - arrival)
-		*/
 
 		IncreaseCurrentTime();
-		this->ExecuteEvents(CurrentTimeStep);		// the part of executing events is done as i see
+		this->ExecuteEvents(CurrentTimeStep);
 		// here you print the number of active order type those in the list of orders
 		this->pGUI->UpdateInterface(this);
-		/*
-			in this part of the simulation
-			1. i should assign the orders to the motorcycles	
-				// the steps to do this is that every region manager you check if it is still have
-				// something to do if it has you call  a function to serve every order it can serv
-				// if it doesn't you don't do anything untill each region manager as well has nothing 
-				// to do and you end the simulation
-			2. Check to see which motorcycle has come back 
-			3. those orders that have been served i should move them to the list of served orders
-			4. i should stay here untill i have no orders in any region that are waiting or haven't yet
-			   been served			
-		*/
 
-		//bool RegFinish[4] = { false, false, false, false };		
-			/*RegFinish[i] = Region[i].DidFinish();
-			finishedServing = finishedServing && RegFinish[i];*/
+		this->CheckArrivedMotorCycles();
+		finishedServing = this->ServeAvailableOrders();
 
-				// Ibrahim has to help implementing these functions below
-
-				// Marait: important to read 
-				// we could replace all the functions below by one big function that does all this or calls all this 
-				// Region[i].ServeOrders();			// this function needs to be implemented in every region manager to serve the orders the region can serve right now
-				// Region[i].IncrementTime();		// it decrement the time that every motorcycle will deliver its delivery in 
-				// Region[i].checkArrival();		// this function should check if a motorcycle finished serving and if they have->
-				// it should move the orders that were on the motorcyles to the list of served orders where they will be sorted according to
-				// their finish time
-				// here in the restaurant you will define a priority queue and access this priority queue in every region to add these orders that have been served to it 
-				// then when simulation is finished the previous priority queue will be
-				// accessed by save object by attia to save the finished orders in the saving file
-
-			finishedServing = this->ServeAvailableOrders();
-		
-
-
+		finishedServing = this->ServeAvailableOrders();
 	}
+
+	pGUI->PrintMessage("finished silent simulation click to continue");
+	pGUI->waitForClick();
 }
 
 void Restaurant::AddToAllOrders(Order *Ord)
@@ -496,10 +452,7 @@ void Restaurant::RemoveFromAllOrders(Order *Ord){
 	pGUI->RemoveOrderForDrawing(Ord);
 }
 
-Order * Restaurant::GetOrderToSave()
-{
-	return nullptr;
-}
+
 
 
 /////////////////////////////////////////////////////
@@ -608,6 +561,7 @@ void Restaurant::LoadFromFile(string fileName){
 		    int  TS  , ID  ;
 			float  DST , MON , ExMon;
 			char  TYP , Reg ;
+
 			/* Arrival event line have the following info R TS TYP ID DST MON  REG 
 			  where R means an arrival event, TYP is the order type (N: normal, F: frozen, V: VIP). TS is the arrival time step. 
 			  The ID is a unique sequence number that identifies each order. 
@@ -622,6 +576,7 @@ void Restaurant::LoadFromFile(string fileName){
 			  
 			  where P means an order promotion event occurring at time TS,and ID is the id of the order to be promoted to be VIP. This ID must be of a Normal order. 
 			  ExMon if the extra money the customer paid for promotion*/
+
 			 ORD_TYPE O_Type ;
 			 REGION R_Type;
 
@@ -730,4 +685,56 @@ void Restaurant::DeleteOrdersPerTS()
 		ordersToDeletePerTS.dequeue(tOrd);
 		RemoveFromAllOrders(tOrd);
 	}
+}
+
+bool Restaurant::GetOrderToSave(Pair<int ,Order*> & Ord)
+{
+	if (this->AllOrders.isEmpty())
+	{
+		return false;
+
+		Ord.setSecond(NULL);
+	}
+	Vector<Pair<int, Order*>> temp;
+
+	Pair<int, Order*> SavedOrder;
+
+	AllOrders.peekFront(SavedOrder);
+	AllOrders.dequeue();
+	temp.insert(SavedOrder);
+
+
+	AllOrders.peekFront(SavedOrder);
+	while (SavedOrder.getSecond()->getFinishTime() == temp[0].getSecond()->getFinishTime()) {
+		AllOrders.dequeue();
+		temp.insert(SavedOrder);
+		if (AllOrders.isEmpty())
+			break;
+		AllOrders.peekFront(SavedOrder);
+	}
+
+	// no the temp has all orders with the same finish time
+	// here do the comparison staff
+	Pair<int, Order*> ordToSave = temp[0];
+
+	
+	for (size_t i = 1; i < temp.getSize() ; i++)
+	{
+		if (temp[i].getSecond()->getServTime() < ordToSave.getSecond()->getServTime()) {
+			ordToSave = temp[i];
+		}
+	}
+
+	// i should then return those that weren't used
+
+	for (size_t i = 0; i < temp.getSize(); i++)
+	{
+		if (ordToSave.getSecond()->GetID() != temp[i].getSecond()->GetID()) {
+			AllOrders.enqueue(temp[i]);
+		}
+	}
+
+	Ord = ordToSave;
+
+	return true;
 }

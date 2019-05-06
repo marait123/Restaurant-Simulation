@@ -1550,8 +1550,4 @@ void window::Print() {
 void window::RedrawInterface()
 {
 	gui->RedrawInterface();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 006673c60a7461c0f93463b263692348785f5485

@@ -1,0 +1,28 @@
+FT ID AT  WT ST
+63204
+FT ID AT  WT ST
+61105
+FT ID AT  WT ST
+72106
+FT ID AT  WT ST
+105307
+FT ID AT  WT ST
+114308
+FT ID AT  WT ST
+1363010
+FT ID AT  WT ST
+148707
+FT ID AT  WT ST
+1474010
+FT ID AT  WT ST
+1797010
+Region A:
+Orders:3[Norm:3, Froz:0, VIP:0]MotorCount:9[Norm:5, Froz:3, Fast:1]Avg Wait = 0,  Avg Serv = 2.33333
+Region B:
+Orders:3[Norm:2, Froz:0, VIP:1]MotorCount:11[Norm:6, Froz:3, Fast:2]Avg Wait = 0,  Avg Serv = 1.90909
+Region C:
+Orders:2[Norm:1, Froz:0, VIP:1]MotorCount:7[Norm:4, Froz:2, Fast:1]Avg Wait = 0,  Avg Serv = 2.42857
+Region D:
+Orders:1[Norm:0, Froz:1, VIP:0]MotorCount:15[Norm:9, Froz:4, VIP:2]Avg Wait = 0,  Avg Serv = 0.533333
+Restaurant:
+Orders:9[Norm:6, Froz:1, VIP:2]MotorCount:42[Norm:24, Froz:12, Fast:6]Avg Wait = 0,  Avg Serv = 1.59524

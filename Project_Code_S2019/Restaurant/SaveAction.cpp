@@ -13,9 +13,9 @@ void SaveAction::setSaveFileName(string fname)
 }
 void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 {
-	SaveFileName = "../output_files/" + SaveFileName;
-	Pair<int, Order*> SavedOrder ;
 	
+	Pair<int, Order*> SavedOrder ;
+
 	float CountOrdA = pRest->GetRegion(A_REG).GetOrderCount();
 	float CountOrdB = pRest->GetRegion(B_REG).GetOrderCount();
 	float CountOrdC = pRest->GetRegion(C_REG).GetOrderCount();
@@ -70,15 +70,24 @@ void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 	int WaitTimeD = pRest->GetRegion(D_REG).GetTotalWaitingTime();;
 
 	int TotalWait = WaitTimeA + WaitTimeB + WaitTimeC + WaitTimeD;
-	OutFile.open(this->SaveFileName,ios::out);
 
-	while(ALLRestOrders.dequeue(SavedOrder))
+
+	ofstream OutFile;
+	 OutFile.open(this->SaveFileName.c_str());
+
+	 bool is_open = OutFile.is_open();
+
+	if (!is_open) {
+		return;
+	}
+	while(pRest->GetOrderToSave(SavedOrder))
 	{
+
 		OutFile << "FT ID AT  WT ST\n"
-			    << SavedOrder.getSecond()->getFinishTime()
-				<<  SavedOrder.getSecond()->GetID()
-				<<  SavedOrder.getSecond()->getArrTime()
-				<<  SavedOrder.getSecond()->getWaitingTime()
+			    << SavedOrder.getSecond()->getFinishTime() << "     "
+				<<  SavedOrder.getSecond()->GetID() << "     "
+				<<  SavedOrder.getSecond()->getArrTime() << "     "
+				<<  SavedOrder.getSecond()->getWaitingTime() << "     "
 				<<  SavedOrder.getSecond()->getServTime() <<"\n";
 		switch(SavedOrder.getSecond()->GetRegion())
 		{
@@ -139,7 +148,7 @@ void SaveAction::Execute(priority_q<Pair<int, Order*>> ALLRestOrders)
 		          }
 				  break;
 		}
-
+		delete SavedOrder.getSecond();
 	}
 	float ALLNrmOrderCount = CountNrmOrderA + CountNrmOrderB + CountNrmOrderC + CountNrmOrderD;
 	float ALLVipOrderCount = CountVipOrderA + CountVipOrderB + CountVipOrderC + CountVipOrderD;

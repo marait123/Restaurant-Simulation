@@ -179,8 +179,4 @@ void windowinput::SetRePaint(const HWND hwndKey, bool isReady)
 bool windowinput::GetRepaint()
 {
 	return this->repaint;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 006673c60a7461c0f93463b263692348785f5485

@@ -315,5 +315,12 @@ bool RegionManager::DidFinish()
 RegionManager::~RegionManager()
 {
 	//TODO :: Make sure that there are not any pointer-defined data member to be deleted
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < MotorCyclesCounts[i][0]; j++)
+		{
+			delete	ListOfMotorcycles[i][0][j];
+		}
+	}
 }
 
